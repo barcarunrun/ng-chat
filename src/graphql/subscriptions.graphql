@@ -1,0 +1,45 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateMessage($roomId: ID!) {
+  onCreateMessage(roomId: $roomId) {
+    id
+    content
+    when
+    roomId
+    owner
+    room {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}
+subscription OnCreateRoom {
+  onCreateRoom {
+    id
+    createdAt
+    updatedAt
+    messages {
+      nextToken
+    }
+  }
+}
+subscription OnUpdateRoom {
+  onUpdateRoom {
+    id
+    createdAt
+    updatedAt
+    messages {
+      nextToken
+    }
+  }
+}
+subscription OnDeleteRoom {
+  onDeleteRoom {
+    id
+    createdAt
+    updatedAt
+    messages {
+      nextToken
+    }
+  }
+}

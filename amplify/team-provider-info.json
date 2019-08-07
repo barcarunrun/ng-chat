@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "ng-chat-dev-20190806184648-authRole",
+            "UnauthRoleArn": "arn:aws:iam::202703265993:role/ng-chat-dev-20190806184648-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::202703265993:role/ng-chat-dev-20190806184648-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "ng-chat-dev-20190806184648-deployment",
+            "UnauthRoleName": "ng-chat-dev-20190806184648-unauthRole",
+            "StackName": "ng-chat-dev-20190806184648",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:202703265993:stack/ng-chat-dev-20190806184648/1c46da90-b82f-11e9-b870-0abb3ebe2760"
+        },
+        "categories": {
+            "auth": {
+                "ngchatb79829c2": {}
+            }
+        }
+    }
+}

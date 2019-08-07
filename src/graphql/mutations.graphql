@@ -1,0 +1,73 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateRoom($input: CreateRoomInput!) {
+  createRoom(input: $input) {
+    id
+    createdAt
+    updatedAt
+    messages {
+      nextToken
+    }
+  }
+}
+mutation UpdateRoom($input: UpdateRoomInput!) {
+  updateRoom(input: $input) {
+    id
+    createdAt
+    updatedAt
+    messages {
+      nextToken
+    }
+  }
+}
+mutation DeleteRoom($input: DeleteRoomInput!) {
+  deleteRoom(input: $input) {
+    id
+    createdAt
+    updatedAt
+    messages {
+      nextToken
+    }
+  }
+}
+mutation CreateMessage($input: CreateMessageInput!) {
+  createMessage(input: $input) {
+    id
+    content
+    when
+    roomId
+    owner
+    room {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}
+mutation UpdateMessage($input: UpdateMessageInput!) {
+  updateMessage(input: $input) {
+    id
+    content
+    when
+    roomId
+    owner
+    room {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}
+mutation DeleteMessage($input: DeleteMessageInput!) {
+  deleteMessage(input: $input) {
+    id
+    content
+    when
+    roomId
+    owner
+    room {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}

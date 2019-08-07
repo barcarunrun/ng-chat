@@ -1,0 +1,51 @@
+<p class="room">部屋番号: {{ roomid }}</p>
+<div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5">
+  <i class="icon ion-ios-chatbubbles"></i>
+  <div class="chat-box" id="box">
+    <article class="media" *ngFor="let message of messages">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <strong>{{ message.owner }}</strong>
+          <br>
+          <p class="message-content">{{ message.content }}
+          </p>
+          <p>{{ time2str(message.when) }}</p>
+        </div>
+      </div>
+    </article>
+  </div>
+  <article class="media chat-add">
+    <figure class="media-left">
+      <p class="image is-64x64">
+        <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="field inputfield">
+        <p class="control">
+          <textarea class="textarea" [(ngModel)]="message" placeholder="ここにメッセージ内容を入力"></textarea>
+        </p>
+      </div>
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <a class="button is-info" (click)="createMessage()">送信</a>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <label class="checkbox">
+              <input type="checkbox" disabled> Enterで送信
+            </label>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </article>
+</div>
+<app-footer></app-footer>
