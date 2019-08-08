@@ -7,8 +7,8 @@ import {RoomDetailComponent} from "./room-detail/room-detail.component";
 import {RoomListComponent} from "./room-list/room-list.component";
 
 const routes: Routes = [
-  {path: "", redirectTo: "/home", pathMatch: "full"},
-  {path: "home", component: RoomListComponent, canActivate: [AuthGuard]},
+  {path: "", redirectTo: "/rooms", pathMatch: "full"},
+  // {path: "home", component: RoomListComponent, canActivate: [AuthGuard]},
   {path: "rooms/:id", component: RoomDetailComponent, canActivate: [AuthGuard]},
   {path: "login", component: LoginComponent}
 ];
