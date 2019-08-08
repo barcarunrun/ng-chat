@@ -1,5 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="wrapper">
   <app-nav></app-nav>
-  <router-outlet></router-outlet>
+  <div class="columns">
+    <app-room-list class="column is-one-third"></app-room-list>
+    <div class="column">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
+<!-- <app-footer></app-footer> -->

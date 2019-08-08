@@ -4,12 +4,12 @@
       <input class="input is-primary" type="text" [(ngModel)]="roomid" placeholder="Room名(英数字)">
     </div>
   </div>
-  <div class="field">
+  <div class="field is-grouped">
     <a class="button is-info is-pulled-right" (click)="createRoom()">作成する</a>
   </div>
 </div>
 <div class="columns is-multiline list-room">
-  <div class="column is-full" *ngFor="let room of rooms" routerLink="/rooms/{{room.id}}">
+  <a class="column is-full" *ngFor="let room of rooms" routerLink="/rooms/{{room.id}}" routerLinkActive="active">
     {{ room.id }}
-  </div>
+  </a>
 </div>

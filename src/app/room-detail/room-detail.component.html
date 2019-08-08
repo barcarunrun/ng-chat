@@ -1,8 +1,8 @@
 <p class="room">部屋番号: {{ roomid }}</p>
 <div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5">
   <i class="icon ion-ios-chatbubbles"></i>
-  <div class="chat-box" id="box">
-    <article class="media" *ngFor="let message of messages">
+  <div class="chat-box" id="chatbox">
+    <article class="media" *ngFor="let message of messages" [class.is-loading-chat]="isLoading">
       <figure class="media-left">
         <p class="image is-64x64">
           <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
@@ -18,6 +18,15 @@
         </div>
       </div>
     </article>
+    <div class="pacman-box" [class.is-loaded]="!isLoading">
+      <div class="loader-inner pacman">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </div>
   <article class="media chat-add">
     <figure class="media-left">
@@ -48,4 +57,3 @@
     </div>
   </article>
 </div>
-<app-footer></app-footer>

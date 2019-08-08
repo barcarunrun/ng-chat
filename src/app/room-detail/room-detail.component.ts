@@ -1,45 +1,17 @@
-import {Component, OnInit, AfterViewInit} from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  QueryList,
+  ViewChildren
+} from "@angular/core";
+
 import {ActivatedRoute} from "@angular/router";
 import API, {graphqlOperation} from "@aws-amplify/api";
 
 import {CreateMessageInput, APIService, CreateRoomInput} from "../API.service";
 import Amplify, {Auth, Hub} from "aws-amplify";
 import {MyAPIService} from "../API.my";
-
-const chat = {
-  id: 123,
-  content: `We are happy to announce our new service NEORT β was released!!
-NOERT is a platform for creator, engineer, artist everyone love digital art.
-Everyone can create and browse awesome artwork for free.
-(link: https://neort.io/) neort.io Enjoy digital art life!!`,
-  user: {
-    id: 1,
-    name: "NEORT",
-    image:
-      "https://pbs.twimg.com/profile_images/1095209921816158208/Yznn0ohE_400x400.jpg"
-  }
-};
-const chat2 = {
-  id: 123,
-  content: `Pickup artwork "Trail #1" by "Kakuya Shiraishi" (link: https://neort.io/art/bl0p5uk3p9fafudeb320) neort.io/art/bl0p5uk3p9…
-#NEORT #openframeworks`,
-  user: {
-    id: 1,
-    name: "ANA",
-    image:
-      "https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg"
-  }
-};
-const chat3 = {
-  id: 123,
-  content: `The ocular engine. Sources:  @archillinks (link: http://archillect.com) archillect.com`,
-  user: {
-    id: 1,
-    name: "ANA",
-    image:
-      "https://pbs.twimg.com/profile_images/1045579977067024384/S0luKMwQ_400x400.jpg"
-  }
-};
 
 @Component({
   selector: "app-room-detail",
@@ -49,58 +21,60 @@ const chat3 = {
 export class RoomDetailComponent implements OnInit, AfterViewInit {
   user: any;
   roomid: string;
-  talks: Array<object>;
   messages: Array<object>;
-
   message: string;
+  messageSubscription: any;
+  isLoading: boolean;
 
-  constructor(private route: ActivatedRoute, private api: MyAPIService) {
-    this.roomid = this.route.snapshot.paramMap.get("id");
-    this.message = "";
-    // Subscribe to creation of Message
-    const messageSubscription = this.api.MyOnCreateMessageListener(this.roomid);
-    messageSubscription.subscribe({
-      next: newMessage => {
-        this.messages.push(newMessage.value.data.onCreateMessage);
-        // console.log(this.messages);
-      }
-    });
-  }
+  // ngForでループさせる要素のQueryList取得
+  @ViewChildren("chatbox")
+  chatColumns: QueryList<any>;
 
-  async ngOnInit() {
-    const room = await this.api.GetRoom(this.roomid);
-    const messages = await this.api.ListMessages({roomId: {contains: room.id}});
-    this.messages = messages.items.sort((a0, b0) => {
-      const a = new Date(Number(b0.when) * 1000);
-      const b = new Date(Number(a0.when) * 1000);
-      return a > b ? -1 : a < b ? 1 : 0;
-    });
-    // this.messages = messages.items;
-    // console.log(this.messages);
-    Auth.currentAuthenticatedUser().then(user => {
-      this.user = user;
-    });
+  constructor(private route: ActivatedRoute, private api: MyAPIService) {}
 
-    this.talks = [
-      chat,
-      chat3,
-      chat,
-      chat2,
-      chat3,
-      chat,
-      chat2,
-      chat,
-      chat3,
-      chat2,
-      chat,
-      chat3,
-      chat,
-      chat3
-    ];
+  ngOnInit() {
+    // パスパラメータの変更をサブスクライブする
+    this.route.paramMap.subscribe(async paramMap => {
+      this.message = "";
+      this.isLoading = true;
+      this.roomid = paramMap.get("id");
+      console.log("room/:", this.roomid);
+      // パラメータが変わった後の初期化処理
+      // Subscribe to creation of Message
+      this.messageSubscription = this.api
+        .MyOnCreateMessageListener(this.roomid)
+        .subscribe({
+          next: newMessage => {
+            this.messages.push(newMessage.value.data.onCreateMessage);
+            // console.log(this.messages);
+          }
+        });
+      const room = await this.api.GetRoomMessages(this.roomid);
+      // const messages = await this.api.ListMessages({
+      //   roomId: {contains: room.id}
+      // });
+      // console.log(room);
+      this.messages = room.messages.items.sort((a0, b0) => {
+        const a = new Date(Number(b0.when) * 1000);
+        const b = new Date(Number(a0.when) * 1000);
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
+      // console.log(this.messages);
+      Auth.currentAuthenticatedUser().then(user => {
+        this.user = user;
+      });
+      this.isLoading = false;
+    });
   }
   ngAfterViewInit() {
-    const elm = document.getElementById("box");
-    elm.scrollTop = elm.scrollHeight;
+    this.chatColumns.changes.subscribe(t => {
+      // 最下部にスクロール
+      const chatbox = document.getElementById("chatbox");
+      chatbox.scrollTop = chatbox.scrollHeight;
+    });
+  }
+  ngOnDestroy() {
+    this.messageSubscription.describe();
   }
 
   createMessage() {
