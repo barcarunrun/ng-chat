@@ -2,20 +2,20 @@
 <div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5">
   <i class="icon ion-ios-chatbubbles"></i>
   <div class="chat-box" id="chatbox">
-    <article class="media" *ngFor="let message of messages" [class.is-loading-chat]="isLoading">
-      <figure class="media-left">
-        <p class="image is-64x64">
+    <article class="media" [class.my-media]="isMyMessage(message.owner)" *ngFor="let message of messages"
+      [class.is-loading-chat]="isLoading">
+      <figure class="media-left" [class.my-message]="isMyMessage(message.owner)">
+        <p class="image is-32x32">
           <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
         </p>
       </figure>
       <div class="media-content">
+        <strong class="message-name" [class.my-message]="isMyMessage(message.owner)">{{ message.owner }}</strong>
         <div class="content">
-          <strong>{{ message.owner }}</strong>
-          <br>
-          <p class="message-content">{{ message.content }}
+          <p class="message-content" [class.my-message-content]="isMyMessage(message.owner)">{{ message.content }}
           </p>
-          <p>{{ time2str(message.when) }}</p>
         </div>
+        <p class="date" [class.my-date]="isMyMessage(message.owner)">{{ time2str(message.when) }}</p>
       </div>
     </article>
     <div class="pacman-box" [class.is-loaded]="!isLoading">
@@ -29,11 +29,11 @@
     </div>
   </div>
   <article class="media chat-add">
-    <figure class="media-left">
+    <!-- <figure class="media-left">
       <p class="image is-64x64">
         <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
       </p>
-    </figure>
+    </figure> -->
     <div class="media-content">
       <div class="field inputfield">
         <p class="control">

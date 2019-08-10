@@ -8,7 +8,7 @@
     <a class="button is-info is-pulled-right" (click)="createRoom()">作成する</a>
   </div>
 </div>
-<div class="columns is-multiline list-room">
+<div class="columns is-multiline list-room" *ngIf="roomService.rooms$ | async as rooms">
   <a class="column is-full" *ngFor="let room of rooms" routerLink="/rooms/{{room.id}}" routerLinkActive="active">
     {{ room.id }}
   </a>

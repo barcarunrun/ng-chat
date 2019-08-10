@@ -33,6 +33,9 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private api: MyAPIService) {}
 
   ngOnInit() {
+    Auth.currentAuthenticatedUser().then(user => {
+      this.user = user;
+    });
     // パスパラメータの変更をサブスクライブする
     this.route.paramMap.subscribe(async paramMap => {
       this.message = "";
@@ -60,9 +63,6 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
         return a > b ? -1 : a < b ? 1 : 0;
       });
       // console.log(this.messages);
-      Auth.currentAuthenticatedUser().then(user => {
-        this.user = user;
-      });
       this.isLoading = false;
     });
   }
@@ -74,7 +74,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnDestroy() {
-    this.messageSubscription.describe();
+    this.messageSubscription.unsubscribe();
   }
 
   createMessage() {
@@ -88,6 +88,10 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
     const message = this.api.CreateMessage(newMessage);
     // console.log(message);
     this.message = "";
+  }
+
+  isMyMessage(owner: string): boolean {
+    return owner === this.user.username ? true : false;
   }
 
   time2str(time: string): string {

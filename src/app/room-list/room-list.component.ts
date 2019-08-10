@@ -1,7 +1,9 @@
 import {Component, OnInit} from "@angular/core";
+import {Router, ActivatedRoute} from "@angular/router";
 
 import {ListRoomsQuery, APIService, CreateRoomInput} from "../API.service";
-import {input} from "@aws-amplify/ui";
+
+import {RoomService} from "../store/room/room.service";
 
 @Component({
   selector: "app-room-list",
@@ -9,30 +11,23 @@ import {input} from "@aws-amplify/ui";
   styleUrls: ["./room-list.component.sass"]
 })
 export class RoomListComponent implements OnInit {
-  roomsGql: ListRoomsQuery;
-  rooms: Array<object>;
   roomid: string;
   newRoom: CreateRoomInput;
-  roomSubscription: any;
 
-  constructor(private api: APIService) {
+  constructor(
+    private api: APIService,
+    private router: Router,
+    private route: ActivatedRoute,
+    public roomService: RoomService
+  ) {
     this.roomid = "";
   }
 
   async ngOnInit() {
-    this.roomSubscription = this.api.OnCreateRoomListener.subscribe({
-      next: newRoom => {
-        this.rooms.push(newRoom.value.data.onCreateRoom);
-      }
-    });
-    // Simple query
-    const roomsGql = await this.api.ListRooms();
-    this.rooms = roomsGql.items;
+    console.log("list ngOnInit");
   }
 
-  ngOnDestroy() {
-    this.roomSubscription.describe();
-  }
+  ngOnDestroy() {}
 
   createRoom() {
     this.newRoom = {id: this.roomid};

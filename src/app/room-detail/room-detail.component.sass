@@ -1,17 +1,50 @@
 .room
     font-size: 2rem
-    padding-bottom: 2rem
+    padding: 0 1rem 2rem
+
+.my-message
+    display: none
+
+.my-media
+    justify-content: flex-end
+    .media-content
+        flex-grow: 0
+        .content
+            justify-content: flex-end
+            display: flex
 
 .chat
     display: flex
     flex-direction: column
-    height: 80vh
-    padding-right: 3rem
+    height: 85vh
+    padding: 0 1rem
     .chat-box
         height: 65vh
         overflow-y: scroll
+        .media
+            border: none
+            margin: 0
+            padding: 0
+        .media-left
+            .image
+                padding-top: 1.5rem
+        .message-name
+            font-size: 14px
         .message-content
             height: 100%
+            padding: 0.3rem 1rem
+            background-color: #F5F6F7
+            display: inline-block
+            border: none
+            border-radius: 13px
+        .my-message-content
+            color: #ffffff
+            background-color: #209cee
+        .date
+            font-size: 10px
+        .my-date
+            justify-content: flex-end
+            display: flex
     .chat-add
         padding-top: 1rem
         .inputfield

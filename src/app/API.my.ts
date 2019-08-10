@@ -3,6 +3,13 @@ import API, {graphqlOperation} from "@aws-amplify/api";
 import * as Observable from "zen-observable";
 import {Injectable} from "@angular/core";
 
+export interface Room {
+  __typename: "Room";
+  id: string;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
 export type GetRoomMessagesQuery = {
   __typename: "Room";
   id: string;
