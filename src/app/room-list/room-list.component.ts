@@ -31,6 +31,7 @@ export class RoomListComponent implements OnInit {
 
   createRoom() {
     this.newRoom = {id: this.roomid};
+    this.roomid = "";
     this.api.CreateRoom(this.newRoom);
   }
 }

@@ -18,15 +18,20 @@ export class RoomService {
   ) {
     console.log("store room constructor");
     this.api.ListRooms().then(roomsGql => {
-      console.log(roomsGql.items);
-      this.model = this.modelFactory.create(roomsGql.items);
+      const sortedRooms = roomsGql.items.sort((a0, b0) => {
+        const a = new Date(a0.updatedAt);
+        const b = new Date(b0.updatedAt);
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
+      console.log(sortedRooms);
+      this.model = this.modelFactory.create(sortedRooms);
       this.rooms$ = this.model.data$;
     });
   }
 
   addRoom(room: Room) {
     const rooms = this.model.get();
-    rooms.push(room);
+    rooms.unshift(room);
     this.model.set(rooms);
   }
 }
