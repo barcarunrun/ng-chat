@@ -1,0 +1,117 @@
+# enum offerCategory {}
+
+# enum storeCategory {}
+
+enum UserRole {
+  Owner
+  Officer
+  Managers
+  Staff
+  Employees
+  User
+}
+
+enum invitedStatus {
+  hold
+  accepted
+  canceled
+}
+
+type Company @model {
+  id: ID!
+  name: String!
+  stores: [Store]!  # ont to many
+    @connection(
+      name: "CompanyStores"
+      keyField: "storeID"
+      sortField: "createdAt"
+    )
+  owner: User! @connection # ont to one
+  officer: User!
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Store @model {
+  id: ID!
+  admin: User!
+  company: Company! @connection(name: "CompanyStores", keyField: "companyId")
+  offres: [Offer!]!  # ont to many
+    @connection(
+      name: "StoreOffers"
+      keyField: "offerID"
+      sortField: "createdAt"
+    )
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Offer @model {
+  id: ID!
+  store: Store! @connection(name: "StoreOffers", keyField: "storeId")
+  title: String!
+  content: String!
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type User @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  username: String!
+  logo: String!
+  rooms: [RoomUser] @connection(name: "UserRooms")
+  joined: [Store!]!
+  owned: [Store!]!
+}
+
+type InvitedRoom @model(subscriptions: null) {
+  id: ID!
+  roomId: String!
+  toUser: String!
+  fromUser: String!
+  status: invitedStatus!
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Room @model {
+  id: ID!
+  name: String!
+  image: String!
+  users: [RoomUser] @connection(name: "RoomUsers")
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+  messages: [Message!]!
+    @connection(
+      name: "RoomMessages"
+      keyField: "roomId"
+      sortField: "createdAt"
+    )
+}
+
+type Message @model(subscriptions: null) {
+  id: ID!
+  content: String!
+  when: String!
+  roomId: ID!
+  owner: String!
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+  room: Room @connection(name: "RoomMessages", keyField: "roomId")
+}
+
+type Subscription {
+  onCreateMessage(roomId: ID!): Message
+    @aws_subscribe(mutations: ["createMessage"])
+
+  onCreateInvitedRoom(toUser: String!): InvitedRoom
+    @aws_subscribe(mutations: ["createInvitedRoom"])
+}
+
+# リレーション
+
+type RoomUser @model(queries: null) {
+  id: ID!
+  room: Room! @connection(name: "RoomUsers")
+  user: User! @connection(name: "UserRooms")
+}

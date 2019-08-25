@@ -1,5 +1,5 @@
 projects:
-  ngChat:
+  ngChatApp:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.graphql
@@ -10,5 +10,3 @@ projects:
         codeGenTarget: angular
         generatedFileName: src/app/API.service.ts
         docsFilePath: src/graphql
-        region: ap-northeast-1
-        maxDepth: 2

@@ -1,10 +1,615 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateCompany($input: CreateCompanyInput!) {
+  createCompany(input: $input) {
+    id
+    name
+    stores {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    owner {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    officer {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCompany($input: UpdateCompanyInput!) {
+  updateCompany(input: $input) {
+    id
+    name
+    stores {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    owner {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    officer {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCompany($input: DeleteCompanyInput!) {
+  deleteCompany(input: $input) {
+    id
+    name
+    stores {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    owner {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    officer {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateStore($input: CreateStoreInput!) {
+  createStore(input: $input) {
+    id
+    admin {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    company {
+      id
+      name
+      stores {
+        nextToken
+      }
+      owner {
+        id
+        username
+        logo
+      }
+      officer {
+        id
+        username
+        logo
+      }
+      createdAt
+      updatedAt
+    }
+    offres {
+      items {
+        id
+        title
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateStore($input: UpdateStoreInput!) {
+  updateStore(input: $input) {
+    id
+    admin {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    company {
+      id
+      name
+      stores {
+        nextToken
+      }
+      owner {
+        id
+        username
+        logo
+      }
+      officer {
+        id
+        username
+        logo
+      }
+      createdAt
+      updatedAt
+    }
+    offres {
+      items {
+        id
+        title
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteStore($input: DeleteStoreInput!) {
+  deleteStore(input: $input) {
+    id
+    admin {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+    company {
+      id
+      name
+      stores {
+        nextToken
+      }
+      owner {
+        id
+        username
+        logo
+      }
+      officer {
+        id
+        username
+        logo
+      }
+      createdAt
+      updatedAt
+    }
+    offres {
+      items {
+        id
+        title
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateOffer($input: CreateOfferInput!) {
+  createOffer(input: $input) {
+    id
+    store {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    title
+    content
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateOffer($input: UpdateOfferInput!) {
+  updateOffer(input: $input) {
+    id
+    store {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    title
+    content
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteOffer($input: DeleteOfferInput!) {
+  deleteOffer(input: $input) {
+    id
+    store {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    title
+    content
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    id
+    username
+    logo
+    rooms {
+      items {
+        id
+      }
+      nextToken
+    }
+    joined {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    owned {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    username
+    logo
+    rooms {
+      items {
+        id
+      }
+      nextToken
+    }
+    joined {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    owned {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}
+mutation DeleteUser($input: DeleteUserInput!) {
+  deleteUser(input: $input) {
+    id
+    username
+    logo
+    rooms {
+      items {
+        id
+      }
+      nextToken
+    }
+    joined {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    owned {
+      id
+      admin {
+        id
+        username
+        logo
+      }
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      offres {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}
+mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
+  createInvitedRoom(input: $input) {
+    id
+    roomId
+    toUser
+    fromUser
+    status
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
+  updateInvitedRoom(input: $input) {
+    id
+    roomId
+    toUser
+    fromUser
+    status
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
+  deleteInvitedRoom(input: $input) {
+    id
+    roomId
+    toUser
+    fromUser
+    status
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateRoom($input: CreateRoomInput!) {
   createRoom(input: $input) {
     id
+    name
+    image
+    users {
+      items {
+        id
+      }
+      nextToken
+    }
     createdAt
     updatedAt
     messages {
+      items {
+        id
+        content
+        when
+        roomId
+        owner
+        createdAt
+        updatedAt
+      }
       nextToken
     }
   }
@@ -12,9 +617,26 @@ mutation CreateRoom($input: CreateRoomInput!) {
 mutation UpdateRoom($input: UpdateRoomInput!) {
   updateRoom(input: $input) {
     id
+    name
+    image
+    users {
+      items {
+        id
+      }
+      nextToken
+    }
     createdAt
     updatedAt
     messages {
+      items {
+        id
+        content
+        when
+        roomId
+        owner
+        createdAt
+        updatedAt
+      }
       nextToken
     }
   }
@@ -22,9 +644,26 @@ mutation UpdateRoom($input: UpdateRoomInput!) {
 mutation DeleteRoom($input: DeleteRoomInput!) {
   deleteRoom(input: $input) {
     id
+    name
+    image
+    users {
+      items {
+        id
+      }
+      nextToken
+    }
     createdAt
     updatedAt
     messages {
+      items {
+        id
+        content
+        when
+        roomId
+        owner
+        createdAt
+        updatedAt
+      }
       nextToken
     }
   }
@@ -36,10 +675,20 @@ mutation CreateMessage($input: CreateMessageInput!) {
     when
     roomId
     owner
+    createdAt
+    updatedAt
     room {
       id
+      name
+      image
+      users {
+        nextToken
+      }
       createdAt
       updatedAt
+      messages {
+        nextToken
+      }
     }
   }
 }
@@ -50,10 +699,20 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
     when
     roomId
     owner
+    createdAt
+    updatedAt
     room {
       id
+      name
+      image
+      users {
+        nextToken
+      }
       createdAt
       updatedAt
+      messages {
+        nextToken
+      }
     }
   }
 }
@@ -64,10 +723,128 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
     when
     roomId
     owner
+    createdAt
+    updatedAt
     room {
       id
+      name
+      image
+      users {
+        nextToken
+      }
       createdAt
       updatedAt
+      messages {
+        nextToken
+      }
+    }
+  }
+}
+mutation CreateRoomUser($input: CreateRoomUserInput!) {
+  createRoomUser(input: $input) {
+    id
+    room {
+      id
+      name
+      image
+      users {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      messages {
+        nextToken
+      }
+    }
+    user {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}
+mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
+  updateRoomUser(input: $input) {
+    id
+    room {
+      id
+      name
+      image
+      users {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      messages {
+        nextToken
+      }
+    }
+    user {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}
+mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
+  deleteRoomUser(input: $input) {
+    id
+    room {
+      id
+      name
+      image
+      users {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      messages {
+        nextToken
+      }
+    }
+    user {
+      id
+      username
+      logo
+      rooms {
+        nextToken
+      }
+      joined {
+        id
+        createdAt
+        updatedAt
+      }
+      owned {
+        id
+        createdAt
+        updatedAt
+      }
     }
   }
 }

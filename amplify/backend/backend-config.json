@@ -6,7 +6,7 @@
 		}
 	},
 	"api": {
-		"ngChat": {
+		"ngChatApp": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
