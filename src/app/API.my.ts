@@ -10,8 +10,8 @@ import {Injectable} from "@angular/core";
 export interface Room {
   __typename: "Room";
   id: string;
-  createdAt: string | null;
-  updatedAt: string | null;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export type GetRoomMessagesQuery = {
