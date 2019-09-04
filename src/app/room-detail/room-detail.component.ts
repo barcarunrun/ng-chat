@@ -83,7 +83,9 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
       content: this.message,
       when: Math.floor(now.getTime() / 1000).toString(),
       owner: this.user.username,
-      roomId: this.roomid
+      roomId: this.roomid,
+      createdAt: Math.floor(now.getTime() / 1000),
+      updatedAt: Math.floor(now.getTime() / 1000)
     };
     const message = this.api.CreateMessage(newMessage);
     // console.log(message);

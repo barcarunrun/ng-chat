@@ -1,7 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
-import {ListRoomsQuery, APIService, CreateRoomInput} from "../API.service";
+import {ListRoomsQuery, CreateRoomInput} from "../API.service";
+import {MyAPIService} from "../API.my";
+
+import Amplify, {Auth, Hub} from "aws-amplify";
 
 import {RoomService} from "../store/room/room.service";
 
@@ -13,9 +16,11 @@ import {RoomService} from "../store/room/room.service";
 export class RoomListComponent implements OnInit {
   roomid: string;
   newRoom: CreateRoomInput;
+  invitedRooms: Array<object>;
+  invitedRoomSubscription: any;
 
   constructor(
-    private api: APIService,
+    private api: MyAPIService,
     private router: Router,
     private route: ActivatedRoute,
     public roomService: RoomService
@@ -25,12 +30,32 @@ export class RoomListComponent implements OnInit {
 
   async ngOnInit() {
     console.log("list ngOnInit");
+
+    Auth.currentAuthenticatedUser().then(user => {
+      // Subscribe to creation of Message
+      this.invitedRoomSubscription = this.api
+        .MyOnCreateInviteListener(user.name)
+        .subscribe({
+          next: newInvited => {
+            console.log(newInvited);
+            this.invitedRooms.push(newInvited.value.data.MyOnCreateInviteRoom);
+          }
+        });
+    });
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.invitedRoomSubscription.unsubscribe();
+  }
 
   createRoom() {
-    this.newRoom = {id: this.roomid};
+    const now = new Date();
+    this.newRoom = {
+      name: this.roomid,
+      image: "https://picsum.photos/100",
+      createdAt: Math.floor(now.getTime() / 1000),
+      updatedAt: Math.floor(now.getTime() / 1000)
+    };
     this.roomid = "";
     this.api.CreateRoom(this.newRoom);
   }
