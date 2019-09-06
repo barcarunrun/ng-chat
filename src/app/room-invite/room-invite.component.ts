@@ -6,7 +6,7 @@ import {CreateInvitedRoomInput, invitedStatus} from "../API.service";
 @Component({
   selector: "app-room-invite",
   templateUrl: "./room-invite.component.html",
-  styleUrls: ["./room-invite.component.css"]
+  styleUrls: ["./room-invite.component.sass"]
 })
 export class RoomInviteComponent implements OnInit {
   fromUser: any;
