@@ -17,6 +17,7 @@ export interface Room {
 export type GetRoomMessagesQuery = {
   __typename: "Room";
   id: string;
+  name: string;
   createdAt: string | null;
   updatedAt: string | null;
   messages: {
@@ -61,6 +62,7 @@ export class MyAPIService extends APIService {
         getRoom(id: $id) {
           __typename
           id
+          name
           createdAt
           updatedAt
           messages {

@@ -10,6 +10,6 @@
 </div>
 <div class="columns is-multiline list-room" *ngIf="roomService.rooms$ | async as rooms">
   <a class="column is-full" *ngFor="let room of rooms" routerLink="/rooms/{{room.id}}" routerLinkActive="active">
-    {{ room.id }}
+    {{ room.name }}
   </a>
 </div>

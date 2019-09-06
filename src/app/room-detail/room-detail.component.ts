@@ -21,6 +21,7 @@ import {MyAPIService} from "../API.my";
 export class RoomDetailComponent implements OnInit, AfterViewInit {
   user: any;
   roomid: string;
+  roomname: string;
   messages: Array<object>;
   message: string;
   messageSubscription: any;
@@ -56,7 +57,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
       // const messages = await this.api.ListMessages({
       //   roomId: {contains: room.id}
       // });
-      // console.log(room);
+      this.roomname = room.name;
       this.messages = room.messages.items.sort((a0, b0) => {
         const a = new Date(Number(b0.when) * 1000);
         const b = new Date(Number(a0.when) * 1000);
