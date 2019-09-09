@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
-  selector: 'app-room-create',
-  templateUrl: './room-create.component.html',
-  styleUrls: ['./room-create.component.css']
+  selector: "app-room-create",
+  templateUrl: "./room-create.component.html",
+  styleUrls: ["./room-create.component.sass"]
 })
 export class RoomCreateComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
