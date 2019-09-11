@@ -17,6 +17,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import { RoomCreateComponent } from './room-create/room-create.component';
 import { RoomInviteComponent } from './room-invite/room-invite.component';
 import { RoomJoinComponent } from './room-join/room-join.component';
+import { RoomHomeComponent } from './room-home/room-home.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RoomJoinComponent } from './room-join/room-join.component';
     LoginComponent,
     RoomCreateComponent,
     RoomInviteComponent,
-    RoomJoinComponent
+    RoomJoinComponent,
+    RoomHomeComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, AmplifyAngularModule],
   providers: [AmplifyService, AuthService, AuthGuard],
