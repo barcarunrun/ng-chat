@@ -13,6 +13,10 @@ import {CreateMessageInput, APIService, CreateRoomInput} from "../API.service";
 import Amplify, {Auth, Hub} from "aws-amplify";
 import {MyAPIService} from "../API.my";
 
+import {Store, select} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {unShowRoomDetail} from "../store/session/session.action";
+
 @Component({
   selector: "app-room-detail",
   templateUrl: "./room-detail.component.html",
@@ -26,12 +30,19 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
   message: string;
   messageSubscription: any;
   isLoading: boolean;
+  showRoomDetail$: Observable<boolean>;
 
   // ngForでループさせる要素のQueryList取得
   @ViewChildren("chatbox")
   chatColumns: QueryList<any>;
 
-  constructor(private route: ActivatedRoute, private api: MyAPIService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private api: MyAPIService,
+    private store: Store<{showRoomDetail: boolean}>
+  ) {
+    this.showRoomDetail$ = store.pipe(select("showRoomDetail"));
+  }
 
   ngOnInit() {
     Auth.currentAuthenticatedUser().then(user => {
@@ -100,5 +111,9 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
   time2str(time: string): string {
     var c = new Date(Number(time) * 1000);
     return c.toLocaleString();
+  }
+
+  unShowRoomDetail(): void {
+    this.store.dispatch(unShowRoomDetail());
   }
 }

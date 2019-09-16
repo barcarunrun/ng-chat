@@ -1,8 +1,24 @@
-<div>
-  <p>invited rooms</p>
-  <ul>
-    <li onclick="openModel(room.id)">room.name</li>
-    <li>room.name</li>
-    <li>room.name</li>
-  </ul>
+<button class="button invite-room-button is-rounded" (click)="toggleModal()">招待する</button>
+<div class="modal" [class.is-active]="isOpen">
+  <div class="modal-background" (click)="toggleModal()"></div>
+  <div class="modal-card">
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">招待するユーザーを入力</label>
+        <div class="control">
+          <input class="input" type="text" [(ngModel)]="toUser" placeholder="Text input">
+        </div>
+        <p class="help">This is a help text</p>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button invite-room-button is-medium" (click)="inviteUser()">招待する</button>
+        </div>
+        <div class="control">
+          <button class="button is-medium" (click)="toggleModal()">やめる</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="toggleModal()"></button>
 </div>

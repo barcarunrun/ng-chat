@@ -1,60 +1,68 @@
-<!-- <p class="room">部屋番号: {{ roomid }}</p> -->
-<p class="room">部屋の名前: {{ roomname }}</p>
-<div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5">
-  <i class="icon ion-ios-chatbubbles"></i>
-  <div class="chat-box" id="chatbox">
-    <article class="media" [class.my-media]="isMyMessage(message.owner)" *ngFor="let message of messages"
-      [class.is-loading-chat]="isLoading">
-      <figure class="media-left" [class.my-message]="isMyMessage(message.owner)">
-        <p class="image is-32x32">
-          <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
-        </p>
-      </figure>
-      <div class="media-content">
-        <strong class="message-name" [class.my-message]="isMyMessage(message.owner)">{{ message.owner }}</strong>
-        <div class="content">
-          <p class="message-content" [class.my-message-content]="isMyMessage(message.owner)">{{ message.content }}
+<div class="room-detail" [class.hide-for-showRoomDetail]="(showRoomDetail$ | async) === false">
+  <p class="room">部屋番号: {{ roomname }}</p>
+  <p class="room-invite">
+    <app-room-invite></app-room-invite>
+  </p>
+  <p class="room-invite hide-over-768px">
+    <button class="button back-to-room-list-button" (click)="unShowRoomDetail()">戻る</button>
+  </p>
+  <div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5">
+    <i class="icon ion-ios-chatbubbles"></i>
+    <div class="chat-box" id="chatbox">
+      <article class="media" [class.my-media]="isMyMessage(message.owner)" *ngFor="let message of messages"
+        [class.is-loading-chat]="isLoading">
+        <figure class="media-left" [class.my-message]="isMyMessage(message.owner)">
+          <p class="image is-32x32">
+            <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
           </p>
+        </figure>
+        <div class="media-content">
+          <strong class="message-name" [class.my-message]="isMyMessage(message.owner)">{{ message.owner }}</strong>
+          <div class="content">
+            <p class="message-content" [class.my-message-content]="isMyMessage(message.owner)">{{ message.content }}
+            </p>
+          </div>
+          <p class="date" [class.my-date]="isMyMessage(message.owner)">{{ time2str(message.when) }}</p>
         </div>
-        <p class="date" [class.my-date]="isMyMessage(message.owner)">{{ time2str(message.when) }}</p>
-      </div>
-    </article>
-    <div class="pacman-box" [class.is-loaded]="!isLoading">
-      <div class="loader-inner pacman">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+      </article>
+      <div class="pacman-box" [class.is-loaded]="!isLoading">
+        <div class="loader-inner pacman">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </div>
-  </div>
-  <article class="media chat-add">
-    <!-- <figure class="media-left">
+    <article class="media chat-add">
+      <!-- <figure class="media-left">
       <p class="image is-64x64">
         <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
       </p>
     </figure> -->
-    <div class="media-content">
-      <div class="field inputfield">
-        <p class="control">
-          <textarea class="textarea" [(ngModel)]="message" placeholder="ここにメッセージ内容を入力"></textarea>
-        </p>
+      <div class="media-content">
+        <div class="field inputfield">
+          <p class="control">
+            <textarea class="textarea" [(ngModel)]="message" placeholder="ここにメッセージ内容を入力"></textarea>
+          </p>
+        </div>
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <a class="button send-message-button" (click)="createMessage()">送信</a>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <label class="checkbox">
+                <input type="checkbox" disabled> Enterで送信
+              </label>
+            </div>
+          </div>
+        </nav>
       </div>
-      <nav class="level">
-        <div class="level-left">
-          <div class="level-item">
-            <a class="button is-info" (click)="createMessage()">送信</a>
-          </div>
-        </div>
-        <div class="level-right">
-          <div class="level-item">
-            <label class="checkbox">
-              <input type="checkbox" disabled> Enterで送信
-            </label>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </article>
+    </article>
+  </div>
+
 </div>

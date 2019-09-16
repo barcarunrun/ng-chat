@@ -23,6 +23,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {}
+
   disableMenu(): void {
     this.isActive = !this.isActive;
   }

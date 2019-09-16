@@ -14,10 +14,15 @@ import {LoginComponent} from "./login/login.component";
 
 import {AuthService} from "./auth/auth.service";
 import {AuthGuard} from "./auth/auth.guard";
-import { RoomCreateComponent } from './room-create/room-create.component';
-import { RoomInviteComponent } from './room-invite/room-invite.component';
-import { RoomJoinComponent } from './room-join/room-join.component';
-import { RoomHomeComponent } from './room-home/room-home.component';
+import {RoomCreateComponent} from "./room-create/room-create.component";
+import {RoomInviteComponent} from "./room-invite/room-invite.component";
+import {RoomJoinComponent} from "./room-join/room-join.component";
+import {RoomHomeComponent} from "./room-home/room-home.component";
+import {UsersComponent} from "./room/users/users.component";
+import {RoomInviteListComponent} from "./room/invite/list/list.component";
+
+import {StoreModule} from "@ngrx/store";
+import {showRoomDetailReducer} from "./store/session/session.reducer";
 
 @NgModule({
   declarations: [
@@ -30,9 +35,17 @@ import { RoomHomeComponent } from './room-home/room-home.component';
     RoomCreateComponent,
     RoomInviteComponent,
     RoomJoinComponent,
-    RoomHomeComponent
+    RoomHomeComponent,
+    UsersComponent,
+    RoomInviteListComponent
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, AmplifyAngularModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    AmplifyAngularModule,
+    StoreModule.forRoot({showRoomDetail: showRoomDetailReducer})
+  ],
   providers: [AmplifyService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })

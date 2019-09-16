@@ -1,9 +1,29 @@
 .room
+    float: left
     font-size: 2rem
     padding: 0 1rem 2rem
 
+.hide-for-showRoomDetail
+  @media screen and ( max-width: 768px )
+    display: none
+
+.room-invite
+    padding: 1rem 2rem
+
+.hide-over-768px
+    @media screen and ( min-width: 768px )
+        display: none
+
+.back-to-room-list-button
+    background-color: white
+    color: #ee771c
+
 .my-message
     display: none
+
+.send-message-button
+    background-color: #ee771c
+    color: white
 
 .my-media
     justify-content: flex-end
@@ -39,7 +59,7 @@
             border-radius: 13px
         .my-message-content
             color: #ffffff
-            background-color: #209cee
+            background-color: #f19249
         .date
             font-size: 10px
         .my-date
@@ -55,9 +75,8 @@
 
 .pacman-box
     padding: 20%
-    background-color: #00d1b2
+    background-color: #ee771c
     height: 100%
 
 .is-loaded
     display: none
-    

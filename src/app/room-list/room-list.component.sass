@@ -1,13 +1,32 @@
+.room-list
+  height: 100vh
+
+.hide-for-showRoomDetail
+  @media screen and ( max-width: 768px )
+    display: none
+
 .invited-room
   padding: 0.5rem 1.25rem
 
 .create-room
   padding: 0.5rem 1.25rem
+  padding-bottom: 1.5rem
+
+.create-room-button
+  background-color: #ee771c
+  color: white
+
+.create-room-input
+  border-color: #f39f60
 
 .list-room
   padding: 0 2rem
+  .room
+    display: flex
+    .room-icon
+      margin-right: 1rem
   .active
-    background-color: #00d1b2
+    background-color: #ef8432
     color: white
   a
-    color: #209cee
+    color: #ef8432

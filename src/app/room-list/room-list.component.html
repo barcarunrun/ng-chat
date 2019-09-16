@@ -1,15 +1,25 @@
-<div class="create-room">
-  <div class="field">
-    <div class="control">
-      <input class="input is-primary" type="text" [(ngModel)]="roomid" placeholder="Room名(英数字)">
+<div class="room-list" [class.hide-for-showRoomDetail]="showRoomDetail$ | async">
+  <div class="create-room">
+    <div class="field">
+      <div class="control">
+        <input class="input create-room-input" type="text" [(ngModel)]="roomid" placeholder="Room名(英数字)">
+      </div>
+    </div>
+    <div class="field is-grouped">
+      <a class="button create-room-button is-pulled-right" (click)="createRoom()">作成する</a>
     </div>
   </div>
-  <div class="field is-grouped">
-    <a class="button is-info is-pulled-right" (click)="createRoom()">作成する</a>
+  <div>
+    <!-- <app-room-invite-list></app-room-invite-list> -->
   </div>
-</div>
-<div class="columns is-multiline list-room" *ngIf="roomService.rooms$ | async as rooms">
-  <a class="column is-full" *ngFor="let room of rooms" routerLink="/rooms/{{room.id}}" routerLinkActive="active">
-    {{ room.name }}
-  </a>
+  <div class="columns is-multiline list-room" *ngIf="roomService.rooms$ | async as rooms">
+    <a class="column is-full room" *ngFor="let room of rooms" routerLink="/rooms/{{room.id}}" routerLinkActive="active"
+      (click)="showRoomDetail()">
+      <figure class="image is-32x32 room-icon">
+        <img class="is-rounded" [attr.src]="room.image" />
+      </figure>
+      {{ room.name }}
+    </a>
+  </div>
+
 </div>

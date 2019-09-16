@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 import Amplify, {Auth, Hub} from "aws-amplify";
 import {MyAPIService} from "../API.my";
 import {CreateInvitedRoomInput, invitedStatus} from "../API.service";
@@ -11,18 +12,25 @@ import {CreateInvitedRoomInput, invitedStatus} from "../API.service";
 export class RoomInviteComponent implements OnInit {
   fromUser: any;
   roomID: string;
-  invitingUser: string;
   toUser: string;
+  isOpen: boolean;
 
-  constructor(private api: MyAPIService) {
-    this.roomID = "";
-    this.invitingUser = "";
+  constructor(private route: ActivatedRoute, private api: MyAPIService) {
+    this.isOpen = false;
+    this.toUser = "";
   }
 
   ngOnInit() {
     Auth.currentAuthenticatedUser().then(user => {
       this.fromUser = user;
     });
+    this.route.paramMap.subscribe(async paramMap => {
+      this.roomID = paramMap.get("id");
+    });
+  }
+
+  toggleModal(): void {
+    this.isOpen = !this.isOpen;
   }
 
   inviteUser() {

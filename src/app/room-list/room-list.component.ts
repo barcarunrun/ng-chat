@@ -8,6 +8,10 @@ import Amplify, {Auth, Hub} from "aws-amplify";
 
 import {RoomService} from "../store/room/room.service";
 
+import {Store, select} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {showRoomDetail} from "../store/session/session.action";
+
 @Component({
   selector: "app-room-list",
   templateUrl: "./room-list.component.html",
@@ -18,26 +22,30 @@ export class RoomListComponent implements OnInit {
   newRoom: CreateRoomInput;
   invitedRooms: Array<object>;
   invitedRoomSubscription: any;
+  showRoomDetail$: Observable<boolean>;
 
   constructor(
     private api: MyAPIService,
     private router: Router,
     private route: ActivatedRoute,
-    public roomService: RoomService
+    public roomService: RoomService,
+    private store: Store<{showRoomDetail: boolean}>
   ) {
     this.roomid = "";
+    this.showRoomDetail$ = store.pipe(select("showRoomDetail"));
   }
 
   async ngOnInit() {
     console.log("list ngOnInit");
 
     Auth.currentAuthenticatedUser().then(user => {
+      console.log("user: ", user);
       // Subscribe to creation of Message
       this.invitedRoomSubscription = this.api
         .MyOnCreateInviteListener(user.name)
         .subscribe({
           next: newInvited => {
-            console.log(newInvited);
+            console.log("newInvited:", newInvited);
             this.invitedRooms.push(newInvited.value.data.MyOnCreateInviteRoom);
           }
         });
@@ -58,5 +66,9 @@ export class RoomListComponent implements OnInit {
     };
     this.roomid = "";
     this.api.CreateRoom(this.newRoom);
+  }
+
+  showRoomDetail(): void {
+    this.store.dispatch(showRoomDetail());
   }
 }
