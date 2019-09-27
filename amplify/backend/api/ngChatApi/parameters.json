@@ -1,10 +1,10 @@
 {
-    "AppSyncApiName": "ngChatApp",
+    "AppSyncApiName": "ngChatApi",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "authngchatb79829c2",
+            "authngchatcbefc472",
             "Outputs.UserPoolId"
         ]
     }

@@ -1,9 +1,8 @@
 {
-    "identityPoolName": "ngchatb79829c2_identitypool_b79829c2",
+    "identityPoolName": "ngchatcbefc472_identitypool_cbefc472",
     "allowUnauthenticatedIdentities": false,
-    "openIdLambdaRoleName": "ngchatb79829c2_openid_lambda_role",
-    "resourceNameTruncated": "ngchatb79829c2",
-    "userPoolName": "ngchatb79829c2_userpool_b79829c2",
+    "resourceNameTruncated": "ngchatcbefc472",
+    "userPoolName": "ngchatcbefc472_userpool_cbefc472",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -21,7 +20,6 @@
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientName": "ngchatb79829c2_app_client",
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -30,17 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "mfaLambdaRole": "ngchatb79829c2_totp_lambda_role",
-    "userpoolClientLambdaRole": "ngchatb79829c2_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ngchatcbefc472_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "ngchatb79829c2",
+    "resourceName": "ngchatcbefc472",
     "authSelections": "identityPoolAndUserPool",
-    "authRoleName": {
-        "Ref": "AuthRoleName"
-    },
-    "unauthRoleName": {
-        "Ref": "UnauthRoleName"
-    },
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -54,6 +45,5 @@
         ]
     },
     "useDefault": "default",
-    "additionalQuestions": [],
     "dependsOn": []
 }
