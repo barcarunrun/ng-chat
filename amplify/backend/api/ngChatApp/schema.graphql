@@ -1,15 +1,17 @@
+# amplify api gql-compile
+
 # enum offerCategory {}
 
 # enum storeCategory {}
 
-enum UserRole {
-  Owner
-  Officer
-  Managers
-  Staff
-  Employees
-  User
-}
+# enum UserRole {
+#   Owner
+#   Officer
+#   Managers
+#   Staff
+#   Employees
+#   User
+# }
 
 enum invitedStatus {
   hold
@@ -17,68 +19,73 @@ enum invitedStatus {
   canceled
 }
 
-type Company @model {
-  id: ID!
-  name: String!
-  stores: [Store]!  # ont to many
-    @connection(
-      name: "CompanyStores"
-      keyField: "storeID"
-      sortField: "createdAt"
-    )
-  owner: User! @connection # ont to one
-  officer: User!
-  createdAt: AWSTimestamp!
-  updatedAt: AWSTimestamp!
-}
+# type Company @model {
+#   id: ID!
+#   name: String!
+#   stores: [Store]!  # ont to many
+#     @connection(
+#       name: "CompanyStores"
+#       keyField: "storeId"
+#       sortField: "createdAt"
+#     )
+#   owner: User! @connection # ont to one
+#   officer: User!
+#   createdAt: AWSTimestamp!
+#   updatedAt: AWSTimestamp!
+# }
 
-type Store @model {
-  id: ID!
-  admin: User!
-  company: Company! @connection(name: "CompanyStores", keyField: "companyId")
-  offres: [Offer!]!  # ont to many
-    @connection(
-      name: "StoreOffers"
-      keyField: "offerID"
-      sortField: "createdAt"
-    )
-  createdAt: AWSTimestamp!
-  updatedAt: AWSTimestamp!
-}
+# type Store @model {
+#   id: ID!
+#   admin: User!
+#   company: Company! @connection(name: "CompanyStores", keyField: "companyId")
+#   offres: [Offer!]!  # ont to many
+#     @connection(
+#       name: "StoreOffers"
+#       keyField: "offerId"
+#       sortField: "createdAt"
+#     )
+#   createdAt: AWSTimestamp!
+#   updatedAt: AWSTimestamp!
+# }
 
-type Offer @model {
-  id: ID!
-  store: Store! @connection(name: "StoreOffers", keyField: "storeId")
-  title: String!
-  content: String!
-  createdAt: AWSTimestamp!
-  updatedAt: AWSTimestamp!
-}
+# type Offer @model {
+#   id: ID!
+#   store: Store! @connection(name: "StoreOffers", keyField: "storeId")
+#   title: String!
+#   content: String!
+#   createdAt: AWSTimestamp!
+#   updatedAt: AWSTimestamp!
+# }
 
 type User @model @auth(rules: [{allow: owner}]) @key(fields: ["username"]) {
   id: ID!
   username: String!
+  display_name: String!
   logo: String!
 
   invited_rooms: [InvitedRoom!]!
     @connection(
       name: "InvitedRooms"
-      keyField: "toUser"
+      keyField: "userId"
       sortField: "createdAt"
     )
-  joined_rooms: [RoomUser!]!
-    @connection(name: "UserRooms", keyField: "user", sortField: "createdAt")
-  owned_rooms: [RoomUser!]!
-    @connection(name: "Room", keyField: "owner", sortField: "createdAt")
 
-  joined_stores: [Store!]!
-  owned_stores: [Store!]!
+  joined_rooms: [RoomUser!]!
+    @connection(name: "UserRooms", keyField: "userId", sortField: "createdAt")
+  owned_rooms: [Room!]!
+    @connection(name: "OwnerRooms", keyField: "userId", sortField: "createdAt")
+
+  # joined_stores: [Store!]!
+  # owned_stores: [Store!]!
 }
 
-type InvitedRoom @model(subscriptions: null) @key(fields: ["toUser"]) {
+type InvitedRoom
+  @model(subscriptions: null)
+  @key(name: "ByUsername", fields: ["toUserName"]) {
   id: ID!
-  room: Room @connection
-  toUser: User @connection
+  room: Room @connection(name: "InvitingUsers")
+  toUser: User @connection(name: "InvitedRooms")
+  toUserName: String!
   fromUser: User @connection
   status: invitedStatus!
   createdAt: AWSTimestamp!
@@ -90,6 +97,7 @@ type Room @model @key(fields: ["owner"]) {
   name: String!
   image: String!
   owner: String!
+  user: User! @connection(name: "OwnerRooms")
   inviting: [InvitedRoom!]!
     @connection(name: "InvitingUsers", keyField: "roomId")
   users: [RoomUser] @connection(name: "RoomUsers")
@@ -109,6 +117,7 @@ type Message @model(subscriptions: null) {
   when: String!
   roomId: ID!
   owner: String!
+  user: User! @connection
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
   room: Room @connection(name: "RoomMessages", keyField: "roomId")

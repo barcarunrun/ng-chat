@@ -15,5 +15,39 @@
                 "ngchatb79829c2": {}
             }
         }
+    },
+    "stage": {
+        "awscloudformation": {
+            "AuthRoleName": "ng-chat-stage-20190927205221-authRole",
+            "UnauthRoleArn": "arn:aws:iam::202703265993:role/ng-chat-stage-20190927205221-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::202703265993:role/ng-chat-stage-20190927205221-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "ng-chat-stage-20190927205221-deployment",
+            "UnauthRoleName": "ng-chat-stage-20190927205221-unauthRole",
+            "StackName": "ng-chat-stage-20190927205221",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:202703265993:stack/ng-chat-stage-20190927205221/43b705c0-e11d-11e9-91eb-06fa24220ee8"
+        },
+        "categories": {
+            "auth": {
+                "ngchatb79829c2": {}
+            }
+        }
+    },
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "ng-chat-master-20190927212102-authRole",
+            "UnauthRoleArn": "arn:aws:iam::202703265993:role/ng-chat-master-20190927212102-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::202703265993:role/ng-chat-master-20190927212102-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "ng-chat-master-20190927212102-deployment",
+            "UnauthRoleName": "ng-chat-master-20190927212102-unauthRole",
+            "StackName": "ng-chat-master-20190927212102",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:202703265993:stack/ng-chat-master-20190927212102/454b8ba0-e121-11e9-9013-065c56f01aee"
+        },
+        "categories": {
+            "auth": {
+                "ngchatb79829c2": {}
+            }
+        }
     }
 }
