@@ -94,8 +94,7 @@ type Room @model @key(fields: ["owner"]) {
   image: String!
   owner: String!
   user: User! @connection(name: "OwnerRooms")
-  inviting: [InvitedRoom!]!
-    @connection(name: "InvitingUsers", keyField: "roomId")
+  inviting: [InvitedRoom!]! @connection(name: "InvitingUsers", keyField: "id")
   users: [RoomUser] @connection(name: "RoomUsers")
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
@@ -135,4 +134,16 @@ type RoomUser @model(queries: null) {
   user: User! @connection(name: "UserRooms")
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
+}
+
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+  comments: [Comment] @connection(name: "TodoComments")
+}
+type Comment @model {
+  id: ID!
+  content: String
+  todo: Todo @connection(name: "TodoComments")
 }
