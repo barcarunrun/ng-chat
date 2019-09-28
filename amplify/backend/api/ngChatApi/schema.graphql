@@ -55,7 +55,11 @@ enum invitedStatus {
 #   updatedAt: AWSTimestamp!
 # }
 
-type User @model @auth(rules: [{allow: owner}]) @key(fields: ["username"]) {
+type User
+  @model
+  @auth(rules: [{allow: owner}])
+  @key(fields: ["username"])
+  @key(name: "ById", fields: ["id"]) {
   id: ID!
   username: String!
   display_name: String!
@@ -106,7 +110,7 @@ type Message @model(subscriptions: null) {
   user: User! @connection
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
-  room: Room @connection(name: "RoomMessages", keyField: "roomId")
+  room: Room @connection(name: "RoomMessages")
 }
 
 type Subscription {

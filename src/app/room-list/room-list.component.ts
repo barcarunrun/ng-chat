@@ -74,7 +74,7 @@ export class RoomListComponent implements OnInit {
       updatedAt: Math.floor(now.getTime() / 1000)
     };
     this.roomid = "";
-    console.log(this.newRoom);
+    console.log("this.newRoom:", this.newRoom);
     this.api.CreateRoom(this.newRoom);
   }
 
