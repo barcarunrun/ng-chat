@@ -6,12 +6,37 @@ subscription OnCreateMessage($roomId: ID!) {
     when
     roomId
     owner
+    user {
+      id
+      username
+      display_name
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
     createdAt
     updatedAt
     room {
       id
       name
       image
+      owner
+      user {
+        id
+        username
+        display_name
+        logo
+      }
+      inviting {
+        nextToken
+      }
       users {
         nextToken
       }
@@ -23,415 +48,64 @@ subscription OnCreateMessage($roomId: ID!) {
     }
   }
 }
-subscription OnCreateInvitedRoom($toUser: String!) {
-  onCreateInvitedRoom(toUser: $toUser) {
+subscription OnCreateInvitedRoom($toUsername: String) {
+  onCreateInvitedRoom(toUsername: $toUsername) {
     id
-    roomId
-    toUser
-    fromUser
+    room {
+      id
+      name
+      image
+      owner
+      user {
+        id
+        username
+        display_name
+        logo
+      }
+      inviting {
+        nextToken
+      }
+      users {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      messages {
+        nextToken
+      }
+    }
+    toUser {
+      id
+      username
+      display_name
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
+    toUsername
+    fromUser {
+      id
+      username
+      display_name
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
     status
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateCompany {
-  onCreateCompany {
-    id
-    name
-    stores {
-      items {
-        id
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    owner {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    officer {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateCompany {
-  onUpdateCompany {
-    id
-    name
-    stores {
-      items {
-        id
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    owner {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    officer {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteCompany {
-  onDeleteCompany {
-    id
-    name
-    stores {
-      items {
-        id
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    owner {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    officer {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateStore {
-  onCreateStore {
-    id
-    admin {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    company {
-      id
-      name
-      stores {
-        nextToken
-      }
-      owner {
-        id
-        username
-        logo
-      }
-      officer {
-        id
-        username
-        logo
-      }
-      createdAt
-      updatedAt
-    }
-    offres {
-      items {
-        id
-        title
-        content
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateStore {
-  onUpdateStore {
-    id
-    admin {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    company {
-      id
-      name
-      stores {
-        nextToken
-      }
-      owner {
-        id
-        username
-        logo
-      }
-      officer {
-        id
-        username
-        logo
-      }
-      createdAt
-      updatedAt
-    }
-    offres {
-      items {
-        id
-        title
-        content
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteStore {
-  onDeleteStore {
-    id
-    admin {
-      id
-      username
-      logo
-      rooms {
-        nextToken
-      }
-      joined {
-        id
-        createdAt
-        updatedAt
-      }
-      owned {
-        id
-        createdAt
-        updatedAt
-      }
-    }
-    company {
-      id
-      name
-      stores {
-        nextToken
-      }
-      owner {
-        id
-        username
-        logo
-      }
-      officer {
-        id
-        username
-        logo
-      }
-      createdAt
-      updatedAt
-    }
-    offres {
-      items {
-        id
-        title
-        content
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateOffer {
-  onCreateOffer {
-    id
-    store {
-      id
-      admin {
-        id
-        username
-        logo
-      }
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    title
-    content
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateOffer {
-  onUpdateOffer {
-    id
-    store {
-      id
-      admin {
-        id
-        username
-        logo
-      }
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    title
-    content
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteOffer {
-  onDeleteOffer {
-    id
-    store {
-      id
-      admin {
-        id
-        username
-        logo
-      }
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    title
-    content
     createdAt
     updatedAt
   }
@@ -440,50 +114,36 @@ subscription OnCreateUser {
   onCreateUser {
     id
     username
+    display_name
     logo
-    rooms {
+    invitedRooms {
       items {
         id
+        toUsername
+        status
+        createdAt
+        updatedAt
       }
       nextToken
     }
-    joined {
-      id
-      admin {
+    joinedRooms {
+      items {
         id
-        username
-        logo
-      }
-      company {
-        id
-        name
         createdAt
         updatedAt
       }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
+      nextToken
     }
-    owned {
-      id
-      admin {
-        id
-        username
-        logo
-      }
-      company {
+    ownedRooms {
+      items {
         id
         name
+        image
+        owner
         createdAt
         updatedAt
       }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
+      nextToken
     }
   }
 }
@@ -491,50 +151,36 @@ subscription OnUpdateUser {
   onUpdateUser {
     id
     username
+    display_name
     logo
-    rooms {
+    invitedRooms {
       items {
         id
+        toUsername
+        status
+        createdAt
+        updatedAt
       }
       nextToken
     }
-    joined {
-      id
-      admin {
+    joinedRooms {
+      items {
         id
-        username
-        logo
-      }
-      company {
-        id
-        name
         createdAt
         updatedAt
       }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
+      nextToken
     }
-    owned {
-      id
-      admin {
-        id
-        username
-        logo
-      }
-      company {
+    ownedRooms {
+      items {
         id
         name
+        image
+        owner
         createdAt
         updatedAt
       }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
+      nextToken
     }
   }
 }
@@ -542,50 +188,36 @@ subscription OnDeleteUser {
   onDeleteUser {
     id
     username
+    display_name
     logo
-    rooms {
+    invitedRooms {
       items {
         id
+        toUsername
+        status
+        createdAt
+        updatedAt
       }
       nextToken
     }
-    joined {
-      id
-      admin {
+    joinedRooms {
+      items {
         id
-        username
-        logo
-      }
-      company {
-        id
-        name
         createdAt
         updatedAt
       }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
+      nextToken
     }
-    owned {
-      id
-      admin {
-        id
-        username
-        logo
-      }
-      company {
+    ownedRooms {
+      items {
         id
         name
+        image
+        owner
         createdAt
         updatedAt
       }
-      offres {
-        nextToken
-      }
-      createdAt
-      updatedAt
+      nextToken
     }
   }
 }
@@ -594,9 +226,37 @@ subscription OnCreateRoom {
     id
     name
     image
+    owner
+    user {
+      id
+      username
+      display_name
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
+    inviting {
+      items {
+        id
+        toUsername
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     users {
       items {
         id
+        createdAt
+        updatedAt
       }
       nextToken
     }
@@ -621,9 +281,37 @@ subscription OnUpdateRoom {
     id
     name
     image
+    owner
+    user {
+      id
+      username
+      display_name
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
+    inviting {
+      items {
+        id
+        toUsername
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     users {
       items {
         id
+        createdAt
+        updatedAt
       }
       nextToken
     }
@@ -648,9 +336,37 @@ subscription OnDeleteRoom {
     id
     name
     image
+    owner
+    user {
+      id
+      username
+      display_name
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
+    inviting {
+      items {
+        id
+        toUsername
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     users {
       items {
         id
+        createdAt
+        updatedAt
       }
       nextToken
     }
@@ -677,6 +393,16 @@ subscription OnCreateRoomUser {
       id
       name
       image
+      owner
+      user {
+        id
+        username
+        display_name
+        logo
+      }
+      inviting {
+        nextToken
+      }
       users {
         nextToken
       }
@@ -689,21 +415,20 @@ subscription OnCreateRoomUser {
     user {
       id
       username
+      display_name
       logo
-      rooms {
+      invitedRooms {
         nextToken
       }
-      joined {
-        id
-        createdAt
-        updatedAt
+      joinedRooms {
+        nextToken
       }
-      owned {
-        id
-        createdAt
-        updatedAt
+      ownedRooms {
+        nextToken
       }
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateRoomUser {
@@ -713,6 +438,16 @@ subscription OnUpdateRoomUser {
       id
       name
       image
+      owner
+      user {
+        id
+        username
+        display_name
+        logo
+      }
+      inviting {
+        nextToken
+      }
       users {
         nextToken
       }
@@ -725,21 +460,20 @@ subscription OnUpdateRoomUser {
     user {
       id
       username
+      display_name
       logo
-      rooms {
+      invitedRooms {
         nextToken
       }
-      joined {
-        id
-        createdAt
-        updatedAt
+      joinedRooms {
+        nextToken
       }
-      owned {
-        id
-        createdAt
-        updatedAt
+      ownedRooms {
+        nextToken
       }
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteRoomUser {
@@ -749,6 +483,16 @@ subscription OnDeleteRoomUser {
       id
       name
       image
+      owner
+      user {
+        id
+        username
+        display_name
+        logo
+      }
+      inviting {
+        nextToken
+      }
       users {
         nextToken
       }
@@ -761,20 +505,19 @@ subscription OnDeleteRoomUser {
     user {
       id
       username
+      display_name
       logo
-      rooms {
+      invitedRooms {
         nextToken
       }
-      joined {
-        id
-        createdAt
-        updatedAt
+      joinedRooms {
+        nextToken
       }
-      owned {
-        id
-        createdAt
-        updatedAt
+      ownedRooms {
+        nextToken
       }
     }
+    createdAt
+    updatedAt
   }
 }

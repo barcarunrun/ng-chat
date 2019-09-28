@@ -12,6 +12,8 @@ import {Store, select} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {showRoomDetail} from "../store/session/session.action";
 
+import {ulid} from "ulid";
+
 @Component({
   selector: "app-room-list",
   templateUrl: "./room-list.component.html",
@@ -39,7 +41,6 @@ export class RoomListComponent implements OnInit {
     console.log("list ngOnInit");
 
     Auth.currentAuthenticatedUser().then(user => {
-      console.log("user: ", user);
       // Subscribe to creation of Message
       this.invitedRoomSubscription = this.api
         .MyOnCreateInviteListener(user.name)
@@ -56,15 +57,24 @@ export class RoomListComponent implements OnInit {
     this.invitedRoomSubscription.unsubscribe();
   }
 
-  createRoom() {
+  async createRoom() {
     const now = new Date();
+    const cognitUser = await Auth.currentAuthenticatedUser();
+    const loginedUser = await this.api.GetUser(cognitUser.username);
+
+    console.log("cognitUser:", cognitUser);
+    console.log("loginedUser:", loginedUser);
     this.newRoom = {
+      id: ulid(),
       name: this.roomid,
+      owner: cognitUser.username,
+      roomUserId: loginedUser.id,
       image: "https://picsum.photos/100",
       createdAt: Math.floor(now.getTime() / 1000),
       updatedAt: Math.floor(now.getTime() / 1000)
     };
     this.roomid = "";
+    console.log(this.newRoom);
     this.api.CreateRoom(this.newRoom);
   }
 

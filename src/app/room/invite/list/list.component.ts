@@ -12,7 +12,7 @@ export class RoomInviteListComponent implements OnInit {
 
   ngOnInit() {
     Auth.currentAuthenticatedUser().then(user => {
-      this.api.ListInvitedRooms({toUser: {contains: user.name}}).then(data => {
+      this.api.ListInvitedRooms(user.name).then(data => {
         console.log(data.items);
       });
     });

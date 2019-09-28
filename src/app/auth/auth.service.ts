@@ -8,22 +8,43 @@ import {map, tap, catchError} from "rxjs/operators";
 import {of} from "rxjs/observable/of";
 import Amplify, {Auth, Hub} from "aws-amplify";
 import awsconfig from "../../aws-exports";
+import {MyAPIService} from "../API.my";
+import {input} from "@aws-amplify/ui";
+
+import {ulid} from "ulid";
 
 @Injectable()
 export class AuthService {
   public loggedIn: BehaviorSubject<boolean>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private api: MyAPIService) {
     Amplify.configure(awsconfig);
     this.loggedIn = new BehaviorSubject<boolean>(false);
 
     // in your redirected sign in page
     // when the page is loaded, run the following function
+    console.log("Hub.listen");
     Hub.listen("auth", data => {
       switch (data.payload.event) {
         case "signIn":
           console.log("now the user is signed in");
           this.router.navigate(["/home"]);
+
+          // AppSync上のユーザーを作成
+          this.api.GetUser(data.payload.data.username).then(loginedUser => {
+            if (!loginedUser) {
+              this.api.CreateUser({
+                id: ulid(),
+                username: data.payload.data.username,
+                display_name: data.payload.data.username,
+                logo: "logo_url"
+              });
+              console.log("add new user to table");
+            } else {
+              console.log("user table exist");
+            }
+          });
+
           break;
         case "signIn_failure":
           console.log("the user failed to sign in");
@@ -31,6 +52,7 @@ export class AuthService {
           this.router.navigate(["/login"]);
           break;
         default:
+          console.log("default");
           this.router.navigate(["/login"]);
           break;
       }

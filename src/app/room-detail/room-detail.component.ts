@@ -16,6 +16,7 @@ import {MyAPIService} from "../API.my";
 import {Store, select} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {unShowRoomDetail} from "../store/session/session.action";
+import {ulid} from "ulid";
 
 @Component({
   selector: "app-room-detail",
@@ -92,9 +93,11 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
   createMessage() {
     const now = new Date();
     const newMessage: CreateMessageInput = {
+      id: ulid(),
       content: this.message,
       when: Math.floor(now.getTime() / 1000).toString(),
       owner: this.user.username,
+      messageUserId: this.user.id,
       roomId: this.roomid,
       createdAt: Math.floor(now.getTime() / 1000),
       updatedAt: Math.floor(now.getTime() / 1000)

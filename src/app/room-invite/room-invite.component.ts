@@ -36,9 +36,10 @@ export class RoomInviteComponent implements OnInit {
   inviteUser() {
     const now = new Date();
     const input: CreateInvitedRoomInput = {
-      roomId: this.roomID,
-      toUser: this.toUser,
-      fromUser: this.fromUser.username,
+      invitedRoomRoomId: this.roomID,
+      invitedRoomToUserId: this.toUser,
+      toUsername: this.toUser,
+      invitedRoomFromUserId: this.fromUser.username,
       status: invitedStatus.hold,
       createdAt: Math.floor(now.getTime() / 1000),
       updatedAt: Math.floor(now.getTime() / 1000)

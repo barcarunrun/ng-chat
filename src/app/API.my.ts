@@ -37,13 +37,78 @@ export type GetRoomMessagesQuery = {
 export type GetInvitedRoomQuery = {
   __typename: "InvitedRoom";
   id: string;
-  roomId: string;
-  toUser: string;
-  fromUser: string;
+  room: {
+    __typename: "Room";
+    id: string;
+    name: string;
+    image: string;
+    owner: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      display_name: string;
+      logo: string;
+    };
+    inviting: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    users: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+    messages: {
+      __typename: "ModelMessageConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  toUser: {
+    __typename: "User";
+    id: string;
+    username: string;
+    display_name: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  toUsername: string;
+  fromUser: {
+    __typename: "User";
+    id: string;
+    username: string;
+    display_name: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
   status: invitedStatus;
   createdAt: number;
   updatedAt: number;
 };
+
 export enum invitedStatus {
   hold = "hold",
   accepted = "accepted",
@@ -116,21 +181,85 @@ export class MyAPIService extends APIService {
   }
 
   // 招待を受け取る
-  async GetInvitedRoom(id: string): Promise<GetInvitedRoomQuery> {
-    const statement = `query GetInvitedRoom($id: ID!) {
-        getInvitedRoom(id: $id) {
+  async GetInvitedRoom(toUsername: string): Promise<GetInvitedRoomQuery> {
+    const statement = `query GetInvitedRoom($toUsername: String) {
+         getInvitedRoom(toUsername: $toUsername) {
           __typename
           id
-          roomId
-          toUser
-          fromUser
+          room {
+            __typename
+            id
+            name
+            image
+            owner
+            user {
+              __typename
+              id
+              username
+              display_name
+              logo
+            }
+            inviting {
+              __typename
+              nextToken
+            }
+            users {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+            messages {
+              __typename
+              nextToken
+            }
+          }
+          toUser {
+            __typename
+            id
+            username
+            display_name
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+          }
+          toUsername
+          fromUser {
+            __typename
+            id
+            username
+            display_name
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+          }
           status
           createdAt
           updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      id
+      toUsername
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -138,22 +267,40 @@ export class MyAPIService extends APIService {
     return <GetInvitedRoomQuery>response.data.getInvitedRoom;
   }
   MyOnCreateInviteListener(
-    toUser: string
+    toUsername: string
   ): Observable<OnCreateInvitedRoomSubscription> {
-    const statement = `subscription OnCreateInvitedRoom($toUser: String!) {
-        onCreateInvitedRoom(toUser: $toUser) {
+    const statement = `subscription OnCreateInvitedRoom($toUsername: String) {
+        onCreateInvitedRoom(toUsername: $toUsername) {
           __typename
-          id
-          roomId
-          toUser
-          fromUser
+         id
+          room {
+            __typename
+            id
+            name
+            image
+          }
+          toUser {
+            __typename
+            id
+            username
+            display_name
+            logo
+          }
+          toUsername
+          fromUser {
+            __typename
+            id
+            username
+            display_name
+            logo
+          }
           status
           createdAt
           updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      toUser
+      toUsername
     };
     return API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
