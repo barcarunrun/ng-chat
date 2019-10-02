@@ -6,9 +6,9 @@ import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import * as Observable from "zen-observable";
 
 export type CreateUserInput = {
-  id?: string | null;
+  id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
 };
 
@@ -20,29 +20,29 @@ export enum invitedStatus {
 
 export type UpdateUserInput = {
   id: string;
-  username: string;
-  display_name?: string | null;
+  username?: string | null;
+  displayName?: string | null;
   logo?: string | null;
 };
 
 export type DeleteUserInput = {
-  username: string;
+  id: string;
 };
 
 export type CreateInvitedRoomInput = {
-  id?: string | null;
+  id: string;
   toUsername: string;
   status: invitedStatus;
   createdAt: number;
   updatedAt: number;
-  invitedRoomRoomId?: string | null;
-  invitedRoomToUserId?: string | null;
-  invitedRoomFromUserId?: string | null;
+  invitedRoomRoomId: string;
+  invitedRoomToUserId: string;
+  invitedRoomFromUserId: string;
 };
 
 export type UpdateInvitedRoomInput = {
   id: string;
-  toUsername: string;
+  toUsername?: string | null;
   status?: invitedStatus | null;
   createdAt?: number | null;
   updatedAt?: number | null;
@@ -52,11 +52,11 @@ export type UpdateInvitedRoomInput = {
 };
 
 export type DeleteInvitedRoomInput = {
-  toUsername: string;
+  id: string;
 };
 
 export type CreateRoomInput = {
-  id?: string | null;
+  id: string;
   name: string;
   image: string;
   owner: string;
@@ -69,14 +69,14 @@ export type UpdateRoomInput = {
   id: string;
   name?: string | null;
   image?: string | null;
-  owner: string;
+  owner?: string | null;
   createdAt?: number | null;
   updatedAt?: number | null;
   roomUserId?: string | null;
 };
 
 export type DeleteRoomInput = {
-  owner: string;
+  id: string;
 };
 
 export type CreateMessageInput = {
@@ -87,7 +87,8 @@ export type CreateMessageInput = {
   owner: string;
   createdAt: number;
   updatedAt: number;
-  messageUserId: string;
+  messageUserId?: string | null;
+  messageRoomId: string;
 };
 
 export type UpdateMessageInput = {
@@ -99,6 +100,7 @@ export type UpdateMessageInput = {
   createdAt?: number | null;
   updatedAt?: number | null;
   messageUserId?: string | null;
+  messageRoomId?: string | null;
 };
 
 export type DeleteMessageInput = {
@@ -106,7 +108,8 @@ export type DeleteMessageInput = {
 };
 
 export type CreateRoomUserInput = {
-  id?: string | null;
+  id: string;
+  username: string;
   createdAt: number;
   updatedAt: number;
   roomUserRoomId: string;
@@ -115,6 +118,7 @@ export type CreateRoomUserInput = {
 
 export type UpdateRoomUserInput = {
   id: string;
+  username?: string | null;
   createdAt?: number | null;
   updatedAt?: number | null;
   roomUserRoomId?: string | null;
@@ -122,13 +126,13 @@ export type UpdateRoomUserInput = {
 };
 
 export type DeleteRoomUserInput = {
-  id?: string | null;
+  id: string;
 };
 
 export type ModelUserFilterInput = {
   id?: ModelIDFilterInput | null;
   username?: ModelStringFilterInput | null;
-  display_name?: ModelStringFilterInput | null;
+  displayName?: ModelStringFilterInput | null;
   logo?: ModelStringFilterInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
@@ -219,11 +223,21 @@ export type ModelMessageFilterInput = {
   not?: ModelMessageFilterInput | null;
 };
 
+export type ModelRoomUserFilterInput = {
+  id?: ModelIDFilterInput | null;
+  username?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelRoomUserFilterInput | null> | null;
+  or?: Array<ModelRoomUserFilterInput | null> | null;
+  not?: ModelRoomUserFilterInput | null;
+};
+
 export type CreateUserMutation = {
   __typename: "User";
   id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
@@ -242,6 +256,7 @@ export type CreateUserMutation = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -266,7 +281,7 @@ export type UpdateUserMutation = {
   __typename: "User";
   id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
@@ -285,6 +300,7 @@ export type UpdateUserMutation = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -309,7 +325,7 @@ export type DeleteUserMutation = {
   __typename: "User";
   id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
@@ -328,6 +344,7 @@ export type DeleteUserMutation = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -361,7 +378,7 @@ export type CreateInvitedRoomMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -378,12 +395,12 @@ export type CreateInvitedRoomMutation = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -397,13 +414,13 @@ export type CreateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUsername: string;
   fromUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -417,7 +434,7 @@ export type CreateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   status: invitedStatus;
   createdAt: number;
   updatedAt: number;
@@ -436,7 +453,7 @@ export type UpdateInvitedRoomMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -453,12 +470,12 @@ export type UpdateInvitedRoomMutation = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -472,13 +489,13 @@ export type UpdateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUsername: string;
   fromUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -492,7 +509,7 @@ export type UpdateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   status: invitedStatus;
   createdAt: number;
   updatedAt: number;
@@ -511,7 +528,7 @@ export type DeleteInvitedRoomMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -528,12 +545,12 @@ export type DeleteInvitedRoomMutation = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -547,13 +564,13 @@ export type DeleteInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUsername: string;
   fromUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -567,7 +584,7 @@ export type DeleteInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   status: invitedStatus;
   createdAt: number;
   updatedAt: number;
@@ -583,7 +600,7 @@ export type CreateRoomMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -615,6 +632,7 @@ export type CreateRoomMutation = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -648,7 +666,7 @@ export type UpdateRoomMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -680,6 +698,7 @@ export type UpdateRoomMutation = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -713,7 +732,7 @@ export type DeleteRoomMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -745,6 +764,7 @@ export type DeleteRoomMutation = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -779,7 +799,7 @@ export type CreateMessageMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -793,7 +813,7 @@ export type CreateMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  };
+  } | null;
   createdAt: number;
   updatedAt: number;
   room: {
@@ -806,7 +826,7 @@ export type CreateMessageMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -823,7 +843,7 @@ export type CreateMessageMutation = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
 };
 
 export type UpdateMessageMutation = {
@@ -837,7 +857,7 @@ export type UpdateMessageMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -851,7 +871,7 @@ export type UpdateMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  };
+  } | null;
   createdAt: number;
   updatedAt: number;
   room: {
@@ -864,7 +884,7 @@ export type UpdateMessageMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -881,7 +901,7 @@ export type UpdateMessageMutation = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
 };
 
 export type DeleteMessageMutation = {
@@ -895,7 +915,7 @@ export type DeleteMessageMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -909,7 +929,7 @@ export type DeleteMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  };
+  } | null;
   createdAt: number;
   updatedAt: number;
   room: {
@@ -922,7 +942,7 @@ export type DeleteMessageMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -939,7 +959,7 @@ export type DeleteMessageMutation = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
 };
 
 export type CreateRoomUserMutation = {
@@ -955,7 +975,7 @@ export type CreateRoomUserMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -977,7 +997,7 @@ export type CreateRoomUserMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -992,6 +1012,7 @@ export type CreateRoomUserMutation = {
       nextToken: string | null;
     } | null;
   };
+  username: string;
   createdAt: number;
   updatedAt: number;
 };
@@ -1009,7 +1030,7 @@ export type UpdateRoomUserMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -1031,7 +1052,7 @@ export type UpdateRoomUserMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1046,6 +1067,7 @@ export type UpdateRoomUserMutation = {
       nextToken: string | null;
     } | null;
   };
+  username: string;
   createdAt: number;
   updatedAt: number;
 };
@@ -1063,7 +1085,7 @@ export type DeleteRoomUserMutation = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -1085,7 +1107,7 @@ export type DeleteRoomUserMutation = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1100,6 +1122,7 @@ export type DeleteRoomUserMutation = {
       nextToken: string | null;
     } | null;
   };
+  username: string;
   createdAt: number;
   updatedAt: number;
 };
@@ -1108,7 +1131,7 @@ export type GetUserQuery = {
   __typename: "User";
   id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
@@ -1127,6 +1150,7 @@ export type GetUserQuery = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1153,7 +1177,7 @@ export type ListUsersQuery = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1184,7 +1208,7 @@ export type GetInvitedRoomQuery = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -1201,12 +1225,12 @@ export type GetInvitedRoomQuery = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1220,13 +1244,13 @@ export type GetInvitedRoomQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUsername: string;
   fromUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1240,7 +1264,7 @@ export type GetInvitedRoomQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   status: invitedStatus;
   createdAt: number;
   updatedAt: number;
@@ -1259,22 +1283,22 @@ export type ListInvitedRoomsQuery = {
       owner: string;
       createdAt: number;
       updatedAt: number;
-    } | null;
+    };
     toUser: {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
-    } | null;
+    };
     toUsername: string;
     fromUser: {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
-    } | null;
+    };
     status: invitedStatus;
     createdAt: number;
     updatedAt: number;
@@ -1292,7 +1316,7 @@ export type GetRoomQuery = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1324,6 +1348,7 @@ export type GetRoomQuery = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1359,7 +1384,7 @@ export type ListRoomsQuery = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -1391,7 +1416,7 @@ export type GetMessageQuery = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1405,7 +1430,7 @@ export type GetMessageQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  };
+  } | null;
   createdAt: number;
   updatedAt: number;
   room: {
@@ -1418,7 +1443,7 @@ export type GetMessageQuery = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -1435,7 +1460,7 @@ export type GetMessageQuery = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
 };
 
 export type ListMessagesQuery = {
@@ -1451,9 +1476,9 @@ export type ListMessagesQuery = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
-    };
+    } | null;
     createdAt: number;
     updatedAt: number;
     room: {
@@ -1464,7 +1489,90 @@ export type ListMessagesQuery = {
       owner: string;
       createdAt: number;
       updatedAt: number;
+    };
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetRoomUserQuery = {
+  __typename: "RoomUser";
+  id: string;
+  room: {
+    __typename: "Room";
+    id: string;
+    name: string;
+    image: string;
+    owner: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+    };
+    inviting: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
     } | null;
+    users: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+    messages: {
+      __typename: "ModelMessageConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  username: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListRoomUsersQuery = {
+  __typename: "ModelRoomUserConnection";
+  items: Array<{
+    __typename: "RoomUser";
+    id: string;
+    room: {
+      __typename: "Room";
+      id: string;
+      name: string;
+      image: string;
+      owner: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+    };
+    username: string;
+    createdAt: number;
+    updatedAt: number;
   } | null> | null;
   nextToken: string | null;
 };
@@ -1480,7 +1588,7 @@ export type OnCreateMessageSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1494,7 +1602,7 @@ export type OnCreateMessageSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  };
+  } | null;
   createdAt: number;
   updatedAt: number;
   room: {
@@ -1507,7 +1615,7 @@ export type OnCreateMessageSubscription = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -1524,7 +1632,7 @@ export type OnCreateMessageSubscription = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
 };
 
 export type OnCreateInvitedRoomSubscription = {
@@ -1540,7 +1648,7 @@ export type OnCreateInvitedRoomSubscription = {
       __typename: "User";
       id: string;
       username: string;
-      display_name: string;
+      displayName: string;
       logo: string;
     };
     inviting: {
@@ -1557,12 +1665,12 @@ export type OnCreateInvitedRoomSubscription = {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1576,13 +1684,13 @@ export type OnCreateInvitedRoomSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   toUsername: string;
   fromUser: {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1596,8 +1704,63 @@ export type OnCreateInvitedRoomSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   status: invitedStatus;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateRoomUserSubscription = {
+  __typename: "RoomUser";
+  id: string;
+  room: {
+    __typename: "Room";
+    id: string;
+    name: string;
+    image: string;
+    owner: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+    };
+    inviting: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    users: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+    messages: {
+      __typename: "ModelMessageConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  username: string;
   createdAt: number;
   updatedAt: number;
 };
@@ -1606,7 +1769,7 @@ export type OnCreateUserSubscription = {
   __typename: "User";
   id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
@@ -1625,6 +1788,7 @@ export type OnCreateUserSubscription = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1649,7 +1813,7 @@ export type OnUpdateUserSubscription = {
   __typename: "User";
   id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
@@ -1668,6 +1832,7 @@ export type OnUpdateUserSubscription = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1692,7 +1857,7 @@ export type OnDeleteUserSubscription = {
   __typename: "User";
   id: string;
   username: string;
-  display_name: string;
+  displayName: string;
   logo: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
@@ -1711,6 +1876,7 @@ export type OnDeleteUserSubscription = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1741,7 +1907,7 @@ export type OnCreateRoomSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1773,6 +1939,7 @@ export type OnCreateRoomSubscription = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1806,7 +1973,7 @@ export type OnUpdateRoomSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1838,6 +2005,7 @@ export type OnUpdateRoomSubscription = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1871,7 +2039,7 @@ export type OnDeleteRoomSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    display_name: string;
+    displayName: string;
     logo: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
@@ -1903,6 +2071,7 @@ export type OnDeleteRoomSubscription = {
     items: Array<{
       __typename: "RoomUser";
       id: string;
+      username: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1926,168 +2095,6 @@ export type OnDeleteRoomSubscription = {
   } | null;
 };
 
-export type OnCreateRoomUserSubscription = {
-  __typename: "RoomUser";
-  id: string;
-  room: {
-    __typename: "Room";
-    id: string;
-    name: string;
-    image: string;
-    owner: string;
-    user: {
-      __typename: "User";
-      id: string;
-      username: string;
-      display_name: string;
-      logo: string;
-    };
-    inviting: {
-      __typename: "ModelInvitedRoomConnection";
-      nextToken: string | null;
-    } | null;
-    users: {
-      __typename: "ModelRoomUserConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: number;
-    updatedAt: number;
-    messages: {
-      __typename: "ModelMessageConnection";
-      nextToken: string | null;
-    } | null;
-  };
-  user: {
-    __typename: "User";
-    id: string;
-    username: string;
-    display_name: string;
-    logo: string;
-    invitedRooms: {
-      __typename: "ModelInvitedRoomConnection";
-      nextToken: string | null;
-    } | null;
-    joinedRooms: {
-      __typename: "ModelRoomUserConnection";
-      nextToken: string | null;
-    } | null;
-    ownedRooms: {
-      __typename: "ModelRoomConnection";
-      nextToken: string | null;
-    } | null;
-  };
-  createdAt: number;
-  updatedAt: number;
-};
-
-export type OnUpdateRoomUserSubscription = {
-  __typename: "RoomUser";
-  id: string;
-  room: {
-    __typename: "Room";
-    id: string;
-    name: string;
-    image: string;
-    owner: string;
-    user: {
-      __typename: "User";
-      id: string;
-      username: string;
-      display_name: string;
-      logo: string;
-    };
-    inviting: {
-      __typename: "ModelInvitedRoomConnection";
-      nextToken: string | null;
-    } | null;
-    users: {
-      __typename: "ModelRoomUserConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: number;
-    updatedAt: number;
-    messages: {
-      __typename: "ModelMessageConnection";
-      nextToken: string | null;
-    } | null;
-  };
-  user: {
-    __typename: "User";
-    id: string;
-    username: string;
-    display_name: string;
-    logo: string;
-    invitedRooms: {
-      __typename: "ModelInvitedRoomConnection";
-      nextToken: string | null;
-    } | null;
-    joinedRooms: {
-      __typename: "ModelRoomUserConnection";
-      nextToken: string | null;
-    } | null;
-    ownedRooms: {
-      __typename: "ModelRoomConnection";
-      nextToken: string | null;
-    } | null;
-  };
-  createdAt: number;
-  updatedAt: number;
-};
-
-export type OnDeleteRoomUserSubscription = {
-  __typename: "RoomUser";
-  id: string;
-  room: {
-    __typename: "Room";
-    id: string;
-    name: string;
-    image: string;
-    owner: string;
-    user: {
-      __typename: "User";
-      id: string;
-      username: string;
-      display_name: string;
-      logo: string;
-    };
-    inviting: {
-      __typename: "ModelInvitedRoomConnection";
-      nextToken: string | null;
-    } | null;
-    users: {
-      __typename: "ModelRoomUserConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: number;
-    updatedAt: number;
-    messages: {
-      __typename: "ModelMessageConnection";
-      nextToken: string | null;
-    } | null;
-  };
-  user: {
-    __typename: "User";
-    id: string;
-    username: string;
-    display_name: string;
-    logo: string;
-    invitedRooms: {
-      __typename: "ModelInvitedRoomConnection";
-      nextToken: string | null;
-    } | null;
-    joinedRooms: {
-      __typename: "ModelRoomUserConnection";
-      nextToken: string | null;
-    } | null;
-    ownedRooms: {
-      __typename: "ModelRoomConnection";
-      nextToken: string | null;
-    } | null;
-  };
-  createdAt: number;
-  updatedAt: number;
-};
-
 @Injectable({
   providedIn: "root"
 })
@@ -2098,7 +2105,7 @@ export class APIService {
           __typename
           id
           username
-          display_name
+          displayName
           logo
           invitedRooms {
             __typename
@@ -2117,6 +2124,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -2151,7 +2159,7 @@ export class APIService {
           __typename
           id
           username
-          display_name
+          displayName
           logo
           invitedRooms {
             __typename
@@ -2170,6 +2178,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -2204,7 +2213,7 @@ export class APIService {
           __typename
           id
           username
-          display_name
+          displayName
           logo
           invitedRooms {
             __typename
@@ -2223,6 +2232,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -2268,7 +2278,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -2290,7 +2300,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2310,7 +2320,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2355,7 +2365,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -2377,7 +2387,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2397,7 +2407,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2442,7 +2452,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -2464,7 +2474,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2484,7 +2494,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2524,7 +2534,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2556,6 +2566,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -2599,7 +2610,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2631,6 +2642,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -2674,7 +2686,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2706,6 +2718,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -2752,7 +2765,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2779,7 +2792,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -2822,7 +2835,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2849,7 +2862,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -2892,7 +2905,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -2919,7 +2932,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -2964,7 +2977,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -2986,7 +2999,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3001,6 +3014,7 @@ export class APIService {
               nextToken
             }
           }
+          username
           createdAt
           updatedAt
         }
@@ -3030,7 +3044,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -3052,7 +3066,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3067,6 +3081,7 @@ export class APIService {
               nextToken
             }
           }
+          username
           createdAt
           updatedAt
         }
@@ -3096,7 +3111,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -3118,7 +3133,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3133,6 +3148,7 @@ export class APIService {
               nextToken
             }
           }
+          username
           createdAt
           updatedAt
         }
@@ -3145,13 +3161,13 @@ export class APIService {
     )) as any;
     return <DeleteRoomUserMutation>response.data.deleteRoomUser;
   }
-  async GetUser(username: string): Promise<GetUserQuery> {
-    const statement = `query GetUser($username: String!) {
-        getUser(username: $username) {
+  async GetUser(id: string): Promise<GetUserQuery> {
+    const statement = `query GetUser($id: ID!) {
+        getUser(id: $id) {
           __typename
           id
           username
-          display_name
+          displayName
           logo
           invitedRooms {
             __typename
@@ -3170,6 +3186,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -3191,7 +3208,7 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      username
+      id
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -3199,20 +3216,20 @@ export class APIService {
     return <GetUserQuery>response.data.getUser;
   }
   async ListUsers(
-    username?: string,
+    id?: string,
     filter?: ModelUserFilterInput,
     limit?: number,
     nextToken?: string,
     sortDirection?: ModelSortDirection
   ): Promise<ListUsersQuery> {
-    const statement = `query ListUsers($username: String, $filter: ModelUserFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listUsers(username: $username, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+    const statement = `query ListUsers($id: ID, $filter: ModelUserFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listUsers(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3231,8 +3248,8 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
-    if (username) {
-      gqlAPIServiceArguments.username = username;
+    if (id) {
+      gqlAPIServiceArguments.id = id;
     }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
@@ -3251,9 +3268,9 @@ export class APIService {
     )) as any;
     return <ListUsersQuery>response.data.listUsers;
   }
-  async GetInvitedRoom(toUsername: string): Promise<GetInvitedRoomQuery> {
-    const statement = `query GetInvitedRoom($toUsername: String!) {
-        getInvitedRoom(toUsername: $toUsername) {
+  async GetInvitedRoom(id: string): Promise<GetInvitedRoomQuery> {
+    const statement = `query GetInvitedRoom($id: ID!) {
+        getInvitedRoom(id: $id) {
           __typename
           id
           room {
@@ -3266,7 +3283,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -3288,7 +3305,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3308,7 +3325,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3329,7 +3346,7 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      toUsername
+      id
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -3337,14 +3354,14 @@ export class APIService {
     return <GetInvitedRoomQuery>response.data.getInvitedRoom;
   }
   async ListInvitedRooms(
-    toUsername?: string,
+    id?: string,
     filter?: ModelInvitedRoomFilterInput,
     limit?: number,
     nextToken?: string,
     sortDirection?: ModelSortDirection
   ): Promise<ListInvitedRoomsQuery> {
-    const statement = `query ListInvitedRooms($toUsername: String, $filter: ModelInvitedRoomFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listInvitedRooms(toUsername: $toUsername, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+    const statement = `query ListInvitedRooms($id: ID, $filter: ModelInvitedRoomFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listInvitedRooms(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
@@ -3362,7 +3379,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             toUsername
@@ -3370,7 +3387,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             status
@@ -3381,8 +3398,8 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
-    if (toUsername) {
-      gqlAPIServiceArguments.toUsername = toUsername;
+    if (id) {
+      gqlAPIServiceArguments.id = id;
     }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
@@ -3401,9 +3418,9 @@ export class APIService {
     )) as any;
     return <ListInvitedRoomsQuery>response.data.listInvitedRooms;
   }
-  async GetRoom(owner: string): Promise<GetRoomQuery> {
-    const statement = `query GetRoom($owner: String!) {
-        getRoom(owner: $owner) {
+  async GetRoom(id: string): Promise<GetRoomQuery> {
+    const statement = `query GetRoom($id: ID!) {
+        getRoom(id: $id) {
           __typename
           id
           name
@@ -3413,7 +3430,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3445,6 +3462,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -3469,7 +3487,7 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      owner
+      id
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -3477,14 +3495,14 @@ export class APIService {
     return <GetRoomQuery>response.data.getRoom;
   }
   async ListRooms(
-    owner?: string,
+    id?: string,
     filter?: ModelRoomFilterInput,
     limit?: number,
     nextToken?: string,
     sortDirection?: ModelSortDirection
   ): Promise<ListRoomsQuery> {
-    const statement = `query ListRooms($owner: String, $filter: ModelRoomFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listRooms(owner: $owner, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+    const statement = `query ListRooms($id: ID, $filter: ModelRoomFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listRooms(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
@@ -3496,7 +3514,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -3518,8 +3536,8 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
+    if (id) {
+      gqlAPIServiceArguments.id = id;
     }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
@@ -3551,7 +3569,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3578,7 +3596,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -3625,7 +3643,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             createdAt
@@ -3658,6 +3676,128 @@ export class APIService {
     )) as any;
     return <ListMessagesQuery>response.data.listMessages;
   }
+  async GetRoomUser(id: string): Promise<GetRoomUserQuery> {
+    const statement = `query GetRoomUser($id: ID!) {
+        getRoomUser(id: $id) {
+          __typename
+          id
+          room {
+            __typename
+            id
+            name
+            image
+            owner
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+            }
+            inviting {
+              __typename
+              nextToken
+            }
+            users {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+            messages {
+              __typename
+              nextToken
+            }
+          }
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+          }
+          username
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetRoomUserQuery>response.data.getRoomUser;
+  }
+  async ListRoomUsers(
+    id?: string,
+    filter?: ModelRoomUserFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListRoomUsersQuery> {
+    const statement = `query ListRoomUsers($id: ID, $filter: ModelRoomUserFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listRoomUsers(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            room {
+              __typename
+              id
+              name
+              image
+              owner
+              createdAt
+              updatedAt
+            }
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+            }
+            username
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListRoomUsersQuery>response.data.listRoomUsers;
+  }
   OnCreateMessageListener: Observable<
     OnCreateMessageSubscription
   > = API.graphql(
@@ -3674,7 +3814,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3701,7 +3841,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -3742,7 +3882,7 @@ export class APIService {
               __typename
               id
               username
-              display_name
+              displayName
               logo
             }
             inviting {
@@ -3764,7 +3904,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3784,7 +3924,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3807,6 +3947,69 @@ export class APIService {
     )
   ) as Observable<OnCreateInvitedRoomSubscription>;
 
+  OnCreateRoomUserListener: Observable<
+    OnCreateRoomUserSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateRoomUser($username: String) {
+        onCreateRoomUser(username: $username) {
+          __typename
+          id
+          room {
+            __typename
+            id
+            name
+            image
+            owner
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+            }
+            inviting {
+              __typename
+              nextToken
+            }
+            users {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+            messages {
+              __typename
+              nextToken
+            }
+          }
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+          }
+          username
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateRoomUserSubscription>;
+
   OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
     graphqlOperation(
       `subscription OnCreateUser {
@@ -3814,7 +4017,7 @@ export class APIService {
           __typename
           id
           username
-          display_name
+          displayName
           logo
           invitedRooms {
             __typename
@@ -3833,6 +4036,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -3863,7 +4067,7 @@ export class APIService {
           __typename
           id
           username
-          display_name
+          displayName
           logo
           invitedRooms {
             __typename
@@ -3882,6 +4086,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -3912,7 +4117,7 @@ export class APIService {
           __typename
           id
           username
-          display_name
+          displayName
           logo
           invitedRooms {
             __typename
@@ -3931,6 +4136,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -3967,7 +4173,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -3999,6 +4205,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -4038,7 +4245,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -4070,6 +4277,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -4109,7 +4317,7 @@ export class APIService {
             __typename
             id
             username
-            display_name
+            displayName
             logo
             invitedRooms {
               __typename
@@ -4141,6 +4349,7 @@ export class APIService {
             items {
               __typename
               id
+              username
               createdAt
               updatedAt
             }
@@ -4166,190 +4375,4 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteRoomSubscription>;
-
-  OnCreateRoomUserListener: Observable<
-    OnCreateRoomUserSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateRoomUser {
-        onCreateRoomUser {
-          __typename
-          id
-          room {
-            __typename
-            id
-            name
-            image
-            owner
-            user {
-              __typename
-              id
-              username
-              display_name
-              logo
-            }
-            inviting {
-              __typename
-              nextToken
-            }
-            users {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            messages {
-              __typename
-              nextToken
-            }
-          }
-          user {
-            __typename
-            id
-            username
-            display_name
-            logo
-            invitedRooms {
-              __typename
-              nextToken
-            }
-            joinedRooms {
-              __typename
-              nextToken
-            }
-            ownedRooms {
-              __typename
-              nextToken
-            }
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnCreateRoomUserSubscription>;
-
-  OnUpdateRoomUserListener: Observable<
-    OnUpdateRoomUserSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateRoomUser {
-        onUpdateRoomUser {
-          __typename
-          id
-          room {
-            __typename
-            id
-            name
-            image
-            owner
-            user {
-              __typename
-              id
-              username
-              display_name
-              logo
-            }
-            inviting {
-              __typename
-              nextToken
-            }
-            users {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            messages {
-              __typename
-              nextToken
-            }
-          }
-          user {
-            __typename
-            id
-            username
-            display_name
-            logo
-            invitedRooms {
-              __typename
-              nextToken
-            }
-            joinedRooms {
-              __typename
-              nextToken
-            }
-            ownedRooms {
-              __typename
-              nextToken
-            }
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateRoomUserSubscription>;
-
-  OnDeleteRoomUserListener: Observable<
-    OnDeleteRoomUserSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteRoomUser {
-        onDeleteRoomUser {
-          __typename
-          id
-          room {
-            __typename
-            id
-            name
-            image
-            owner
-            user {
-              __typename
-              id
-              username
-              display_name
-              logo
-            }
-            inviting {
-              __typename
-              nextToken
-            }
-            users {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-            messages {
-              __typename
-              nextToken
-            }
-          }
-          user {
-            __typename
-            id
-            username
-            display_name
-            logo
-            invitedRooms {
-              __typename
-              nextToken
-            }
-            joinedRooms {
-              __typename
-              nextToken
-            }
-            ownedRooms {
-              __typename
-              nextToken
-            }
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteRoomUserSubscription>;
 }

@@ -3,7 +3,7 @@ mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
     username
-    display_name
+    displayName
     logo
     invitedRooms {
       items {
@@ -18,6 +18,7 @@ mutation CreateUser($input: CreateUserInput!) {
     joinedRooms {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -40,7 +41,7 @@ mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
     id
     username
-    display_name
+    displayName
     logo
     invitedRooms {
       items {
@@ -55,6 +56,7 @@ mutation UpdateUser($input: UpdateUserInput!) {
     joinedRooms {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -77,7 +79,7 @@ mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
     id
     username
-    display_name
+    displayName
     logo
     invitedRooms {
       items {
@@ -92,6 +94,7 @@ mutation DeleteUser($input: DeleteUserInput!) {
     joinedRooms {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -121,7 +124,7 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -139,7 +142,7 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
     toUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -155,7 +158,7 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
     fromUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -183,7 +186,7 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -201,7 +204,7 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
     toUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -217,7 +220,7 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
     fromUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -245,7 +248,7 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -263,7 +266,7 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
     toUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -279,7 +282,7 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
     fromUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -305,7 +308,7 @@ mutation CreateRoom($input: CreateRoomInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -330,6 +333,7 @@ mutation CreateRoom($input: CreateRoomInput!) {
     users {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -360,7 +364,7 @@ mutation UpdateRoom($input: UpdateRoomInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -385,6 +389,7 @@ mutation UpdateRoom($input: UpdateRoomInput!) {
     users {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -415,7 +420,7 @@ mutation DeleteRoom($input: DeleteRoomInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -440,6 +445,7 @@ mutation DeleteRoom($input: DeleteRoomInput!) {
     users {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -471,7 +477,7 @@ mutation CreateMessage($input: CreateMessageInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -493,7 +499,7 @@ mutation CreateMessage($input: CreateMessageInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -520,7 +526,7 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -542,7 +548,7 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -569,7 +575,7 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -591,7 +597,7 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -619,7 +625,7 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -637,7 +643,7 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -649,6 +655,7 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
         nextToken
       }
     }
+    username
     createdAt
     updatedAt
   }
@@ -664,7 +671,7 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -682,7 +689,7 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -694,6 +701,7 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
         nextToken
       }
     }
+    username
     createdAt
     updatedAt
   }
@@ -709,7 +717,7 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -727,7 +735,7 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -739,6 +747,7 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
         nextToken
       }
     }
+    username
     createdAt
     updatedAt
   }

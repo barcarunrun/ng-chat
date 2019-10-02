@@ -24,6 +24,7 @@ export class RoomListComponent implements OnInit {
   newRoom: CreateRoomInput;
   invitedRooms: Array<object>;
   invitedRoomSubscription: any;
+  addedRoomUserSubscription: any;
   showRoomDetail$: Observable<boolean>;
 
   constructor(
@@ -41,13 +42,30 @@ export class RoomListComponent implements OnInit {
     console.log("list ngOnInit");
 
     Auth.currentAuthenticatedUser().then(user => {
+      this.api
+        .ListRoomUsers(null, {username: {eq: user.username}})
+        .then(roomsGql =>
+          roomsGql.items.forEach(item => this.roomService.addRoom(item.room))
+        );
+
       // Subscribe to creation of Message
       this.invitedRoomSubscription = this.api
-        .MyOnCreateInviteListener(user.name)
+        .MyOnCreateInvitedRoomListener(user.username)
         .subscribe({
           next: newInvited => {
             console.log("newInvited:", newInvited);
             this.invitedRooms.push(newInvited.value.data.MyOnCreateInviteRoom);
+          }
+        });
+
+      this.addedRoomUserSubscription = this.api
+        .MyOnCreateRoomUserListener(user.username)
+        .subscribe({
+          next: newRoomUser => {
+            console.log("newRoomUser:", newRoomUser);
+            this.invitedRooms.push(
+              newRoomUser.value.data.MyOnCreateRoomUser.room
+            );
           }
         });
     });
@@ -55,6 +73,7 @@ export class RoomListComponent implements OnInit {
 
   ngOnDestroy() {
     this.invitedRoomSubscription.unsubscribe();
+    this.addedRoomUserSubscription.unsubscribe();
   }
 
   async createRoom() {
@@ -75,7 +94,18 @@ export class RoomListComponent implements OnInit {
     };
     this.roomid = "";
     console.log("this.newRoom:", this.newRoom);
-    this.api.CreateRoom(this.newRoom);
+    this.api.CreateRoom(this.newRoom).then(resultRoom => {
+      if (resultRoom.id !== null) {
+        this.api.CreateRoomUser({
+          id: ulid(),
+          username: loginedUser.username,
+          roomUserRoomId: resultRoom.id,
+          roomUserUserId: loginedUser.id,
+          createdAt: Math.floor(now.getTime() / 1000),
+          updatedAt: Math.floor(now.getTime() / 1000)
+        });
+      }
+    });
   }
 
   showRoomDetail(): void {

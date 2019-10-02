@@ -1,9 +1,9 @@
 # this is an auto generated file. This will be overwritten
-query GetUser($username: String!) {
-  getUser(username: $username) {
+query GetUser($id: ID!) {
+  getUser(id: $id) {
     id
     username
-    display_name
+    displayName
     logo
     invitedRooms {
       items {
@@ -18,6 +18,7 @@ query GetUser($username: String!) {
     joinedRooms {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -37,14 +38,14 @@ query GetUser($username: String!) {
   }
 }
 query ListUsers(
-  $username: String
+  $id: ID
   $filter: ModelUserFilterInput
   $limit: Int
   $nextToken: String
   $sortDirection: ModelSortDirection
 ) {
   listUsers(
-    username: $username
+    id: $id
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -53,7 +54,7 @@ query ListUsers(
     items {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -68,8 +69,8 @@ query ListUsers(
     nextToken
   }
 }
-query GetInvitedRoom($toUsername: String!) {
-  getInvitedRoom(toUsername: $toUsername) {
+query GetInvitedRoom($id: ID!) {
+  getInvitedRoom(id: $id) {
     id
     room {
       id
@@ -79,7 +80,7 @@ query GetInvitedRoom($toUsername: String!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -97,7 +98,7 @@ query GetInvitedRoom($toUsername: String!) {
     toUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -113,7 +114,7 @@ query GetInvitedRoom($toUsername: String!) {
     fromUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -131,14 +132,14 @@ query GetInvitedRoom($toUsername: String!) {
   }
 }
 query ListInvitedRooms(
-  $toUsername: String
+  $id: ID
   $filter: ModelInvitedRoomFilterInput
   $limit: Int
   $nextToken: String
   $sortDirection: ModelSortDirection
 ) {
   listInvitedRooms(
-    toUsername: $toUsername
+    id: $id
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -157,14 +158,14 @@ query ListInvitedRooms(
       toUser {
         id
         username
-        display_name
+        displayName
         logo
       }
       toUsername
       fromUser {
         id
         username
-        display_name
+        displayName
         logo
       }
       status
@@ -174,8 +175,8 @@ query ListInvitedRooms(
     nextToken
   }
 }
-query GetRoom($owner: String!) {
-  getRoom(owner: $owner) {
+query GetRoom($id: ID!) {
+  getRoom(id: $id) {
     id
     name
     image
@@ -183,7 +184,7 @@ query GetRoom($owner: String!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -208,6 +209,7 @@ query GetRoom($owner: String!) {
     users {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -230,14 +232,14 @@ query GetRoom($owner: String!) {
   }
 }
 query ListRooms(
-  $owner: String
+  $id: ID
   $filter: ModelRoomFilterInput
   $limit: Int
   $nextToken: String
   $sortDirection: ModelSortDirection
 ) {
   listRooms(
-    owner: $owner
+    id: $id
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -251,7 +253,7 @@ query ListRooms(
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -279,7 +281,7 @@ query GetMessage($id: ID!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -301,7 +303,7 @@ query GetMessage($id: ID!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -333,7 +335,7 @@ query ListMessages(
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       createdAt
@@ -346,6 +348,89 @@ query ListMessages(
         createdAt
         updatedAt
       }
+    }
+    nextToken
+  }
+}
+query GetRoomUser($id: ID!) {
+  getRoomUser(id: $id) {
+    id
+    room {
+      id
+      name
+      image
+      owner
+      user {
+        id
+        username
+        displayName
+        logo
+      }
+      inviting {
+        nextToken
+      }
+      users {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      messages {
+        nextToken
+      }
+    }
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
+    username
+    createdAt
+    updatedAt
+  }
+}
+query ListRoomUsers(
+  $id: ID
+  $filter: ModelRoomUserFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listRoomUsers(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      room {
+        id
+        name
+        image
+        owner
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        username
+        displayName
+        logo
+      }
+      username
+      createdAt
+      updatedAt
     }
     nextToken
   }

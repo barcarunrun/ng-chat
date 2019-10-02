@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import Amplify, {Auth, Hub} from "aws-amplify";
 import {MyAPIService} from "../API.my";
 import {CreateInvitedRoomInput, invitedStatus} from "../API.service";
+import {ulid} from "ulid";
 
 @Component({
   selector: "app-room-invite",
@@ -36,6 +37,7 @@ export class RoomInviteComponent implements OnInit {
   inviteUser() {
     const now = new Date();
     const input: CreateInvitedRoomInput = {
+      id: ulid(),
       invitedRoomRoomId: this.roomID,
       invitedRoomToUserId: this.toUser,
       toUsername: this.toUser,

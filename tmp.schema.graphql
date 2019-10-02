@@ -2,14 +2,14 @@
 
 # enum storeCategory {}
 
-enum UserRole {
-  Owner
-  Officer
-  Managers
-  Staff
-  Employees
-  User
-}
+# enum UserRole {
+#   Owner
+#   Officer
+#   Managers
+#   Staff
+#   Employees
+#   User
+# }
 
 enum invitedStatus {
   hold
@@ -17,76 +17,90 @@ enum invitedStatus {
   canceled
 }
 
-type Company @model {
-  id: ID!
-  name: String!
-  stores: [Store]!  # ont to many
-    @connection(
-      name: "CompanyStores"
-      keyField: "storeID"
-      sortField: "createdAt"
-    )
-  owner: User! @connection # ont to one
-  officer: User!
-  createdAt: AWSTimestamp!
-  updatedAt: AWSTimestamp!
-}
+# type Company @model {
+#   id: ID!
+#   name: String!
+#   stores: [Store]!  # ont to many
+#     @connection(
+#       name: "CompanyStores"
+#       keyField: "storeId"
+#       sortField: "createdAt"
+#     )
+#   owner: User! @connection # ont to one
+#   officer: User!
+#   createdAt: AWSTimestamp!
+#   updatedAt: AWSTimestamp!
+# }
 
-type Store @model {
-  id: ID!
-  admin: User!
-  company: Company! @connection(name: "CompanyStores", keyField: "companyId")
-  offres: [Offer!]!  # ont to many
-    @connection(
-      name: "StoreOffers"
-      keyField: "offerID"
-      sortField: "createdAt"
-    )
-  createdAt: AWSTimestamp!
-  updatedAt: AWSTimestamp!
-}
+# type Store @model {
+#   id: ID!
+#   admin: User!
+#   company: Company! @connection(name: "CompanyStores", keyField: "companyId")
+#   offres: [Offer!]!  # ont to many
+#     @connection(
+#       name: "StoreOffers"
+#       keyField: "offerId"
+#       sortField: "createdAt"
+#     )
+#   createdAt: AWSTimestamp!
+#   updatedAt: AWSTimestamp!
+# }
 
-type Offer @model {
-  id: ID!
-  store: Store! @connection(name: "StoreOffers", keyField: "storeId")
-  title: String!
-  content: String!
-  createdAt: AWSTimestamp!
-  updatedAt: AWSTimestamp!
-}
+# type Offer @model {
+#   id: ID!
+#   store: Store! @connection(name: "StoreOffers", keyField: "storeId")
+#   title: String!
+#   content: String!
+#   createdAt: AWSTimestamp!
+#   updatedAt: AWSTimestamp!
+# }
 
-type User @model @auth(rules: [{allow: owner}]) {
+type User
+  @model
+  @auth(rules: [{allow: owner}])
+  @key(fields: ["id"])
+  @key(name: "ByUsername", fields: ["username"])
+  @key(name: "ByDisplayName", fields: ["displayName"]) {
   id: ID!
   username: String!
+  displayName: String!
   logo: String!
-  rooms: [RoomUser] @connection(name: "UserRooms")
-  joined: [Store!]!
-  owned: [Store!]!
+
+  invitedRooms: [InvitedRoom!]!
+    @connection(name: "InvitedRooms", sortField: "createdAt")
+  joinedRooms: [RoomUser!]!
+    @connection(name: "UserRooms", sortField: "createdAt")
+  ownedRooms: [Room!]! @connection(name: "OwnerRooms", sortField: "createdAt")
+
+  # joined_stores: [Store!]!
+  # owned_stores: [Store!]!
 }
 
-type InvitedRoom @model(subscriptions: null) {
+type InvitedRoom
+  @model(subscriptions: null)
+  @key(fields: ["id"])
+  @key(name: "ByToUsername", fields: ["toUsername", "status"]) {
   id: ID!
-  roomId: String!
-  toUser: String!
-  fromUser: String!
+  room: Room! @connection(name: "InvitingUsers")
+  toUser: User! @connection(name: "InvitedRooms")
+  toUsername: String!
+  fromUser: User! @connection
   status: invitedStatus!
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
 }
 
-type Room @model {
+type Room @model @key(fields: ["id"]) @key(name: "ByOwner", fields: ["owner"]) {
   id: ID!
   name: String!
   image: String!
-  users: [RoomUser] @connection(name: "RoomUsers")
+  owner: String!
+  user: User! @connection(name: "OwnerRooms")
+  inviting: [InvitedRoom!]! @connection(name: "InvitingUsers")
+  users: [RoomUser!]! @connection(name: "RoomUsers")
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
-  messages: [Message!]!
-    @connection(
-      name: "RoomMessages"
-      keyField: "roomId"
-      sortField: "createdAt"
-    )
+  messages: [Message!]! @connection(name: "RoomMessages")
 }
 
 type Message @model(subscriptions: null) {
@@ -95,23 +109,33 @@ type Message @model(subscriptions: null) {
   when: String!
   roomId: ID!
   owner: String!
+  user: User @connection
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
-  room: Room @connection(name: "RoomMessages", keyField: "roomId")
+  room: Room! @connection(name: "RoomMessages")
 }
 
 type Subscription {
   onCreateMessage(roomId: ID!): Message
     @aws_subscribe(mutations: ["createMessage"])
 
-  onCreateInvitedRoom(toUser: String!): InvitedRoom
+  onCreateInvitedRoom(toUsername: String): InvitedRoom
     @aws_subscribe(mutations: ["createInvitedRoom"])
+
+  onCreateRoomUser(username: String): RoomUser
+    @aws_subscribe(mutations: ["createRoomUser"])
 }
 
 # リレーション
 
-type RoomUser @model(queries: null) {
+type RoomUser
+  @model(subscriptions: null)
+  @key(fields: ["id"])
+  @key(name: "ByroomUserUserId", fields: ["roomUserUserId"]) {
   id: ID!
   room: Room! @connection(name: "RoomUsers")
   user: User! @connection(name: "UserRooms")
+  username: String!
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
 }

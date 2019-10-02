@@ -58,16 +58,16 @@ enum invitedStatus {
 type User
   @model
   @auth(rules: [{allow: owner}])
-  @key(fields: ["username"])
-  @key(name: "ById", fields: ["id"]) {
+  @key(fields: ["id"])
+  @key(name: "ByUsername", fields: ["username"])
+  @key(name: "ByDisplayName", fields: ["displayName"]) {
   id: ID!
   username: String!
-  display_name: String!
+  displayName: String!
   logo: String!
 
   invitedRooms: [InvitedRoom!]!
     @connection(name: "InvitedRooms", sortField: "createdAt")
-
   joinedRooms: [RoomUser!]!
     @connection(name: "UserRooms", sortField: "createdAt")
   ownedRooms: [Room!]! @connection(name: "OwnerRooms", sortField: "createdAt")
@@ -76,18 +76,21 @@ type User
   # owned_stores: [Store!]!
 }
 
-type InvitedRoom @model(subscriptions: null) @key(fields: ["toUsername"]) {
+type InvitedRoom
+  @model(subscriptions: null)
+  @key(fields: ["id"])
+  @key(name: "ByToUsername", fields: ["toUsername", "status"]) {
   id: ID!
-  room: Room @connection(name: "InvitingUsers")
-  toUser: User @connection(name: "InvitedRooms")
+  room: Room! @connection(name: "InvitingUsers")
+  toUser: User! @connection(name: "InvitedRooms")
   toUsername: String!
-  fromUser: User @connection
+  fromUser: User! @connection
   status: invitedStatus!
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
 }
 
-type Room @model @key(fields: ["owner"]) @key(name: "ById", fields: ["id"]) {
+type Room @model @key(fields: ["id"]) @key(name: "ByOwner", fields: ["owner"]) {
   id: ID!
   name: String!
   image: String!
@@ -97,8 +100,7 @@ type Room @model @key(fields: ["owner"]) @key(name: "ById", fields: ["id"]) {
   users: [RoomUser!]! @connection(name: "RoomUsers")
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
-  messages: [Message!]!
-    @connection(name: "RoomMessages", sortField: "createdAt")
+  messages: [Message!]! @connection(name: "RoomMessages")
 }
 
 type Message @model(subscriptions: null) {
@@ -107,10 +109,10 @@ type Message @model(subscriptions: null) {
   when: String!
   roomId: ID!
   owner: String!
-  user: User! @connection
+  user: User @connection
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
-  room: Room @connection(name: "RoomMessages")
+  room: Room! @connection(name: "RoomMessages")
 }
 
 type Subscription {
@@ -119,14 +121,21 @@ type Subscription {
 
   onCreateInvitedRoom(toUsername: String): InvitedRoom
     @aws_subscribe(mutations: ["createInvitedRoom"])
+
+  onCreateRoomUser(username: String): RoomUser
+    @aws_subscribe(mutations: ["createRoomUser"])
 }
 
 # リレーション
 
-type RoomUser @model(queries: null) {
+type RoomUser
+  @model(subscriptions: null)
+  @key(fields: ["id"])
+  @key(name: "ByUsername", fields: ["username"]) {
   id: ID!
   room: Room! @connection(name: "RoomUsers")
   user: User! @connection(name: "UserRooms")
+  username: String!
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
 }

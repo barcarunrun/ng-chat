@@ -65,7 +65,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
             // console.log(this.messages);
           }
         });
-      const room = await this.api.GetRoomMessages(this.roomid);
+      const room = await this.api.GetRoom(this.roomid);
       // const messages = await this.api.ListMessages({
       //   roomId: {contains: room.id}
       // });
@@ -99,6 +99,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
       owner: this.user.username,
       messageUserId: this.user.id,
       roomId: this.roomid,
+      messageRoomId: this.roomid,
       createdAt: Math.floor(now.getTime() / 1000),
       updatedAt: Math.floor(now.getTime() / 1000)
     };

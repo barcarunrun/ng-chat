@@ -9,7 +9,7 @@ subscription OnCreateMessage($roomId: ID!) {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -31,7 +31,7 @@ subscription OnCreateMessage($roomId: ID!) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -59,7 +59,7 @@ subscription OnCreateInvitedRoom($toUsername: String) {
       user {
         id
         username
-        display_name
+        displayName
         logo
       }
       inviting {
@@ -77,7 +77,7 @@ subscription OnCreateInvitedRoom($toUsername: String) {
     toUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -93,7 +93,7 @@ subscription OnCreateInvitedRoom($toUsername: String) {
     fromUser {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -110,11 +110,57 @@ subscription OnCreateInvitedRoom($toUsername: String) {
     updatedAt
   }
 }
+subscription OnCreateRoomUser($username: String) {
+  onCreateRoomUser(username: $username) {
+    id
+    room {
+      id
+      name
+      image
+      owner
+      user {
+        id
+        username
+        displayName
+        logo
+      }
+      inviting {
+        nextToken
+      }
+      users {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      messages {
+        nextToken
+      }
+    }
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+    }
+    username
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateUser {
   onCreateUser {
     id
     username
-    display_name
+    displayName
     logo
     invitedRooms {
       items {
@@ -129,6 +175,7 @@ subscription OnCreateUser {
     joinedRooms {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -151,7 +198,7 @@ subscription OnUpdateUser {
   onUpdateUser {
     id
     username
-    display_name
+    displayName
     logo
     invitedRooms {
       items {
@@ -166,6 +213,7 @@ subscription OnUpdateUser {
     joinedRooms {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -188,7 +236,7 @@ subscription OnDeleteUser {
   onDeleteUser {
     id
     username
-    display_name
+    displayName
     logo
     invitedRooms {
       items {
@@ -203,6 +251,7 @@ subscription OnDeleteUser {
     joinedRooms {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -230,7 +279,7 @@ subscription OnCreateRoom {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -255,6 +304,7 @@ subscription OnCreateRoom {
     users {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -285,7 +335,7 @@ subscription OnUpdateRoom {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -310,6 +360,7 @@ subscription OnUpdateRoom {
     users {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -340,7 +391,7 @@ subscription OnDeleteRoom {
     user {
       id
       username
-      display_name
+      displayName
       logo
       invitedRooms {
         nextToken
@@ -365,6 +416,7 @@ subscription OnDeleteRoom {
     users {
       items {
         id
+        username
         createdAt
         updatedAt
       }
@@ -384,140 +436,5 @@ subscription OnDeleteRoom {
       }
       nextToken
     }
-  }
-}
-subscription OnCreateRoomUser {
-  onCreateRoomUser {
-    id
-    room {
-      id
-      name
-      image
-      owner
-      user {
-        id
-        username
-        display_name
-        logo
-      }
-      inviting {
-        nextToken
-      }
-      users {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      messages {
-        nextToken
-      }
-    }
-    user {
-      id
-      username
-      display_name
-      logo
-      invitedRooms {
-        nextToken
-      }
-      joinedRooms {
-        nextToken
-      }
-      ownedRooms {
-        nextToken
-      }
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateRoomUser {
-  onUpdateRoomUser {
-    id
-    room {
-      id
-      name
-      image
-      owner
-      user {
-        id
-        username
-        display_name
-        logo
-      }
-      inviting {
-        nextToken
-      }
-      users {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      messages {
-        nextToken
-      }
-    }
-    user {
-      id
-      username
-      display_name
-      logo
-      invitedRooms {
-        nextToken
-      }
-      joinedRooms {
-        nextToken
-      }
-      ownedRooms {
-        nextToken
-      }
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteRoomUser {
-  onDeleteRoomUser {
-    id
-    room {
-      id
-      name
-      image
-      owner
-      user {
-        id
-        username
-        display_name
-        logo
-      }
-      inviting {
-        nextToken
-      }
-      users {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      messages {
-        nextToken
-      }
-    }
-    user {
-      id
-      username
-      display_name
-      logo
-      invitedRooms {
-        nextToken
-      }
-      joinedRooms {
-        nextToken
-      }
-      ownedRooms {
-        nextToken
-      }
-    }
-    createdAt
-    updatedAt
   }
 }

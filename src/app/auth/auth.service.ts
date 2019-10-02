@@ -11,13 +11,18 @@ import awsconfig from "../../aws-exports";
 import {MyAPIService} from "../API.my";
 import {input} from "@aws-amplify/ui";
 
+import {RoomService} from "../store/room/room.service";
 import {ulid} from "ulid";
 
 @Injectable()
 export class AuthService {
   public loggedIn: BehaviorSubject<boolean>;
 
-  constructor(private router: Router, private api: MyAPIService) {
+  constructor(
+    private router: Router,
+    private api: MyAPIService,
+    private roomService: RoomService
+  ) {
     Amplify.configure(awsconfig);
     this.loggedIn = new BehaviorSubject<boolean>(false);
 
@@ -32,19 +37,19 @@ export class AuthService {
 
           // AppSync上のユーザーを作成
           this.api.GetUser(data.payload.data.username).then(loginedUser => {
-            if (!loginedUser) {
+            if (loginedUser === null) {
               this.api.CreateUser({
-                id: ulid(),
+                id: data.payload.data.username,
                 username: data.payload.data.username,
-                display_name: data.payload.data.username,
+                displayName: data.payload.data.username,
                 logo: "logo_url"
               });
               console.log("add new user to table");
             } else {
-              console.log("user table exist");
+              console.log("user table exist: ", loginedUser);
             }
+            this.roomService.addRooms(loginedUser.joinedRooms.items);
           });
-
           break;
         case "signIn_failure":
           console.log("the user failed to sign in");
