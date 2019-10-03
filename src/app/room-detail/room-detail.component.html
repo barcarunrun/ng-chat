@@ -13,7 +13,7 @@
         [class.is-loading-chat]="isLoading">
         <figure class="media-left" [class.my-message]="isMyMessage(message.owner)">
           <p class="image is-32x32">
-            <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1007226589883588608/8JIPe0u1_400x400.jpg">
+            <img class="is-rounded" [src]="message.user.logo">
           </p>
         </figure>
         <div class="media-content">

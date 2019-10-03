@@ -1,5 +1,8 @@
 <div>
-  <ul>
-    <li></li>
-  </ul>
+  <div class="column is-full room" *ngFor="let invitedRoom of invitedRooms">
+    <p>{{ invitedRoom.fromUser.displayName }}さんから、「{{ invitedRoom.room.name }}」 へ招待されいます</p>
+    <br>
+    <button class="button is-medium is-primary" (click)="acceptInvite(invitedRoom.id)">参加する</button>
+    <button class="button is-medium is-danger is-outlined" (click)="cancelInvite(invitedRoom.id)">参加しない</button>
+  </div>
 </div>

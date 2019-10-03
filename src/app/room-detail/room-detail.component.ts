@@ -66,7 +66,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
           }
         });
       const room = await this.api.GetRoom(this.roomid);
-      // const messages = await this.api.ListMessages({
+      // conpst messages = await this.api.ListMessages({
       //   roomId: {contains: room.id}
       // });
       this.roomname = room.name;
@@ -91,20 +91,19 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
   }
 
   createMessage() {
-    const now = new Date();
-    const newMessage: CreateMessageInput = {
+    const now = Math.floor(new Date().getTime() / 1000);
+    const message: CreateMessageInput = {
       id: ulid(),
       content: this.message,
-      when: Math.floor(now.getTime() / 1000).toString(),
+      when: now.toString(),
       owner: this.user.username,
       messageUserId: this.user.id,
       roomId: this.roomid,
       messageRoomId: this.roomid,
-      createdAt: Math.floor(now.getTime() / 1000),
-      updatedAt: Math.floor(now.getTime() / 1000)
+      createdAt: now,
+      updatedAt: now
     };
-    const message = this.api.CreateMessage(newMessage);
-    // console.log(message);
+    this.api.CreateMessage(message);
     this.message = "";
   }
 

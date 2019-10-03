@@ -23,6 +23,7 @@ export class MyAPIService extends APIService {
         onCreateRoomUser(username: $username) {
           __typename
           id
+          username
           room {
             __typename
             id
@@ -93,6 +94,13 @@ export class MyAPIService extends APIService {
           when
           roomId
           owner
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+          }
           room {
             __typename
             id

@@ -92,21 +92,6 @@ export class RoomService {
   ) {
     console.log("store room constructor");
 
-    // Auth.currentAuthenticatedUser().then(cognitUser => {
-    //   this.api
-    //     .ListRoomUsers(null, {username: cognitUser.username})
-    //     .then(roomsGql => {
-    //       // const sortedRooms = roomsGql.items.sort((a0, b0) => {
-    //       //   const a = new Date(a0.updatedAt);
-    //       //   const b = new Date(b0.updatedAt);
-    //       //   return a > b ? -1 : a < b ? 1 : 0;
-    //       // });
-    //       console.log(roomsGql.items);
-    //       this.model = this.modelFactory.create(roomsGql.items);
-    //       this.rooms$ = this.model.data$;
-    //     });
-    // });
-
     this.model = this.modelFactory.create([]);
     this.rooms$ = this.model.data$;
   }

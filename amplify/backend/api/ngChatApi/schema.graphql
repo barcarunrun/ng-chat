@@ -57,7 +57,6 @@ enum invitedStatus {
 
 type User
   @model
-  @auth(rules: [{allow: owner}])
   @key(fields: ["id"])
   @key(name: "ByUsername", fields: ["username"])
   @key(name: "ByDisplayName", fields: ["displayName"]) {
@@ -109,7 +108,7 @@ type Message @model(subscriptions: null) {
   when: String!
   roomId: ID!
   owner: String!
-  user: User @connection
+  user: User! @connection
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
   room: Room! @connection(name: "RoomMessages")
@@ -119,10 +118,10 @@ type Subscription {
   onCreateMessage(roomId: ID!): Message
     @aws_subscribe(mutations: ["createMessage"])
 
-  onCreateInvitedRoom(toUsername: String): InvitedRoom
+  onCreateInvitedRoom(toUsername: String!): InvitedRoom
     @aws_subscribe(mutations: ["createInvitedRoom"])
 
-  onCreateRoomUser(username: String): RoomUser
+  onCreateRoomUser(username: String!): RoomUser
     @aws_subscribe(mutations: ["createRoomUser"])
 }
 

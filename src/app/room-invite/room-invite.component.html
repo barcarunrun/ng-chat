@@ -4,9 +4,13 @@
   <div class="modal-card">
     <section class="modal-card-body">
       <div class="field">
-        <label class="label">招待するユーザーを入力</label>
-        <div class="control">
-          <input class="input" type="text" [(ngModel)]="toUser" placeholder="Text input">
+        <label class="label">招待するユーザーを選択</label>
+        <div class="select">
+          <select class="select" [(ngModel)]="toUser">
+            <option *ngFor="let x of listUser" [ngValue]="x.id">
+              {{x.username}}
+            </option>
+          </select>
         </div>
         <p class="help">This is a help text</p>
       </div>

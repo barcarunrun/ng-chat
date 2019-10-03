@@ -15,6 +15,7 @@ export class RoomInviteComponent implements OnInit {
   roomID: string;
   toUser: string;
   isOpen: boolean;
+  listUser: any[];
 
   constructor(private route: ActivatedRoute, private api: MyAPIService) {
     this.isOpen = false;
@@ -27,6 +28,10 @@ export class RoomInviteComponent implements OnInit {
     });
     this.route.paramMap.subscribe(async paramMap => {
       this.roomID = paramMap.get("id");
+      this.api.ListUsers().then(data => {
+        console.log("ListUsers:", data.items);
+        this.listUser = data.items;
+      });
     });
   }
 
@@ -35,17 +40,20 @@ export class RoomInviteComponent implements OnInit {
   }
 
   inviteUser() {
-    const now = new Date();
-    const input: CreateInvitedRoomInput = {
-      id: ulid(),
-      invitedRoomRoomId: this.roomID,
-      invitedRoomToUserId: this.toUser,
-      toUsername: this.toUser,
-      invitedRoomFromUserId: this.fromUser.username,
-      status: invitedStatus.hold,
-      createdAt: Math.floor(now.getTime() / 1000),
-      updatedAt: Math.floor(now.getTime() / 1000)
-    };
-    this.api.CreateInvitedRoom(input);
+    if (this.fromUser !== this.toUser) {
+      const now = new Date();
+      const input: CreateInvitedRoomInput = {
+        id: ulid(),
+        invitedRoomRoomId: this.roomID,
+        invitedRoomToUserId: this.toUser,
+        toUsername: this.toUser,
+        invitedRoomFromUserId: this.fromUser.username,
+        status: invitedStatus.hold,
+        createdAt: Math.floor(now.getTime() / 1000),
+        updatedAt: Math.floor(now.getTime() / 1000)
+      };
+      const result = this.api.CreateInvitedRoom(input);
+      console.log("CreateInvitedRoom result:", result);
+    }
   }
 }

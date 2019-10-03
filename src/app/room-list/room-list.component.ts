@@ -42,29 +42,40 @@ export class RoomListComponent implements OnInit {
     console.log("list ngOnInit");
 
     Auth.currentAuthenticatedUser().then(user => {
+      // 参加中のチャットルームを取得
       this.api
         .ListRoomUsers(null, {username: {eq: user.username}})
-        .then(roomsGql =>
-          roomsGql.items.forEach(item => this.roomService.addRoom(item.room))
-        );
-
-      // Subscribe to creation of Message
-      this.invitedRoomSubscription = this.api
-        .MyOnCreateInvitedRoomListener(user.username)
-        .subscribe({
-          next: newInvited => {
-            console.log("newInvited:", newInvited);
-            this.invitedRooms.push(newInvited.value.data.MyOnCreateInviteRoom);
-          }
+        .then(roomsGql => {
+          console.log("参加中のチャットルーム:", roomsGql.items);
+          roomsGql.items.forEach(item => this.roomService.addRoom(item.room));
         });
 
+      // // 招待一覧を取得
+      // this.api
+      //   .ListInvitedRooms(null, {toUsername: {eq: user.username}})
+      //   .then(listInvitedRooms => {
+      //     console.log("招待一覧:", listInvitedRooms);
+      //     this.invitedRooms = listInvitedRooms.items;
+      //   });
+
+      // // 招待を待機する
+      // this.invitedRoomSubscription = this.api
+      //   .MyOnCreateInvitedRoomListener(user.username)
+      //   .subscribe({
+      //     next: newInvited => {
+      //       console.log("newInvited:", newInvited);
+      //       this.invitedRooms.push(newInvited.value.data.onCreateInvitedRoom);
+      //     }
+      //   });
+
+      // 新規参加チャットルームを待機する
       this.addedRoomUserSubscription = this.api
         .MyOnCreateRoomUserListener(user.username)
         .subscribe({
           next: newRoomUser => {
             console.log("newRoomUser:", newRoomUser);
-            this.invitedRooms.push(
-              newRoomUser.value.data.MyOnCreateRoomUser.room
+            this.roomService.addRoom(
+              newRoomUser.value.data.onCreateRoomUser.room
             );
           }
         });
@@ -77,7 +88,7 @@ export class RoomListComponent implements OnInit {
   }
 
   async createRoom() {
-    const now = new Date();
+    const now = Math.floor(new Date().getTime() / 1000);
     const cognitUser = await Auth.currentAuthenticatedUser();
     const loginedUser = await this.api.GetUser(cognitUser.username);
 
@@ -88,9 +99,9 @@ export class RoomListComponent implements OnInit {
       name: this.roomid,
       owner: cognitUser.username,
       roomUserId: loginedUser.id,
-      image: "https://picsum.photos/100",
-      createdAt: Math.floor(now.getTime() / 1000),
-      updatedAt: Math.floor(now.getTime() / 1000)
+      image: "https://loremflickr.com/320/240?random=" + now,
+      createdAt: now,
+      updatedAt: now
     };
     this.roomid = "";
     console.log("this.newRoom:", this.newRoom);
@@ -101,8 +112,8 @@ export class RoomListComponent implements OnInit {
           username: loginedUser.username,
           roomUserRoomId: resultRoom.id,
           roomUserUserId: loginedUser.id,
-          createdAt: Math.floor(now.getTime() / 1000),
-          updatedAt: Math.floor(now.getTime() / 1000)
+          createdAt: now,
+          updatedAt: now
         });
       }
     });

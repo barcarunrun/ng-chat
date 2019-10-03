@@ -87,7 +87,7 @@ export type CreateMessageInput = {
   owner: string;
   createdAt: number;
   updatedAt: number;
-  messageUserId?: string | null;
+  messageUserId: string;
   messageRoomId: string;
 };
 
@@ -813,7 +813,7 @@ export type CreateMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   createdAt: number;
   updatedAt: number;
   room: {
@@ -871,7 +871,7 @@ export type UpdateMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   createdAt: number;
   updatedAt: number;
   room: {
@@ -929,7 +929,7 @@ export type DeleteMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   createdAt: number;
   updatedAt: number;
   room: {
@@ -1430,7 +1430,7 @@ export type GetMessageQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   createdAt: number;
   updatedAt: number;
   room: {
@@ -1478,7 +1478,7 @@ export type ListMessagesQuery = {
       username: string;
       displayName: string;
       logo: string;
-    } | null;
+    };
     createdAt: number;
     updatedAt: number;
     room: {
@@ -1602,7 +1602,7 @@ export type OnCreateMessageSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
-  } | null;
+  };
   createdAt: number;
   updatedAt: number;
   room: {
