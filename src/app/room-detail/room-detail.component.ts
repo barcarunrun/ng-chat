@@ -45,10 +45,11 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
     this.showRoomDetail$ = store.pipe(select("showRoomDetail"));
   }
 
-  ngOnInit() {
-    Auth.currentAuthenticatedUser().then(user => {
-      this.user = user;
-    });
+  async ngOnInit() {
+    const cognitUser = await Auth.currentAuthenticatedUser();
+    const loginedUser = await this.api.GetUser(cognitUser.username);
+    this.user = loginedUser;
+
     // パスパラメータの変更をサブスクライブする
     this.route.paramMap.subscribe(async paramMap => {
       this.message = "";
@@ -65,7 +66,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
             // console.log(this.messages);
           }
         });
-      const room = await this.api.GetRoom(this.roomid);
+      const room = await this.api.MyGetRoom(this.roomid);
       // conpst messages = await this.api.ListMessages({
       //   roomId: {contains: room.id}
       // });
@@ -90,7 +91,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
     this.messageSubscription.unsubscribe();
   }
 
-  createMessage() {
+  async createMessage() {
     const now = Math.floor(new Date().getTime() / 1000);
     const message: CreateMessageInput = {
       id: ulid(),
@@ -103,7 +104,8 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
       createdAt: now,
       updatedAt: now
     };
-    this.api.CreateMessage(message);
+    const sent = await this.api.CreateMessage(message);
+    console.log("sent:", sent);
     this.message = "";
   }
 

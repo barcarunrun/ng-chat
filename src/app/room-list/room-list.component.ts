@@ -50,24 +50,6 @@ export class RoomListComponent implements OnInit {
           roomsGql.items.forEach(item => this.roomService.addRoom(item.room));
         });
 
-      // // 招待一覧を取得
-      // this.api
-      //   .ListInvitedRooms(null, {toUsername: {eq: user.username}})
-      //   .then(listInvitedRooms => {
-      //     console.log("招待一覧:", listInvitedRooms);
-      //     this.invitedRooms = listInvitedRooms.items;
-      //   });
-
-      // // 招待を待機する
-      // this.invitedRoomSubscription = this.api
-      //   .MyOnCreateInvitedRoomListener(user.username)
-      //   .subscribe({
-      //     next: newInvited => {
-      //       console.log("newInvited:", newInvited);
-      //       this.invitedRooms.push(newInvited.value.data.onCreateInvitedRoom);
-      //     }
-      //   });
-
       // 新規参加チャットルームを待機する
       this.addedRoomUserSubscription = this.api
         .MyOnCreateRoomUserListener(user.username)
