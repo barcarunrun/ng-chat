@@ -67,6 +67,7 @@ export class AuthService {
         default:
           console.log("default");
           this.router.navigate(["/login"]);
+          this.roomService.delRooms();
           break;
       }
     });

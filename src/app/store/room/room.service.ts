@@ -96,8 +96,9 @@ export class RoomService {
     this.rooms$ = this.model.data$;
   }
 
-  addRooms(rooms: any) {
-    this.model.set(rooms);
+  delRooms() {
+    this.model = this.modelFactory.create([]);
+    this.rooms$ = this.model.data$;
   }
 
   addRoom(room: any) {

@@ -55,5 +55,6 @@ export class RoomInviteComponent implements OnInit {
       const result = this.api.CreateInvitedRoom(input);
       console.log("CreateInvitedRoom result:", result);
     }
+    this.toggleModal();
   }
 }

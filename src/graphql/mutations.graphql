@@ -1,4 +1,1093 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateCompany($input: CreateCompanyInput!) {
+  createCompany(input: $input) {
+    id
+    name
+    email
+    logo
+    backgroundImg
+    about
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    owner {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCompany($input: UpdateCompanyInput!) {
+  updateCompany(input: $input) {
+    id
+    name
+    email
+    logo
+    backgroundImg
+    about
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    owner {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCompany($input: DeleteCompanyInput!) {
+  deleteCompany(input: $input) {
+    id
+    name
+    email
+    logo
+    backgroundImg
+    about
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    owner {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateArticleTag($input: CreateArticleTagInput!) {
+  createArticleTag(input: $input) {
+    id
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    articleTagMaster {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateArticleTag($input: UpdateArticleTagInput!) {
+  updateArticleTag(input: $input) {
+    id
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    articleTagMaster {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteArticleTag($input: DeleteArticleTagInput!) {
+  deleteArticleTag(input: $input) {
+    id
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    articleTagMaster {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateArticleTagMaster($input: CreateArticleTagMasterInput!) {
+  createArticleTagMaster(input: $input) {
+    id
+    content
+    articles {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateArticleTagMaster($input: UpdateArticleTagMasterInput!) {
+  updateArticleTagMaster(input: $input) {
+    id
+    content
+    articles {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteArticleTagMaster($input: DeleteArticleTagMasterInput!) {
+  deleteArticleTagMaster(input: $input) {
+    id
+    content
+    articles {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateArticle($input: CreateArticleInput!) {
+  createArticle(input: $input) {
+    id
+    title
+    tags {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    thumbnail
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    isOpen
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateArticle($input: UpdateArticleInput!) {
+  updateArticle(input: $input) {
+    id
+    title
+    tags {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    thumbnail
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    isOpen
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteArticle($input: DeleteArticleInput!) {
+  deleteArticle(input: $input) {
+    id
+    title
+    tags {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    thumbnail
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    isOpen
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateComment($input: CreateCommentInput!) {
+  createComment(input: $input) {
+    id
+    content
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateComment($input: UpdateCommentInput!) {
+  updateComment(input: $input) {
+    id
+    content
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteComment($input: DeleteCommentInput!) {
+  deleteComment(input: $input) {
+    id
+    content
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCharacter($input: CreateCharacterInput!) {
+  createCharacter(input: $input) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCharacter($input: UpdateCharacterInput!) {
+  updateCharacter(input: $input) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCharacter($input: DeleteCharacterInput!) {
+  deleteCharacter(input: $input) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateSkill($input: CreateSkillInput!) {
+  createSkill(input: $input) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateSkill($input: UpdateSkillInput!) {
+  updateSkill(input: $input) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteSkill($input: DeleteSkillInput!) {
+  deleteSkill(input: $input) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateApplicantCharacter($input: CreateApplicantCharacterInput!) {
+  createApplicantCharacter(input: $input) {
+    id
+    character {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateApplicantCharacter($input: UpdateApplicantCharacterInput!) {
+  updateApplicantCharacter(input: $input) {
+    id
+    character {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteApplicantCharacter($input: DeleteApplicantCharacterInput!) {
+  deleteApplicantCharacter(input: $input) {
+    id
+    character {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateApplicantSkill($input: CreateApplicantSkillInput!) {
+  createApplicantSkill(input: $input) {
+    id
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    skill {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateApplicantSkill($input: UpdateApplicantSkillInput!) {
+  updateApplicantSkill(input: $input) {
+    id
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    skill {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteApplicantSkill($input: DeleteApplicantSkillInput!) {
+  deleteApplicantSkill(input: $input) {
+    id
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    skill {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateArea($input: CreateAreaInput!) {
+  createArea(input: $input) {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateArea($input: UpdateAreaInput!) {
+  updateArea(input: $input) {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteArea($input: DeleteAreaInput!) {
+  deleteArea(input: $input) {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
@@ -35,6 +1124,8 @@ mutation CreateUser($input: CreateUserInput!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateUser($input: UpdateUserInput!) {
@@ -73,6 +1164,8 @@ mutation UpdateUser($input: UpdateUserInput!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteUser($input: DeleteUserInput!) {
@@ -111,6 +1204,167 @@ mutation DeleteUser($input: DeleteUserInput!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateApplicant($input: CreateApplicantInput!) {
+  createApplicant(input: $input) {
+    id
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    name
+    email
+    firstName
+    lastName
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    logo
+    backgroundImg
+    about
+    characters {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    skills {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateApplicant($input: UpdateApplicantInput!) {
+  updateApplicant(input: $input) {
+    id
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    name
+    email
+    firstName
+    lastName
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    logo
+    backgroundImg
+    about
+    characters {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    skills {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteApplicant($input: DeleteApplicantInput!) {
+  deleteApplicant(input: $input) {
+    id
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    name
+    email
+    firstName
+    lastName
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    logo
+    backgroundImg
+    about
+    characters {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    skills {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
   }
 }
 mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
@@ -126,6 +1380,8 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -133,11 +1389,11 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUser {
       id
@@ -153,6 +1409,8 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUsername
     fromUser {
@@ -169,6 +1427,8 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     status
     createdAt
@@ -188,6 +1448,8 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -195,11 +1457,11 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUser {
       id
@@ -215,6 +1477,8 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUsername
     fromUser {
@@ -231,6 +1495,8 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     status
     createdAt
@@ -250,6 +1516,8 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -257,11 +1525,11 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUser {
       id
@@ -277,6 +1545,8 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUsername
     fromUser {
@@ -293,6 +1563,8 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     status
     createdAt
@@ -319,6 +1591,8 @@ mutation CreateRoom($input: CreateRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     inviting {
       items {
@@ -339,8 +1613,6 @@ mutation CreateRoom($input: CreateRoomInput!) {
       }
       nextToken
     }
-    createdAt
-    updatedAt
     messages {
       items {
         id
@@ -353,6 +1625,8 @@ mutation CreateRoom($input: CreateRoomInput!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateRoom($input: UpdateRoomInput!) {
@@ -375,6 +1649,8 @@ mutation UpdateRoom($input: UpdateRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     inviting {
       items {
@@ -395,8 +1671,6 @@ mutation UpdateRoom($input: UpdateRoomInput!) {
       }
       nextToken
     }
-    createdAt
-    updatedAt
     messages {
       items {
         id
@@ -409,6 +1683,8 @@ mutation UpdateRoom($input: UpdateRoomInput!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteRoom($input: DeleteRoomInput!) {
@@ -431,6 +1707,8 @@ mutation DeleteRoom($input: DeleteRoomInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     inviting {
       items {
@@ -451,8 +1729,6 @@ mutation DeleteRoom($input: DeleteRoomInput!) {
       }
       nextToken
     }
-    createdAt
-    updatedAt
     messages {
       items {
         id
@@ -465,6 +1741,8 @@ mutation DeleteRoom($input: DeleteRoomInput!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation CreateMessage($input: CreateMessageInput!) {
@@ -488,9 +1766,9 @@ mutation CreateMessage($input: CreateMessageInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
-    createdAt
-    updatedAt
     room {
       id
       name
@@ -501,6 +1779,8 @@ mutation CreateMessage($input: CreateMessageInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -508,12 +1788,14 @@ mutation CreateMessage($input: CreateMessageInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateMessage($input: UpdateMessageInput!) {
@@ -537,9 +1819,9 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
-    createdAt
-    updatedAt
     room {
       id
       name
@@ -550,6 +1832,8 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -557,12 +1841,14 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteMessage($input: DeleteMessageInput!) {
@@ -586,9 +1872,9 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
-    createdAt
-    updatedAt
     room {
       id
       name
@@ -599,6 +1885,8 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -606,12 +1894,14 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
+    createdAt
+    updatedAt
   }
 }
 mutation CreateRoomUser($input: CreateRoomUserInput!) {
@@ -627,6 +1917,8 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -634,11 +1926,11 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     user {
       id
@@ -654,6 +1946,8 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     username
     createdAt
@@ -673,6 +1967,8 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -680,11 +1976,11 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     user {
       id
@@ -700,6 +1996,8 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     username
     createdAt
@@ -719,6 +2017,8 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -726,11 +2026,11 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     user {
       id
@@ -746,6 +2046,8 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     username
     createdAt

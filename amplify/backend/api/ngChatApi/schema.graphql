@@ -2,14 +2,15 @@
 
 # enum storeCategory {}
 
-# enum UserRole {
-#   Owner
-#   Officer
-#   Managers
-#   Staff
-#   Employees
-#   User
-# }
+enum UserRole {
+  # Owner
+  # Officer
+  # Managers
+  # Staff
+  # Employees
+  Campany
+  Applicant
+}
 
 enum invitedStatus {
   hold
@@ -17,20 +18,132 @@ enum invitedStatus {
   canceled
 }
 
-# type Company @model {
-#   id: ID!
-#   name: String!
-#   stores: [Store]!  # ont to many
-#     @connection(
-#       name: "CompanyStores"
-#       keyField: "storeId"
-#       sortField: "createdAt"
-#     )
-#   owner: User! @connection # ont to one
-#   officer: User!
-#   createdAt: AWSTimestamp!
-#   updatedAt: AWSTimestamp!
-# }
+type Company @model @key(fields: ["id"]) {
+  id: ID!
+  # stores: [Store]!  # ont to many
+  #   @connection(
+  #     name: "CompanyStores"
+  #     keyField: "storeId"
+  #     sortField: "createdAt"
+  #   )
+  # officer: User!
+  name: String!
+  email: String
+  logo: String
+  backgroundImg: String
+  about: String
+  area: Area @connection
+  owner: User! @connection
+
+  articles: [Article]! @connection(name: "CompanyArticle")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type ArticleTag @model @key(fields: ["id"]) {
+  id: ID!
+  article: Article! @connection(name: "ArticleTags")
+  articleTagMaster: ArticleTagMaster! @connection(name: "TagArticles")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type ArticleTagMaster
+  @model
+  @key(fields: ["id"])
+  @key(name: "Bycontent", fields: ["content"]) {
+  id: ID!
+  content: String!
+  articles: [ArticleTag]! @connection(name: "TagArticles")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Article @model @key(fields: ["id"]) {
+  id: ID!
+  title: String!
+  tags: [ArticleTag]! @connection(name: "ArticleTags")
+  thumbnail: String
+  company: Company! @connection(name: "CompanyArticle")
+  content: String!
+  isOpen: ArticleStatus!
+  comments: [Comment]! @connection(name: "ArticleComments")
+  area: Area!
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+enum ArticleStatus {
+  open
+  close
+}
+
+type Comment @model @key(fields: ["id"]) {
+  id: ID!
+  content: String
+  user: User! @connection
+  article: Article @connection(name: "ArticleComments")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Character
+  @model
+  @key(fields: ["id"])
+  @key(name: "Bycontent", fields: ["content"]) {
+  id: ID!
+  content: String!
+  applicants: [ApplicantCharacter]! @connection(name: "CharacterApplicants")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Skill
+  @model
+  @key(fields: ["id"])
+  @key(name: "Bycontent", fields: ["content"]) {
+  id: ID!
+  content: String!
+  applicants: [ApplicantSkill]! @connection(name: "SkillApplicants")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type ApplicantCharacter @model @key(fields: ["id"]) {
+  id: ID!
+  character: Character! @connection(name: "CharacterApplicants")
+  applicant: Applicant! @connection(name: "ApplicantCharacters")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type ApplicantSkill @model @key(fields: ["id"]) {
+  id: ID!
+  applicant: Applicant! @connection(name: "ApplicantSkills")
+  skill: Skill! @connection(name: "SkillApplicants")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Area
+  @model
+  @key(fields: ["id"])
+  @key(name: "Bycontent", fields: ["content"]) {
+  id: ID!
+  content: String!
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
 
 # type Store @model {
 #   id: ID!
@@ -73,6 +186,28 @@ type User
 
   # joined_stores: [Store!]!
   # owned_stores: [Store!]!
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type Applicant @model {
+  id: ID!
+  user: User! @connection
+  name: String!
+  email: String!
+  firstName: String
+  lastName: String
+  area: Area @connection
+  logo: String
+  backgroundImg: String
+  about: String
+
+  characters: [ApplicantCharacter]! @connection(name: "ApplicantCharacters")
+  skills: [ApplicantSkill]! @connection(name: "ApplicantSkills")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
 }
 
 type InvitedRoom
@@ -85,6 +220,7 @@ type InvitedRoom
   toUsername: String!
   fromUser: User! @connection
   status: invitedStatus!
+
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
 }
@@ -97,9 +233,10 @@ type Room @model @key(fields: ["id"]) @key(name: "ByOwner", fields: ["owner"]) {
   user: User! @connection(name: "OwnerRooms")
   inviting: [InvitedRoom!]! @connection(name: "InvitingUsers")
   users: [RoomUser!]! @connection(name: "RoomUsers")
+  messages: [Message!]! @connection(name: "RoomMessages")
+
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
-  messages: [Message!]! @connection(name: "RoomMessages")
 }
 
 type Message @model(subscriptions: null) {
@@ -109,9 +246,10 @@ type Message @model(subscriptions: null) {
   roomId: ID!
   owner: String!
   user: User! @connection
+  room: Room! @connection(name: "RoomMessages")
+
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
-  room: Room! @connection(name: "RoomMessages")
 }
 
 type Subscription {
@@ -135,6 +273,7 @@ type RoomUser
   room: Room! @connection(name: "RoomUsers")
   user: User! @connection(name: "UserRooms")
   username: String!
+
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
 }

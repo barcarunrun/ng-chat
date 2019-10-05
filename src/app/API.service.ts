@@ -5,11 +5,228 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import * as Observable from "zen-observable";
 
+export type CreateCompanyInput = {
+  id: string;
+  name: string;
+  email?: string | null;
+  logo?: string | null;
+  backgroundImg?: string | null;
+  about?: string | null;
+  createdAt: number;
+  updatedAt: number;
+  companyAreaId?: string | null;
+  companyOwnerId: string;
+};
+
+export enum ArticleStatus {
+  open = "open",
+  close = "close"
+}
+
+export type UpdateCompanyInput = {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  logo?: string | null;
+  backgroundImg?: string | null;
+  about?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  companyAreaId?: string | null;
+  companyOwnerId?: string | null;
+};
+
+export type DeleteCompanyInput = {
+  id: string;
+};
+
+export type CreateArticleTagInput = {
+  id: string;
+  createdAt: number;
+  updatedAt: number;
+  articleTagArticleId: string;
+  articleTagArticleTagMasterId: string;
+};
+
+export type UpdateArticleTagInput = {
+  id: string;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  articleTagArticleId?: string | null;
+  articleTagArticleTagMasterId?: string | null;
+};
+
+export type DeleteArticleTagInput = {
+  id: string;
+};
+
+export type CreateArticleTagMasterInput = {
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateArticleTagMasterInput = {
+  id: string;
+  content?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+};
+
+export type DeleteArticleTagMasterInput = {
+  id: string;
+};
+
+export type CreateArticleInput = {
+  id: string;
+  title: string;
+  thumbnail?: string | null;
+  content: string;
+  isOpen: ArticleStatus;
+  createdAt: number;
+  updatedAt: number;
+  articleCompanyId: string;
+};
+
+export type UpdateArticleInput = {
+  id: string;
+  title?: string | null;
+  thumbnail?: string | null;
+  content?: string | null;
+  isOpen?: ArticleStatus | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  articleCompanyId?: string | null;
+};
+
+export type DeleteArticleInput = {
+  id: string;
+};
+
+export type CreateCommentInput = {
+  id: string;
+  content?: string | null;
+  createdAt: number;
+  updatedAt: number;
+  commentUserId: string;
+  commentArticleId?: string | null;
+};
+
+export type UpdateCommentInput = {
+  id: string;
+  content?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  commentUserId?: string | null;
+  commentArticleId?: string | null;
+};
+
+export type DeleteCommentInput = {
+  id: string;
+};
+
+export type CreateCharacterInput = {
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateCharacterInput = {
+  id: string;
+  content?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+};
+
+export type DeleteCharacterInput = {
+  id: string;
+};
+
+export type CreateSkillInput = {
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateSkillInput = {
+  id: string;
+  content?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+};
+
+export type DeleteSkillInput = {
+  id: string;
+};
+
+export type CreateApplicantCharacterInput = {
+  id: string;
+  createdAt: number;
+  updatedAt: number;
+  applicantCharacterCharacterId: string;
+  applicantCharacterApplicantId: string;
+};
+
+export type UpdateApplicantCharacterInput = {
+  id: string;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  applicantCharacterCharacterId?: string | null;
+  applicantCharacterApplicantId?: string | null;
+};
+
+export type DeleteApplicantCharacterInput = {
+  id: string;
+};
+
+export type CreateApplicantSkillInput = {
+  id: string;
+  createdAt: number;
+  updatedAt: number;
+  applicantSkillApplicantId: string;
+  applicantSkillSkillId: string;
+};
+
+export type UpdateApplicantSkillInput = {
+  id: string;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  applicantSkillApplicantId?: string | null;
+  applicantSkillSkillId?: string | null;
+};
+
+export type DeleteApplicantSkillInput = {
+  id: string;
+};
+
+export type CreateAreaInput = {
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateAreaInput = {
+  id: string;
+  content?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+};
+
+export type DeleteAreaInput = {
+  id: string;
+};
+
 export type CreateUserInput = {
   id: string;
   username: string;
   displayName: string;
   logo: string;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export enum invitedStatus {
@@ -23,10 +240,46 @@ export type UpdateUserInput = {
   username?: string | null;
   displayName?: string | null;
   logo?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
 };
 
 export type DeleteUserInput = {
   id: string;
+};
+
+export type CreateApplicantInput = {
+  id?: string | null;
+  name: string;
+  email: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  logo?: string | null;
+  backgroundImg?: string | null;
+  about?: string | null;
+  createdAt: number;
+  updatedAt: number;
+  applicantUserId: string;
+  applicantAreaId?: string | null;
+};
+
+export type UpdateApplicantInput = {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  logo?: string | null;
+  backgroundImg?: string | null;
+  about?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  applicantUserId?: string | null;
+  applicantAreaId?: string | null;
+};
+
+export type DeleteApplicantInput = {
+  id?: string | null;
 };
 
 export type CreateInvitedRoomInput = {
@@ -129,14 +382,18 @@ export type DeleteRoomUserInput = {
   id: string;
 };
 
-export type ModelUserFilterInput = {
+export type ModelCompanyFilterInput = {
   id?: ModelIDFilterInput | null;
-  username?: ModelStringFilterInput | null;
-  displayName?: ModelStringFilterInput | null;
+  name?: ModelStringFilterInput | null;
+  email?: ModelStringFilterInput | null;
   logo?: ModelStringFilterInput | null;
-  and?: Array<ModelUserFilterInput | null> | null;
-  or?: Array<ModelUserFilterInput | null> | null;
-  not?: ModelUserFilterInput | null;
+  backgroundImg?: ModelStringFilterInput | null;
+  about?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelCompanyFilterInput | null> | null;
+  or?: Array<ModelCompanyFilterInput | null> | null;
+  not?: ModelCompanyFilterInput | null;
 };
 
 export type ModelIDFilterInput = {
@@ -165,10 +422,145 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null;
 };
 
+export type ModelIntFilterInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  contains?: number | null;
+  notContains?: number | null;
+  between?: Array<number | null> | null;
+};
+
 export enum ModelSortDirection {
   ASC = "ASC",
   DESC = "DESC"
 }
+
+export type ModelArticleTagFilterInput = {
+  id?: ModelIDFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelArticleTagFilterInput | null> | null;
+  or?: Array<ModelArticleTagFilterInput | null> | null;
+  not?: ModelArticleTagFilterInput | null;
+};
+
+export type ModelArticleTagMasterFilterInput = {
+  id?: ModelIDFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelArticleTagMasterFilterInput | null> | null;
+  or?: Array<ModelArticleTagMasterFilterInput | null> | null;
+  not?: ModelArticleTagMasterFilterInput | null;
+};
+
+export type ModelArticleFilterInput = {
+  id?: ModelIDFilterInput | null;
+  title?: ModelStringFilterInput | null;
+  thumbnail?: ModelStringFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  isOpen?: ModelArticleStatusFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelArticleFilterInput | null> | null;
+  or?: Array<ModelArticleFilterInput | null> | null;
+  not?: ModelArticleFilterInput | null;
+};
+
+export type ModelArticleStatusFilterInput = {
+  eq?: ArticleStatus | null;
+  ne?: ArticleStatus | null;
+};
+
+export type ModelCommentFilterInput = {
+  id?: ModelIDFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelCommentFilterInput | null> | null;
+  or?: Array<ModelCommentFilterInput | null> | null;
+  not?: ModelCommentFilterInput | null;
+};
+
+export type ModelCharacterFilterInput = {
+  id?: ModelIDFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelCharacterFilterInput | null> | null;
+  or?: Array<ModelCharacterFilterInput | null> | null;
+  not?: ModelCharacterFilterInput | null;
+};
+
+export type ModelSkillFilterInput = {
+  id?: ModelIDFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelSkillFilterInput | null> | null;
+  or?: Array<ModelSkillFilterInput | null> | null;
+  not?: ModelSkillFilterInput | null;
+};
+
+export type ModelApplicantCharacterFilterInput = {
+  id?: ModelIDFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelApplicantCharacterFilterInput | null> | null;
+  or?: Array<ModelApplicantCharacterFilterInput | null> | null;
+  not?: ModelApplicantCharacterFilterInput | null;
+};
+
+export type ModelApplicantSkillFilterInput = {
+  id?: ModelIDFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelApplicantSkillFilterInput | null> | null;
+  or?: Array<ModelApplicantSkillFilterInput | null> | null;
+  not?: ModelApplicantSkillFilterInput | null;
+};
+
+export type ModelAreaFilterInput = {
+  id?: ModelIDFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelAreaFilterInput | null> | null;
+  or?: Array<ModelAreaFilterInput | null> | null;
+  not?: ModelAreaFilterInput | null;
+};
+
+export type ModelUserFilterInput = {
+  id?: ModelIDFilterInput | null;
+  username?: ModelStringFilterInput | null;
+  displayName?: ModelStringFilterInput | null;
+  logo?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelUserFilterInput | null> | null;
+  or?: Array<ModelUserFilterInput | null> | null;
+  not?: ModelUserFilterInput | null;
+};
+
+export type ModelApplicantFilterInput = {
+  id?: ModelIDFilterInput | null;
+  name?: ModelStringFilterInput | null;
+  email?: ModelStringFilterInput | null;
+  firstName?: ModelStringFilterInput | null;
+  lastName?: ModelStringFilterInput | null;
+  logo?: ModelStringFilterInput | null;
+  backgroundImg?: ModelStringFilterInput | null;
+  about?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelApplicantFilterInput | null> | null;
+  or?: Array<ModelApplicantFilterInput | null> | null;
+  not?: ModelApplicantFilterInput | null;
+};
 
 export type ModelInvitedRoomFilterInput = {
   id?: ModelIDFilterInput | null;
@@ -184,18 +576,6 @@ export type ModelInvitedRoomFilterInput = {
 export type ModelinvitedStatusFilterInput = {
   eq?: invitedStatus | null;
   ne?: invitedStatus | null;
-};
-
-export type ModelIntFilterInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  contains?: number | null;
-  notContains?: number | null;
-  between?: Array<number | null> | null;
 };
 
 export type ModelRoomFilterInput = {
@@ -231,6 +611,1251 @@ export type ModelRoomUserFilterInput = {
   and?: Array<ModelRoomUserFilterInput | null> | null;
   or?: Array<ModelRoomUserFilterInput | null> | null;
   not?: ModelRoomUserFilterInput | null;
+};
+
+export type CreateCompanyMutation = {
+  __typename: "Company";
+  id: string;
+  name: string;
+  email: string | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  owner: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateCompanyMutation = {
+  __typename: "Company";
+  id: string;
+  name: string;
+  email: string | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  owner: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteCompanyMutation = {
+  __typename: "Company";
+  id: string;
+  name: string;
+  email: string | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  owner: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateArticleTagMutation = {
+  __typename: "ArticleTag";
+  id: string;
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  };
+  articleTagMaster: {
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateArticleTagMutation = {
+  __typename: "ArticleTag";
+  id: string;
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  };
+  articleTagMaster: {
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteArticleTagMutation = {
+  __typename: "ArticleTag";
+  id: string;
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  };
+  articleTagMaster: {
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateArticleTagMasterMutation = {
+  __typename: "ArticleTagMaster";
+  id: string;
+  content: string;
+  articles: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateArticleTagMasterMutation = {
+  __typename: "ArticleTagMaster";
+  id: string;
+  content: string;
+  articles: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteArticleTagMasterMutation = {
+  __typename: "ArticleTagMaster";
+  id: string;
+  content: string;
+  articles: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateArticleMutation = {
+  __typename: "Article";
+  id: string;
+  title: string;
+  tags: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  thumbnail: string | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  content: string;
+  isOpen: ArticleStatus;
+  comments: {
+    __typename: "ModelCommentConnection";
+    items: Array<{
+      __typename: "Comment";
+      id: string;
+      content: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateArticleMutation = {
+  __typename: "Article";
+  id: string;
+  title: string;
+  tags: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  thumbnail: string | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  content: string;
+  isOpen: ArticleStatus;
+  comments: {
+    __typename: "ModelCommentConnection";
+    items: Array<{
+      __typename: "Comment";
+      id: string;
+      content: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteArticleMutation = {
+  __typename: "Article";
+  id: string;
+  title: string;
+  tags: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  thumbnail: string | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  content: string;
+  isOpen: ArticleStatus;
+  comments: {
+    __typename: "ModelCommentConnection";
+    items: Array<{
+      __typename: "Comment";
+      id: string;
+      content: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateCommentMutation = {
+  __typename: "Comment";
+  id: string;
+  content: string | null;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateCommentMutation = {
+  __typename: "Comment";
+  id: string;
+  content: string | null;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteCommentMutation = {
+  __typename: "Comment";
+  id: string;
+  content: string | null;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateCharacterMutation = {
+  __typename: "Character";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateCharacterMutation = {
+  __typename: "Character";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteCharacterMutation = {
+  __typename: "Character";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateSkillMutation = {
+  __typename: "Skill";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateSkillMutation = {
+  __typename: "Skill";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteSkillMutation = {
+  __typename: "Skill";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateApplicantCharacterMutation = {
+  __typename: "ApplicantCharacter";
+  id: string;
+  character: {
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateApplicantCharacterMutation = {
+  __typename: "ApplicantCharacter";
+  id: string;
+  character: {
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteApplicantCharacterMutation = {
+  __typename: "ApplicantCharacter";
+  id: string;
+  character: {
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateApplicantSkillMutation = {
+  __typename: "ApplicantSkill";
+  id: string;
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  skill: {
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateApplicantSkillMutation = {
+  __typename: "ApplicantSkill";
+  id: string;
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  skill: {
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteApplicantSkillMutation = {
+  __typename: "ApplicantSkill";
+  id: string;
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  skill: {
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateAreaMutation = {
+  __typename: "Area";
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateAreaMutation = {
+  __typename: "Area";
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteAreaMutation = {
+  __typename: "Area";
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type CreateUserMutation = {
@@ -275,6 +1900,8 @@ export type CreateUserMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type UpdateUserMutation = {
@@ -319,6 +1946,8 @@ export type UpdateUserMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type DeleteUserMutation = {
@@ -363,6 +1992,194 @@ export type DeleteUserMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateApplicantMutation = {
+  __typename: "Applicant";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  name: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  characters: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  skills: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateApplicantMutation = {
+  __typename: "Applicant";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  name: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  characters: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  skills: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteApplicantMutation = {
+  __typename: "Applicant";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  name: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  characters: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  skills: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type CreateInvitedRoomMutation = {
@@ -380,6 +2197,8 @@ export type CreateInvitedRoomMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -389,12 +2208,12 @@ export type CreateInvitedRoomMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUser: {
     __typename: "User";
@@ -414,6 +2233,8 @@ export type CreateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUsername: string;
   fromUser: {
@@ -434,6 +2255,8 @@ export type CreateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   status: invitedStatus;
   createdAt: number;
@@ -455,6 +2278,8 @@ export type UpdateInvitedRoomMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -464,12 +2289,12 @@ export type UpdateInvitedRoomMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUser: {
     __typename: "User";
@@ -489,6 +2314,8 @@ export type UpdateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUsername: string;
   fromUser: {
@@ -509,6 +2336,8 @@ export type UpdateInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   status: invitedStatus;
   createdAt: number;
@@ -530,6 +2359,8 @@ export type DeleteInvitedRoomMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -539,12 +2370,12 @@ export type DeleteInvitedRoomMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUser: {
     __typename: "User";
@@ -564,6 +2395,8 @@ export type DeleteInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUsername: string;
   fromUser: {
@@ -584,6 +2417,8 @@ export type DeleteInvitedRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   status: invitedStatus;
   createdAt: number;
@@ -614,6 +2449,8 @@ export type CreateRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   inviting: {
     __typename: "ModelInvitedRoomConnection";
@@ -638,8 +2475,6 @@ export type CreateRoomMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: number;
-  updatedAt: number;
   messages: {
     __typename: "ModelMessageConnection";
     items: Array<{
@@ -654,6 +2489,8 @@ export type CreateRoomMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type UpdateRoomMutation = {
@@ -680,6 +2517,8 @@ export type UpdateRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   inviting: {
     __typename: "ModelInvitedRoomConnection";
@@ -704,8 +2543,6 @@ export type UpdateRoomMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: number;
-  updatedAt: number;
   messages: {
     __typename: "ModelMessageConnection";
     items: Array<{
@@ -720,6 +2557,8 @@ export type UpdateRoomMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type DeleteRoomMutation = {
@@ -746,6 +2585,8 @@ export type DeleteRoomMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   inviting: {
     __typename: "ModelInvitedRoomConnection";
@@ -770,8 +2611,6 @@ export type DeleteRoomMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: number;
-  updatedAt: number;
   messages: {
     __typename: "ModelMessageConnection";
     items: Array<{
@@ -786,6 +2625,8 @@ export type DeleteRoomMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type CreateMessageMutation = {
@@ -813,9 +2654,9 @@ export type CreateMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
-  createdAt: number;
-  updatedAt: number;
   room: {
     __typename: "Room";
     id: string;
@@ -828,6 +2669,8 @@ export type CreateMessageMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -837,13 +2680,15 @@ export type CreateMessageMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type UpdateMessageMutation = {
@@ -871,9 +2716,9 @@ export type UpdateMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
-  createdAt: number;
-  updatedAt: number;
   room: {
     __typename: "Room";
     id: string;
@@ -886,6 +2731,8 @@ export type UpdateMessageMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -895,13 +2742,15 @@ export type UpdateMessageMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type DeleteMessageMutation = {
@@ -929,9 +2778,9 @@ export type DeleteMessageMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
-  createdAt: number;
-  updatedAt: number;
   room: {
     __typename: "Room";
     id: string;
@@ -944,6 +2793,8 @@ export type DeleteMessageMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -953,13 +2804,15 @@ export type DeleteMessageMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type CreateRoomUserMutation = {
@@ -977,6 +2830,8 @@ export type CreateRoomUserMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -986,12 +2841,12 @@ export type CreateRoomUserMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   user: {
     __typename: "User";
@@ -1011,6 +2866,8 @@ export type CreateRoomUserMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   username: string;
   createdAt: number;
@@ -1032,6 +2889,8 @@ export type UpdateRoomUserMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1041,12 +2900,12 @@ export type UpdateRoomUserMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   user: {
     __typename: "User";
@@ -1066,6 +2925,8 @@ export type UpdateRoomUserMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   username: string;
   createdAt: number;
@@ -1087,6 +2948,8 @@ export type DeleteRoomUserMutation = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1096,12 +2959,12 @@ export type DeleteRoomUserMutation = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   user: {
     __typename: "User";
@@ -1121,10 +2984,685 @@ export type DeleteRoomUserMutation = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   username: string;
   createdAt: number;
   updatedAt: number;
+};
+
+export type GetCompanyQuery = {
+  __typename: "Company";
+  id: string;
+  name: string;
+  email: string | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  owner: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListCompanysQuery = {
+  __typename: "ModelCompanyConnection";
+  items: Array<{
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetArticleTagQuery = {
+  __typename: "ArticleTag";
+  id: string;
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  };
+  articleTagMaster: {
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListArticleTagsQuery = {
+  __typename: "ModelArticleTagConnection";
+  items: Array<{
+    __typename: "ArticleTag";
+    id: string;
+    article: {
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articleTagMaster: {
+      __typename: "ArticleTagMaster";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetArticleTagMasterQuery = {
+  __typename: "ArticleTagMaster";
+  id: string;
+  content: string;
+  articles: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListArticleTagMastersQuery = {
+  __typename: "ModelArticleTagMasterConnection";
+  items: Array<{
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetArticleQuery = {
+  __typename: "Article";
+  id: string;
+  title: string;
+  tags: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  thumbnail: string | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  content: string;
+  isOpen: ArticleStatus;
+  comments: {
+    __typename: "ModelCommentConnection";
+    items: Array<{
+      __typename: "Comment";
+      id: string;
+      content: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListArticlesQuery = {
+  __typename: "ModelArticleConnection";
+  items: Array<{
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetCommentQuery = {
+  __typename: "Comment";
+  id: string;
+  content: string | null;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListCommentsQuery = {
+  __typename: "ModelCommentConnection";
+  items: Array<{
+    __typename: "Comment";
+    id: string;
+    content: string | null;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    article: {
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetCharacterQuery = {
+  __typename: "Character";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListCharactersQuery = {
+  __typename: "ModelCharacterConnection";
+  items: Array<{
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetSkillQuery = {
+  __typename: "Skill";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListSkillsQuery = {
+  __typename: "ModelSkillConnection";
+  items: Array<{
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetApplicantCharacterQuery = {
+  __typename: "ApplicantCharacter";
+  id: string;
+  character: {
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListApplicantCharactersQuery = {
+  __typename: "ModelApplicantCharacterConnection";
+  items: Array<{
+    __typename: "ApplicantCharacter";
+    id: string;
+    character: {
+      __typename: "Character";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    applicant: {
+      __typename: "Applicant";
+      id: string;
+      name: string;
+      email: string;
+      firstName: string | null;
+      lastName: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetApplicantSkillQuery = {
+  __typename: "ApplicantSkill";
+  id: string;
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  skill: {
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListApplicantSkillsQuery = {
+  __typename: "ModelApplicantSkillConnection";
+  items: Array<{
+    __typename: "ApplicantSkill";
+    id: string;
+    applicant: {
+      __typename: "Applicant";
+      id: string;
+      name: string;
+      email: string;
+      firstName: string | null;
+      lastName: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    skill: {
+      __typename: "Skill";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetAreaQuery = {
+  __typename: "Area";
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListAreasQuery = {
+  __typename: "ModelAreaConnection";
+  items: Array<{
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
 };
 
 export type GetUserQuery = {
@@ -1169,6 +3707,8 @@ export type GetUserQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type ListUsersQuery = {
@@ -1191,6 +3731,112 @@ export type ListUsersQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetApplicantQuery = {
+  __typename: "Applicant";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  name: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  characters: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  skills: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListApplicantsQuery = {
+  __typename: "ModelApplicantConnection";
+  items: Array<{
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
   } | null> | null;
   nextToken: string | null;
 };
@@ -1210,6 +3856,8 @@ export type GetInvitedRoomQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1219,12 +3867,12 @@ export type GetInvitedRoomQuery = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUser: {
     __typename: "User";
@@ -1244,6 +3892,8 @@ export type GetInvitedRoomQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUsername: string;
   fromUser: {
@@ -1264,6 +3914,8 @@ export type GetInvitedRoomQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   status: invitedStatus;
   createdAt: number;
@@ -1290,6 +3942,8 @@ export type ListInvitedRoomsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     toUsername: string;
     fromUser: {
@@ -1298,6 +3952,8 @@ export type ListInvitedRoomsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     status: invitedStatus;
     createdAt: number;
@@ -1330,6 +3986,8 @@ export type GetRoomQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   inviting: {
     __typename: "ModelInvitedRoomConnection";
@@ -1354,8 +4012,6 @@ export type GetRoomQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: number;
-  updatedAt: number;
   messages: {
     __typename: "ModelMessageConnection";
     items: Array<{
@@ -1370,6 +4026,8 @@ export type GetRoomQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type ListRoomsQuery = {
@@ -1386,6 +4044,8 @@ export type ListRoomsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1395,12 +4055,12 @@ export type ListRoomsQuery = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   } | null> | null;
   nextToken: string | null;
 };
@@ -1430,9 +4090,9 @@ export type GetMessageQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
-  createdAt: number;
-  updatedAt: number;
   room: {
     __typename: "Room";
     id: string;
@@ -1445,6 +4105,8 @@ export type GetMessageQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1454,13 +4116,15 @@ export type GetMessageQuery = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type ListMessagesQuery = {
@@ -1478,9 +4142,9 @@ export type ListMessagesQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
-    createdAt: number;
-    updatedAt: number;
     room: {
       __typename: "Room";
       id: string;
@@ -1490,6 +4154,8 @@ export type ListMessagesQuery = {
       createdAt: number;
       updatedAt: number;
     };
+    createdAt: number;
+    updatedAt: number;
   } | null> | null;
   nextToken: string | null;
 };
@@ -1509,6 +4175,8 @@ export type GetRoomUserQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1518,12 +4186,12 @@ export type GetRoomUserQuery = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   user: {
     __typename: "User";
@@ -1543,6 +4211,8 @@ export type GetRoomUserQuery = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   username: string;
   createdAt: number;
@@ -1569,6 +4239,8 @@ export type ListRoomUsersQuery = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     username: string;
     createdAt: number;
@@ -1602,9 +4274,9 @@ export type OnCreateMessageSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
-  createdAt: number;
-  updatedAt: number;
   room: {
     __typename: "Room";
     id: string;
@@ -1617,6 +4289,8 @@ export type OnCreateMessageSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1626,13 +4300,15 @@ export type OnCreateMessageSubscription = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type OnCreateInvitedRoomSubscription = {
@@ -1650,6 +4326,8 @@ export type OnCreateInvitedRoomSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1659,12 +4337,12 @@ export type OnCreateInvitedRoomSubscription = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUser: {
     __typename: "User";
@@ -1684,6 +4362,8 @@ export type OnCreateInvitedRoomSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   toUsername: string;
   fromUser: {
@@ -1704,6 +4384,8 @@ export type OnCreateInvitedRoomSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   status: invitedStatus;
   createdAt: number;
@@ -1725,6 +4407,8 @@ export type OnCreateRoomUserSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      createdAt: number;
+      updatedAt: number;
     };
     inviting: {
       __typename: "ModelInvitedRoomConnection";
@@ -1734,12 +4418,12 @@ export type OnCreateRoomUserSubscription = {
       __typename: "ModelRoomUserConnection";
       nextToken: string | null;
     } | null;
-    createdAt: number;
-    updatedAt: number;
     messages: {
       __typename: "ModelMessageConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   user: {
     __typename: "User";
@@ -1759,8 +4443,1255 @@ export type OnCreateRoomUserSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   username: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateCompanySubscription = {
+  __typename: "Company";
+  id: string;
+  name: string;
+  email: string | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  owner: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateCompanySubscription = {
+  __typename: "Company";
+  id: string;
+  name: string;
+  email: string | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  owner: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteCompanySubscription = {
+  __typename: "Company";
+  id: string;
+  name: string;
+  email: string | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  owner: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateArticleTagSubscription = {
+  __typename: "ArticleTag";
+  id: string;
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  };
+  articleTagMaster: {
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateArticleTagSubscription = {
+  __typename: "ArticleTag";
+  id: string;
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  };
+  articleTagMaster: {
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteArticleTagSubscription = {
+  __typename: "ArticleTag";
+  id: string;
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  };
+  articleTagMaster: {
+    __typename: "ArticleTagMaster";
+    id: string;
+    content: string;
+    articles: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateArticleTagMasterSubscription = {
+  __typename: "ArticleTagMaster";
+  id: string;
+  content: string;
+  articles: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateArticleTagMasterSubscription = {
+  __typename: "ArticleTagMaster";
+  id: string;
+  content: string;
+  articles: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteArticleTagMasterSubscription = {
+  __typename: "ArticleTagMaster";
+  id: string;
+  content: string;
+  articles: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateArticleSubscription = {
+  __typename: "Article";
+  id: string;
+  title: string;
+  tags: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  thumbnail: string | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  content: string;
+  isOpen: ArticleStatus;
+  comments: {
+    __typename: "ModelCommentConnection";
+    items: Array<{
+      __typename: "Comment";
+      id: string;
+      content: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateArticleSubscription = {
+  __typename: "Article";
+  id: string;
+  title: string;
+  tags: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  thumbnail: string | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  content: string;
+  isOpen: ArticleStatus;
+  comments: {
+    __typename: "ModelCommentConnection";
+    items: Array<{
+      __typename: "Comment";
+      id: string;
+      content: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteArticleSubscription = {
+  __typename: "Article";
+  id: string;
+  title: string;
+  tags: {
+    __typename: "ModelArticleTagConnection";
+    items: Array<{
+      __typename: "ArticleTag";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  thumbnail: string | null;
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  content: string;
+  isOpen: ArticleStatus;
+  comments: {
+    __typename: "ModelCommentConnection";
+    items: Array<{
+      __typename: "Comment";
+      id: string;
+      content: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateCommentSubscription = {
+  __typename: "Comment";
+  id: string;
+  content: string | null;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateCommentSubscription = {
+  __typename: "Comment";
+  id: string;
+  content: string | null;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteCommentSubscription = {
+  __typename: "Comment";
+  id: string;
+  content: string | null;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  article: {
+    __typename: "Article";
+    id: string;
+    title: string;
+    tags: {
+      __typename: "ModelArticleTagConnection";
+      nextToken: string | null;
+    } | null;
+    thumbnail: string | null;
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    content: string;
+    isOpen: ArticleStatus;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateCharacterSubscription = {
+  __typename: "Character";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateCharacterSubscription = {
+  __typename: "Character";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteCharacterSubscription = {
+  __typename: "Character";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateSkillSubscription = {
+  __typename: "Skill";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateSkillSubscription = {
+  __typename: "Skill";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteSkillSubscription = {
+  __typename: "Skill";
+  id: string;
+  content: string;
+  applicants: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateApplicantCharacterSubscription = {
+  __typename: "ApplicantCharacter";
+  id: string;
+  character: {
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateApplicantCharacterSubscription = {
+  __typename: "ApplicantCharacter";
+  id: string;
+  character: {
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteApplicantCharacterSubscription = {
+  __typename: "ApplicantCharacter";
+  id: string;
+  character: {
+    __typename: "Character";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateApplicantSkillSubscription = {
+  __typename: "ApplicantSkill";
+  id: string;
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  skill: {
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateApplicantSkillSubscription = {
+  __typename: "ApplicantSkill";
+  id: string;
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  skill: {
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteApplicantSkillSubscription = {
+  __typename: "ApplicantSkill";
+  id: string;
+  applicant: {
+    __typename: "Applicant";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    name: string;
+    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    characters: {
+      __typename: "ModelApplicantCharacterConnection";
+      nextToken: string | null;
+    } | null;
+    skills: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  skill: {
+    __typename: "Skill";
+    id: string;
+    content: string;
+    applicants: {
+      __typename: "ModelApplicantSkillConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateAreaSubscription = {
+  __typename: "Area";
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateAreaSubscription = {
+  __typename: "Area";
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteAreaSubscription = {
+  __typename: "Area";
+  id: string;
+  content: string;
   createdAt: number;
   updatedAt: number;
 };
@@ -1807,6 +5738,8 @@ export type OnCreateUserSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type OnUpdateUserSubscription = {
@@ -1851,6 +5784,8 @@ export type OnUpdateUserSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type OnDeleteUserSubscription = {
@@ -1895,6 +5830,194 @@ export type OnDeleteUserSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateApplicantSubscription = {
+  __typename: "Applicant";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  name: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  characters: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  skills: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateApplicantSubscription = {
+  __typename: "Applicant";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  name: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  characters: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  skills: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteApplicantSubscription = {
+  __typename: "Applicant";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    username: string;
+    displayName: string;
+    logo: string;
+    invitedRooms: {
+      __typename: "ModelInvitedRoomConnection";
+      nextToken: string | null;
+    } | null;
+    joinedRooms: {
+      __typename: "ModelRoomUserConnection";
+      nextToken: string | null;
+    } | null;
+    ownedRooms: {
+      __typename: "ModelRoomConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  name: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  area: {
+    __typename: "Area";
+    id: string;
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+  } | null;
+  logo: string | null;
+  backgroundImg: string | null;
+  about: string | null;
+  characters: {
+    __typename: "ModelApplicantCharacterConnection";
+    items: Array<{
+      __typename: "ApplicantCharacter";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  skills: {
+    __typename: "ModelApplicantSkillConnection";
+    items: Array<{
+      __typename: "ApplicantSkill";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type OnCreateRoomSubscription = {
@@ -1921,6 +6044,8 @@ export type OnCreateRoomSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   inviting: {
     __typename: "ModelInvitedRoomConnection";
@@ -1945,8 +6070,6 @@ export type OnCreateRoomSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: number;
-  updatedAt: number;
   messages: {
     __typename: "ModelMessageConnection";
     items: Array<{
@@ -1961,6 +6084,8 @@ export type OnCreateRoomSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type OnUpdateRoomSubscription = {
@@ -1987,6 +6112,8 @@ export type OnUpdateRoomSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   inviting: {
     __typename: "ModelInvitedRoomConnection";
@@ -2011,8 +6138,6 @@ export type OnUpdateRoomSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: number;
-  updatedAt: number;
   messages: {
     __typename: "ModelMessageConnection";
     items: Array<{
@@ -2027,6 +6152,8 @@ export type OnUpdateRoomSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type OnDeleteRoomSubscription = {
@@ -2053,6 +6180,8 @@ export type OnDeleteRoomSubscription = {
       __typename: "ModelRoomConnection";
       nextToken: string | null;
     } | null;
+    createdAt: number;
+    updatedAt: number;
   };
   inviting: {
     __typename: "ModelInvitedRoomConnection";
@@ -2077,8 +6206,6 @@ export type OnDeleteRoomSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: number;
-  updatedAt: number;
   messages: {
     __typename: "ModelMessageConnection";
     items: Array<{
@@ -2093,12 +6220,1613 @@ export type OnDeleteRoomSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: number;
+  updatedAt: number;
 };
 
 @Injectable({
   providedIn: "root"
 })
 export class APIService {
+  async CreateCompany(
+    input: CreateCompanyInput
+  ): Promise<CreateCompanyMutation> {
+    const statement = `mutation CreateCompany($input: CreateCompanyInput!) {
+        createCompany(input: $input) {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCompanyMutation>response.data.createCompany;
+  }
+  async UpdateCompany(
+    input: UpdateCompanyInput
+  ): Promise<UpdateCompanyMutation> {
+    const statement = `mutation UpdateCompany($input: UpdateCompanyInput!) {
+        updateCompany(input: $input) {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCompanyMutation>response.data.updateCompany;
+  }
+  async DeleteCompany(
+    input: DeleteCompanyInput
+  ): Promise<DeleteCompanyMutation> {
+    const statement = `mutation DeleteCompany($input: DeleteCompanyInput!) {
+        deleteCompany(input: $input) {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCompanyMutation>response.data.deleteCompany;
+  }
+  async CreateArticleTag(
+    input: CreateArticleTagInput
+  ): Promise<CreateArticleTagMutation> {
+    const statement = `mutation CreateArticleTag($input: CreateArticleTagInput!) {
+        createArticleTag(input: $input) {
+          __typename
+          id
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          articleTagMaster {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateArticleTagMutation>response.data.createArticleTag;
+  }
+  async UpdateArticleTag(
+    input: UpdateArticleTagInput
+  ): Promise<UpdateArticleTagMutation> {
+    const statement = `mutation UpdateArticleTag($input: UpdateArticleTagInput!) {
+        updateArticleTag(input: $input) {
+          __typename
+          id
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          articleTagMaster {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateArticleTagMutation>response.data.updateArticleTag;
+  }
+  async DeleteArticleTag(
+    input: DeleteArticleTagInput
+  ): Promise<DeleteArticleTagMutation> {
+    const statement = `mutation DeleteArticleTag($input: DeleteArticleTagInput!) {
+        deleteArticleTag(input: $input) {
+          __typename
+          id
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          articleTagMaster {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteArticleTagMutation>response.data.deleteArticleTag;
+  }
+  async CreateArticleTagMaster(
+    input: CreateArticleTagMasterInput
+  ): Promise<CreateArticleTagMasterMutation> {
+    const statement = `mutation CreateArticleTagMaster($input: CreateArticleTagMasterInput!) {
+        createArticleTagMaster(input: $input) {
+          __typename
+          id
+          content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateArticleTagMasterMutation>response.data.createArticleTagMaster;
+  }
+  async UpdateArticleTagMaster(
+    input: UpdateArticleTagMasterInput
+  ): Promise<UpdateArticleTagMasterMutation> {
+    const statement = `mutation UpdateArticleTagMaster($input: UpdateArticleTagMasterInput!) {
+        updateArticleTagMaster(input: $input) {
+          __typename
+          id
+          content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateArticleTagMasterMutation>response.data.updateArticleTagMaster;
+  }
+  async DeleteArticleTagMaster(
+    input: DeleteArticleTagMasterInput
+  ): Promise<DeleteArticleTagMasterMutation> {
+    const statement = `mutation DeleteArticleTagMaster($input: DeleteArticleTagMasterInput!) {
+        deleteArticleTagMaster(input: $input) {
+          __typename
+          id
+          content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteArticleTagMasterMutation>response.data.deleteArticleTagMaster;
+  }
+  async CreateArticle(
+    input: CreateArticleInput
+  ): Promise<CreateArticleMutation> {
+    const statement = `mutation CreateArticle($input: CreateArticleInput!) {
+        createArticle(input: $input) {
+          __typename
+          id
+          title
+          tags {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          thumbnail
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          content
+          isOpen
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateArticleMutation>response.data.createArticle;
+  }
+  async UpdateArticle(
+    input: UpdateArticleInput
+  ): Promise<UpdateArticleMutation> {
+    const statement = `mutation UpdateArticle($input: UpdateArticleInput!) {
+        updateArticle(input: $input) {
+          __typename
+          id
+          title
+          tags {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          thumbnail
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          content
+          isOpen
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateArticleMutation>response.data.updateArticle;
+  }
+  async DeleteArticle(
+    input: DeleteArticleInput
+  ): Promise<DeleteArticleMutation> {
+    const statement = `mutation DeleteArticle($input: DeleteArticleInput!) {
+        deleteArticle(input: $input) {
+          __typename
+          id
+          title
+          tags {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          thumbnail
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          content
+          isOpen
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteArticleMutation>response.data.deleteArticle;
+  }
+  async CreateComment(
+    input: CreateCommentInput
+  ): Promise<CreateCommentMutation> {
+    const statement = `mutation CreateComment($input: CreateCommentInput!) {
+        createComment(input: $input) {
+          __typename
+          id
+          content
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCommentMutation>response.data.createComment;
+  }
+  async UpdateComment(
+    input: UpdateCommentInput
+  ): Promise<UpdateCommentMutation> {
+    const statement = `mutation UpdateComment($input: UpdateCommentInput!) {
+        updateComment(input: $input) {
+          __typename
+          id
+          content
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCommentMutation>response.data.updateComment;
+  }
+  async DeleteComment(
+    input: DeleteCommentInput
+  ): Promise<DeleteCommentMutation> {
+    const statement = `mutation DeleteComment($input: DeleteCommentInput!) {
+        deleteComment(input: $input) {
+          __typename
+          id
+          content
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCommentMutation>response.data.deleteComment;
+  }
+  async CreateCharacter(
+    input: CreateCharacterInput
+  ): Promise<CreateCharacterMutation> {
+    const statement = `mutation CreateCharacter($input: CreateCharacterInput!) {
+        createCharacter(input: $input) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCharacterMutation>response.data.createCharacter;
+  }
+  async UpdateCharacter(
+    input: UpdateCharacterInput
+  ): Promise<UpdateCharacterMutation> {
+    const statement = `mutation UpdateCharacter($input: UpdateCharacterInput!) {
+        updateCharacter(input: $input) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCharacterMutation>response.data.updateCharacter;
+  }
+  async DeleteCharacter(
+    input: DeleteCharacterInput
+  ): Promise<DeleteCharacterMutation> {
+    const statement = `mutation DeleteCharacter($input: DeleteCharacterInput!) {
+        deleteCharacter(input: $input) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCharacterMutation>response.data.deleteCharacter;
+  }
+  async CreateSkill(input: CreateSkillInput): Promise<CreateSkillMutation> {
+    const statement = `mutation CreateSkill($input: CreateSkillInput!) {
+        createSkill(input: $input) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateSkillMutation>response.data.createSkill;
+  }
+  async UpdateSkill(input: UpdateSkillInput): Promise<UpdateSkillMutation> {
+    const statement = `mutation UpdateSkill($input: UpdateSkillInput!) {
+        updateSkill(input: $input) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateSkillMutation>response.data.updateSkill;
+  }
+  async DeleteSkill(input: DeleteSkillInput): Promise<DeleteSkillMutation> {
+    const statement = `mutation DeleteSkill($input: DeleteSkillInput!) {
+        deleteSkill(input: $input) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteSkillMutation>response.data.deleteSkill;
+  }
+  async CreateApplicantCharacter(
+    input: CreateApplicantCharacterInput
+  ): Promise<CreateApplicantCharacterMutation> {
+    const statement = `mutation CreateApplicantCharacter($input: CreateApplicantCharacterInput!) {
+        createApplicantCharacter(input: $input) {
+          __typename
+          id
+          character {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateApplicantCharacterMutation>(
+      response.data.createApplicantCharacter
+    );
+  }
+  async UpdateApplicantCharacter(
+    input: UpdateApplicantCharacterInput
+  ): Promise<UpdateApplicantCharacterMutation> {
+    const statement = `mutation UpdateApplicantCharacter($input: UpdateApplicantCharacterInput!) {
+        updateApplicantCharacter(input: $input) {
+          __typename
+          id
+          character {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateApplicantCharacterMutation>(
+      response.data.updateApplicantCharacter
+    );
+  }
+  async DeleteApplicantCharacter(
+    input: DeleteApplicantCharacterInput
+  ): Promise<DeleteApplicantCharacterMutation> {
+    const statement = `mutation DeleteApplicantCharacter($input: DeleteApplicantCharacterInput!) {
+        deleteApplicantCharacter(input: $input) {
+          __typename
+          id
+          character {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteApplicantCharacterMutation>(
+      response.data.deleteApplicantCharacter
+    );
+  }
+  async CreateApplicantSkill(
+    input: CreateApplicantSkillInput
+  ): Promise<CreateApplicantSkillMutation> {
+    const statement = `mutation CreateApplicantSkill($input: CreateApplicantSkillInput!) {
+        createApplicantSkill(input: $input) {
+          __typename
+          id
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          skill {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateApplicantSkillMutation>response.data.createApplicantSkill;
+  }
+  async UpdateApplicantSkill(
+    input: UpdateApplicantSkillInput
+  ): Promise<UpdateApplicantSkillMutation> {
+    const statement = `mutation UpdateApplicantSkill($input: UpdateApplicantSkillInput!) {
+        updateApplicantSkill(input: $input) {
+          __typename
+          id
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          skill {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateApplicantSkillMutation>response.data.updateApplicantSkill;
+  }
+  async DeleteApplicantSkill(
+    input: DeleteApplicantSkillInput
+  ): Promise<DeleteApplicantSkillMutation> {
+    const statement = `mutation DeleteApplicantSkill($input: DeleteApplicantSkillInput!) {
+        deleteApplicantSkill(input: $input) {
+          __typename
+          id
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          skill {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteApplicantSkillMutation>response.data.deleteApplicantSkill;
+  }
+  async CreateArea(input: CreateAreaInput): Promise<CreateAreaMutation> {
+    const statement = `mutation CreateArea($input: CreateAreaInput!) {
+        createArea(input: $input) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateAreaMutation>response.data.createArea;
+  }
+  async UpdateArea(input: UpdateAreaInput): Promise<UpdateAreaMutation> {
+    const statement = `mutation UpdateArea($input: UpdateAreaInput!) {
+        updateArea(input: $input) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateAreaMutation>response.data.updateArea;
+  }
+  async DeleteArea(input: DeleteAreaInput): Promise<DeleteAreaMutation> {
+    const statement = `mutation DeleteArea($input: DeleteAreaInput!) {
+        deleteArea(input: $input) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteAreaMutation>response.data.deleteArea;
+  }
   async CreateUser(input: CreateUserInput): Promise<CreateUserMutation> {
     const statement = `mutation CreateUser($input: CreateUserInput!) {
         createUser(input: $input) {
@@ -2143,6 +7871,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2197,6 +7927,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2251,6 +7983,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2260,6 +7994,228 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteUserMutation>response.data.deleteUser;
+  }
+  async CreateApplicant(
+    input: CreateApplicantInput
+  ): Promise<CreateApplicantMutation> {
+    const statement = `mutation CreateApplicant($input: CreateApplicantInput!) {
+        createApplicant(input: $input) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          name
+          email
+          firstName
+          lastName
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          logo
+          backgroundImg
+          about
+          characters {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          skills {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateApplicantMutation>response.data.createApplicant;
+  }
+  async UpdateApplicant(
+    input: UpdateApplicantInput
+  ): Promise<UpdateApplicantMutation> {
+    const statement = `mutation UpdateApplicant($input: UpdateApplicantInput!) {
+        updateApplicant(input: $input) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          name
+          email
+          firstName
+          lastName
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          logo
+          backgroundImg
+          about
+          characters {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          skills {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateApplicantMutation>response.data.updateApplicant;
+  }
+  async DeleteApplicant(
+    input: DeleteApplicantInput
+  ): Promise<DeleteApplicantMutation> {
+    const statement = `mutation DeleteApplicant($input: DeleteApplicantInput!) {
+        deleteApplicant(input: $input) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          name
+          email
+          firstName
+          lastName
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          logo
+          backgroundImg
+          about
+          characters {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          skills {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteApplicantMutation>response.data.deleteApplicant;
   }
   async CreateInvitedRoom(
     input: CreateInvitedRoomInput
@@ -2280,6 +8236,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -2289,12 +8247,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUser {
             __typename
@@ -2314,6 +8272,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUsername
           fromUser {
@@ -2334,6 +8294,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           status
           createdAt
@@ -2367,6 +8329,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -2376,12 +8340,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUser {
             __typename
@@ -2401,6 +8365,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUsername
           fromUser {
@@ -2421,6 +8387,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           status
           createdAt
@@ -2454,6 +8422,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -2463,12 +8433,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUser {
             __typename
@@ -2488,6 +8458,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUsername
           fromUser {
@@ -2508,6 +8480,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           status
           createdAt
@@ -2548,6 +8522,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           inviting {
             __typename
@@ -2572,8 +8548,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
           messages {
             __typename
             items {
@@ -2588,6 +8562,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2624,6 +8600,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           inviting {
             __typename
@@ -2648,8 +8626,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
           messages {
             __typename
             items {
@@ -2664,6 +8640,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2700,6 +8678,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           inviting {
             __typename
@@ -2724,8 +8704,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
           messages {
             __typename
             items {
@@ -2740,6 +8718,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2779,9 +8759,9 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
-          createdAt
-          updatedAt
           room {
             __typename
             id
@@ -2794,6 +8774,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -2803,13 +8785,15 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2849,9 +8833,9 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
-          createdAt
-          updatedAt
           room {
             __typename
             id
@@ -2864,6 +8848,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -2873,13 +8859,15 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2919,9 +8907,9 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
-          createdAt
-          updatedAt
           room {
             __typename
             id
@@ -2934,6 +8922,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -2943,13 +8933,15 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2979,6 +8971,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -2988,12 +8982,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           user {
             __typename
@@ -3013,6 +9007,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           username
           createdAt
@@ -3046,6 +9042,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3055,12 +9053,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           user {
             __typename
@@ -3080,6 +9078,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           username
           createdAt
@@ -3113,6 +9113,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3122,12 +9124,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           user {
             __typename
@@ -3147,6 +9149,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           username
           createdAt
@@ -3160,6 +9164,1069 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteRoomUserMutation>response.data.deleteRoomUser;
+  }
+  async GetCompany(id: string): Promise<GetCompanyQuery> {
+    const statement = `query GetCompany($id: ID!) {
+        getCompany(id: $id) {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCompanyQuery>response.data.getCompany;
+  }
+  async ListCompanys(
+    id?: string,
+    filter?: ModelCompanyFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListCompanysQuery> {
+    const statement = `query ListCompanys($id: ID, $filter: ModelCompanyFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listCompanys(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCompanysQuery>response.data.listCompanys;
+  }
+  async GetArticleTag(id: string): Promise<GetArticleTagQuery> {
+    const statement = `query GetArticleTag($id: ID!) {
+        getArticleTag(id: $id) {
+          __typename
+          id
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          articleTagMaster {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetArticleTagQuery>response.data.getArticleTag;
+  }
+  async ListArticleTags(
+    id?: string,
+    filter?: ModelArticleTagFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListArticleTagsQuery> {
+    const statement = `query ListArticleTags($id: ID, $filter: ModelArticleTagFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listArticleTags(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            article {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            articleTagMaster {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListArticleTagsQuery>response.data.listArticleTags;
+  }
+  async GetArticleTagMaster(id: string): Promise<GetArticleTagMasterQuery> {
+    const statement = `query GetArticleTagMaster($id: ID!) {
+        getArticleTagMaster(id: $id) {
+          __typename
+          id
+          content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetArticleTagMasterQuery>response.data.getArticleTagMaster;
+  }
+  async ListArticleTagMasters(
+    id?: string,
+    filter?: ModelArticleTagMasterFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListArticleTagMastersQuery> {
+    const statement = `query ListArticleTagMasters($id: ID, $filter: ModelArticleTagMasterFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listArticleTagMasters(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListArticleTagMastersQuery>response.data.listArticleTagMasters;
+  }
+  async GetArticle(id: string): Promise<GetArticleQuery> {
+    const statement = `query GetArticle($id: ID!) {
+        getArticle(id: $id) {
+          __typename
+          id
+          title
+          tags {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          thumbnail
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          content
+          isOpen
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetArticleQuery>response.data.getArticle;
+  }
+  async ListArticles(
+    id?: string,
+    filter?: ModelArticleFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListArticlesQuery> {
+    const statement = `query ListArticles($id: ID, $filter: ModelArticleFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listArticles(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListArticlesQuery>response.data.listArticles;
+  }
+  async GetComment(id: string): Promise<GetCommentQuery> {
+    const statement = `query GetComment($id: ID!) {
+        getComment(id: $id) {
+          __typename
+          id
+          content
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCommentQuery>response.data.getComment;
+  }
+  async ListComments(
+    id?: string,
+    filter?: ModelCommentFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListCommentsQuery> {
+    const statement = `query ListComments($id: ID, $filter: ModelCommentFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listComments(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            article {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCommentsQuery>response.data.listComments;
+  }
+  async GetCharacter(id: string): Promise<GetCharacterQuery> {
+    const statement = `query GetCharacter($id: ID!) {
+        getCharacter(id: $id) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCharacterQuery>response.data.getCharacter;
+  }
+  async ListCharacters(
+    id?: string,
+    filter?: ModelCharacterFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListCharactersQuery> {
+    const statement = `query ListCharacters($id: ID, $filter: ModelCharacterFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listCharacters(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCharactersQuery>response.data.listCharacters;
+  }
+  async GetSkill(id: string): Promise<GetSkillQuery> {
+    const statement = `query GetSkill($id: ID!) {
+        getSkill(id: $id) {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetSkillQuery>response.data.getSkill;
+  }
+  async ListSkills(
+    id?: string,
+    filter?: ModelSkillFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListSkillsQuery> {
+    const statement = `query ListSkills($id: ID, $filter: ModelSkillFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listSkills(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListSkillsQuery>response.data.listSkills;
+  }
+  async GetApplicantCharacter(id: string): Promise<GetApplicantCharacterQuery> {
+    const statement = `query GetApplicantCharacter($id: ID!) {
+        getApplicantCharacter(id: $id) {
+          __typename
+          id
+          character {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetApplicantCharacterQuery>response.data.getApplicantCharacter;
+  }
+  async ListApplicantCharacters(
+    id?: string,
+    filter?: ModelApplicantCharacterFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListApplicantCharactersQuery> {
+    const statement = `query ListApplicantCharacters($id: ID, $filter: ModelApplicantCharacterFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listApplicantCharacters(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            character {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            applicant {
+              __typename
+              id
+              name
+              email
+              firstName
+              lastName
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListApplicantCharactersQuery>response.data.listApplicantCharacters;
+  }
+  async GetApplicantSkill(id: string): Promise<GetApplicantSkillQuery> {
+    const statement = `query GetApplicantSkill($id: ID!) {
+        getApplicantSkill(id: $id) {
+          __typename
+          id
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          skill {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetApplicantSkillQuery>response.data.getApplicantSkill;
+  }
+  async ListApplicantSkills(
+    id?: string,
+    filter?: ModelApplicantSkillFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListApplicantSkillsQuery> {
+    const statement = `query ListApplicantSkills($id: ID, $filter: ModelApplicantSkillFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listApplicantSkills(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            applicant {
+              __typename
+              id
+              name
+              email
+              firstName
+              lastName
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            skill {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListApplicantSkillsQuery>response.data.listApplicantSkills;
+  }
+  async GetArea(id: string): Promise<GetAreaQuery> {
+    const statement = `query GetArea($id: ID!) {
+        getArea(id: $id) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetAreaQuery>response.data.getArea;
+  }
+  async ListAreas(
+    id?: string,
+    filter?: ModelAreaFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListAreasQuery> {
+    const statement = `query ListAreas($id: ID, $filter: ModelAreaFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listAreas(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListAreasQuery>response.data.listAreas;
   }
   async GetUser(id: string): Promise<GetUserQuery> {
     const statement = `query GetUser($id: ID!) {
@@ -3205,6 +10272,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3243,6 +10312,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           nextToken
         }
@@ -3268,6 +10339,141 @@ export class APIService {
     )) as any;
     return <ListUsersQuery>response.data.listUsers;
   }
+  async GetApplicant(id: string): Promise<GetApplicantQuery> {
+    const statement = `query GetApplicant($id: ID!) {
+        getApplicant(id: $id) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          name
+          email
+          firstName
+          lastName
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          logo
+          backgroundImg
+          about
+          characters {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          skills {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetApplicantQuery>response.data.getApplicant;
+  }
+  async ListApplicants(
+    filter?: ModelApplicantFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListApplicantsQuery> {
+    const statement = `query ListApplicants($filter: ModelApplicantFilterInput, $limit: Int, $nextToken: String) {
+        listApplicants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListApplicantsQuery>response.data.listApplicants;
+  }
   async GetInvitedRoom(id: string): Promise<GetInvitedRoomQuery> {
     const statement = `query GetInvitedRoom($id: ID!) {
         getInvitedRoom(id: $id) {
@@ -3285,6 +10491,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3294,12 +10502,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUser {
             __typename
@@ -3319,6 +10527,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUsername
           fromUser {
@@ -3339,6 +10549,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           status
           createdAt
@@ -3381,6 +10593,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             toUsername
             fromUser {
@@ -3389,6 +10603,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             status
             createdAt
@@ -3444,6 +10660,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           inviting {
             __typename
@@ -3468,8 +10686,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
           messages {
             __typename
             items {
@@ -3484,6 +10700,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3516,6 +10734,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3525,12 +10745,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           nextToken
         }
@@ -3583,9 +10803,9 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
-          createdAt
-          updatedAt
           room {
             __typename
             id
@@ -3598,6 +10818,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3607,13 +10829,15 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3645,9 +10869,9 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
-            createdAt
-            updatedAt
             room {
               __typename
               id
@@ -3657,6 +10881,8 @@ export class APIService {
               createdAt
               updatedAt
             }
+            createdAt
+            updatedAt
           }
           nextToken
         }
@@ -3693,6 +10919,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3702,12 +10930,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           user {
             __typename
@@ -3727,6 +10955,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           username
           createdAt
@@ -3769,6 +10999,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             username
             createdAt
@@ -3828,9 +11060,9 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
-          createdAt
-          updatedAt
           room {
             __typename
             id
@@ -3843,6 +11075,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3852,13 +11086,15 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -3868,7 +11104,7 @@ export class APIService {
     OnCreateInvitedRoomSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateInvitedRoom($toUsername: String) {
+      `subscription OnCreateInvitedRoom($toUsername: String!) {
         onCreateInvitedRoom(toUsername: $toUsername) {
           __typename
           id
@@ -3884,6 +11120,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3893,12 +11131,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUser {
             __typename
@@ -3918,6 +11156,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           toUsername
           fromUser {
@@ -3938,6 +11178,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           status
           createdAt
@@ -3951,7 +11193,7 @@ export class APIService {
     OnCreateRoomUserSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateRoomUser($username: String) {
+      `subscription OnCreateRoomUser($username: String!) {
         onCreateRoomUser(username: $username) {
           __typename
           id
@@ -3967,6 +11209,8 @@ export class APIService {
               username
               displayName
               logo
+              createdAt
+              updatedAt
             }
             inviting {
               __typename
@@ -3976,12 +11220,12 @@ export class APIService {
               __typename
               nextToken
             }
-            createdAt
-            updatedAt
             messages {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           user {
             __typename
@@ -4001,6 +11245,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           username
           createdAt
@@ -4009,6 +11255,1479 @@ export class APIService {
       }`
     )
   ) as Observable<OnCreateRoomUserSubscription>;
+
+  OnCreateCompanyListener: Observable<
+    OnCreateCompanySubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateCompany {
+        onCreateCompany {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateCompanySubscription>;
+
+  OnUpdateCompanyListener: Observable<
+    OnUpdateCompanySubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateCompany {
+        onUpdateCompany {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateCompanySubscription>;
+
+  OnDeleteCompanyListener: Observable<
+    OnDeleteCompanySubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteCompany {
+        onDeleteCompany {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteCompanySubscription>;
+
+  OnCreateArticleTagListener: Observable<
+    OnCreateArticleTagSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateArticleTag {
+        onCreateArticleTag {
+          __typename
+          id
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          articleTagMaster {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateArticleTagSubscription>;
+
+  OnUpdateArticleTagListener: Observable<
+    OnUpdateArticleTagSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateArticleTag {
+        onUpdateArticleTag {
+          __typename
+          id
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          articleTagMaster {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateArticleTagSubscription>;
+
+  OnDeleteArticleTagListener: Observable<
+    OnDeleteArticleTagSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteArticleTag {
+        onDeleteArticleTag {
+          __typename
+          id
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          articleTagMaster {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteArticleTagSubscription>;
+
+  OnCreateArticleTagMasterListener: Observable<
+    OnCreateArticleTagMasterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateArticleTagMaster {
+        onCreateArticleTagMaster {
+          __typename
+          id
+          content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateArticleTagMasterSubscription>;
+
+  OnUpdateArticleTagMasterListener: Observable<
+    OnUpdateArticleTagMasterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateArticleTagMaster {
+        onUpdateArticleTagMaster {
+          __typename
+          id
+          content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateArticleTagMasterSubscription>;
+
+  OnDeleteArticleTagMasterListener: Observable<
+    OnDeleteArticleTagMasterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteArticleTagMaster {
+        onDeleteArticleTagMaster {
+          __typename
+          id
+          content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteArticleTagMasterSubscription>;
+
+  OnCreateArticleListener: Observable<
+    OnCreateArticleSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateArticle {
+        onCreateArticle {
+          __typename
+          id
+          title
+          tags {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          thumbnail
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          content
+          isOpen
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateArticleSubscription>;
+
+  OnUpdateArticleListener: Observable<
+    OnUpdateArticleSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateArticle {
+        onUpdateArticle {
+          __typename
+          id
+          title
+          tags {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          thumbnail
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          content
+          isOpen
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateArticleSubscription>;
+
+  OnDeleteArticleListener: Observable<
+    OnDeleteArticleSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteArticle {
+        onDeleteArticle {
+          __typename
+          id
+          title
+          tags {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          thumbnail
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          content
+          isOpen
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteArticleSubscription>;
+
+  OnCreateCommentListener: Observable<
+    OnCreateCommentSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateComment {
+        onCreateComment {
+          __typename
+          id
+          content
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateCommentSubscription>;
+
+  OnUpdateCommentListener: Observable<
+    OnUpdateCommentSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateComment {
+        onUpdateComment {
+          __typename
+          id
+          content
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateCommentSubscription>;
+
+  OnDeleteCommentListener: Observable<
+    OnDeleteCommentSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteComment {
+        onDeleteComment {
+          __typename
+          id
+          content
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          article {
+            __typename
+            id
+            title
+            tags {
+              __typename
+              nextToken
+            }
+            thumbnail
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            content
+            isOpen
+            comments {
+              __typename
+              nextToken
+            }
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteCommentSubscription>;
+
+  OnCreateCharacterListener: Observable<
+    OnCreateCharacterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateCharacter {
+        onCreateCharacter {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateCharacterSubscription>;
+
+  OnUpdateCharacterListener: Observable<
+    OnUpdateCharacterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateCharacter {
+        onUpdateCharacter {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateCharacterSubscription>;
+
+  OnDeleteCharacterListener: Observable<
+    OnDeleteCharacterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteCharacter {
+        onDeleteCharacter {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteCharacterSubscription>;
+
+  OnCreateSkillListener: Observable<OnCreateSkillSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateSkill {
+        onCreateSkill {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateSkillSubscription>;
+
+  OnUpdateSkillListener: Observable<OnUpdateSkillSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateSkill {
+        onUpdateSkill {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateSkillSubscription>;
+
+  OnDeleteSkillListener: Observable<OnDeleteSkillSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteSkill {
+        onDeleteSkill {
+          __typename
+          id
+          content
+          applicants {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteSkillSubscription>;
+
+  OnCreateApplicantCharacterListener: Observable<
+    OnCreateApplicantCharacterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateApplicantCharacter {
+        onCreateApplicantCharacter {
+          __typename
+          id
+          character {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateApplicantCharacterSubscription>;
+
+  OnUpdateApplicantCharacterListener: Observable<
+    OnUpdateApplicantCharacterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateApplicantCharacter {
+        onUpdateApplicantCharacter {
+          __typename
+          id
+          character {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateApplicantCharacterSubscription>;
+
+  OnDeleteApplicantCharacterListener: Observable<
+    OnDeleteApplicantCharacterSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteApplicantCharacter {
+        onDeleteApplicantCharacter {
+          __typename
+          id
+          character {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteApplicantCharacterSubscription>;
+
+  OnCreateApplicantSkillListener: Observable<
+    OnCreateApplicantSkillSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateApplicantSkill {
+        onCreateApplicantSkill {
+          __typename
+          id
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          skill {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateApplicantSkillSubscription>;
+
+  OnUpdateApplicantSkillListener: Observable<
+    OnUpdateApplicantSkillSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateApplicantSkill {
+        onUpdateApplicantSkill {
+          __typename
+          id
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          skill {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateApplicantSkillSubscription>;
+
+  OnDeleteApplicantSkillListener: Observable<
+    OnDeleteApplicantSkillSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteApplicantSkill {
+        onDeleteApplicantSkill {
+          __typename
+          id
+          applicant {
+            __typename
+            id
+            user {
+              __typename
+              id
+              username
+              displayName
+              logo
+              createdAt
+              updatedAt
+            }
+            name
+            email
+            firstName
+            lastName
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            logo
+            backgroundImg
+            about
+            characters {
+              __typename
+              nextToken
+            }
+            skills {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          skill {
+            __typename
+            id
+            content
+            applicants {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteApplicantSkillSubscription>;
+
+  OnCreateAreaListener: Observable<OnCreateAreaSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateArea {
+        onCreateArea {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateAreaSubscription>;
+
+  OnUpdateAreaListener: Observable<OnUpdateAreaSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateArea {
+        onUpdateArea {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateAreaSubscription>;
+
+  OnDeleteAreaListener: Observable<OnDeleteAreaSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteArea {
+        onDeleteArea {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteAreaSubscription>;
 
   OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
     graphqlOperation(
@@ -4055,6 +12774,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -4105,6 +12826,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -4155,10 +12878,222 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
   ) as Observable<OnDeleteUserSubscription>;
+
+  OnCreateApplicantListener: Observable<
+    OnCreateApplicantSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateApplicant {
+        onCreateApplicant {
+          __typename
+          id
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          name
+          email
+          firstName
+          lastName
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          logo
+          backgroundImg
+          about
+          characters {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          skills {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateApplicantSubscription>;
+
+  OnUpdateApplicantListener: Observable<
+    OnUpdateApplicantSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateApplicant {
+        onUpdateApplicant {
+          __typename
+          id
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          name
+          email
+          firstName
+          lastName
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          logo
+          backgroundImg
+          about
+          characters {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          skills {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateApplicantSubscription>;
+
+  OnDeleteApplicantListener: Observable<
+    OnDeleteApplicantSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteApplicant {
+        onDeleteApplicant {
+          __typename
+          id
+          user {
+            __typename
+            id
+            username
+            displayName
+            logo
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          name
+          email
+          firstName
+          lastName
+          area {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          logo
+          backgroundImg
+          about
+          characters {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          skills {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteApplicantSubscription>;
 
   OnCreateRoomListener: Observable<OnCreateRoomSubscription> = API.graphql(
     graphqlOperation(
@@ -4187,6 +13122,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           inviting {
             __typename
@@ -4211,8 +13148,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
           messages {
             __typename
             items {
@@ -4227,6 +13162,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -4259,6 +13196,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           inviting {
             __typename
@@ -4283,8 +13222,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
           messages {
             __typename
             items {
@@ -4299,6 +13236,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -4331,6 +13270,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           inviting {
             __typename
@@ -4355,8 +13296,6 @@ export class APIService {
             }
             nextToken
           }
-          createdAt
-          updatedAt
           messages {
             __typename
             items {
@@ -4371,6 +13310,8 @@ export class APIService {
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )

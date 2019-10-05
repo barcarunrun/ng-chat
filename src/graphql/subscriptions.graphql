@@ -20,9 +20,9 @@ subscription OnCreateMessage($roomId: ID!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
-    createdAt
-    updatedAt
     room {
       id
       name
@@ -33,6 +33,8 @@ subscription OnCreateMessage($roomId: ID!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -40,15 +42,17 @@ subscription OnCreateMessage($roomId: ID!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
+    createdAt
+    updatedAt
   }
 }
-subscription OnCreateInvitedRoom($toUsername: String) {
+subscription OnCreateInvitedRoom($toUsername: String!) {
   onCreateInvitedRoom(toUsername: $toUsername) {
     id
     room {
@@ -61,6 +65,8 @@ subscription OnCreateInvitedRoom($toUsername: String) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -68,11 +74,11 @@ subscription OnCreateInvitedRoom($toUsername: String) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUser {
       id
@@ -88,6 +94,8 @@ subscription OnCreateInvitedRoom($toUsername: String) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUsername
     fromUser {
@@ -104,13 +112,15 @@ subscription OnCreateInvitedRoom($toUsername: String) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     status
     createdAt
     updatedAt
   }
 }
-subscription OnCreateRoomUser($username: String) {
+subscription OnCreateRoomUser($username: String!) {
   onCreateRoomUser(username: $username) {
     id
     room {
@@ -123,6 +133,8 @@ subscription OnCreateRoomUser($username: String) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -130,11 +142,11 @@ subscription OnCreateRoomUser($username: String) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     user {
       id
@@ -150,8 +162,1099 @@ subscription OnCreateRoomUser($username: String) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     username
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCompany {
+  onCreateCompany {
+    id
+    name
+    email
+    logo
+    backgroundImg
+    about
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    owner {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCompany {
+  onUpdateCompany {
+    id
+    name
+    email
+    logo
+    backgroundImg
+    about
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    owner {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCompany {
+  onDeleteCompany {
+    id
+    name
+    email
+    logo
+    backgroundImg
+    about
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    owner {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateArticleTag {
+  onCreateArticleTag {
+    id
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    articleTagMaster {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateArticleTag {
+  onUpdateArticleTag {
+    id
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    articleTagMaster {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteArticleTag {
+  onDeleteArticleTag {
+    id
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    articleTagMaster {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateArticleTagMaster {
+  onCreateArticleTagMaster {
+    id
+    content
+    articles {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateArticleTagMaster {
+  onUpdateArticleTagMaster {
+    id
+    content
+    articles {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteArticleTagMaster {
+  onDeleteArticleTagMaster {
+    id
+    content
+    articles {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateArticle {
+  onCreateArticle {
+    id
+    title
+    tags {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    thumbnail
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    isOpen
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateArticle {
+  onUpdateArticle {
+    id
+    title
+    tags {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    thumbnail
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    isOpen
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteArticle {
+  onDeleteArticle {
+    id
+    title
+    tags {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    thumbnail
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    isOpen
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateComment {
+  onCreateComment {
+    id
+    content
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateComment {
+  onUpdateComment {
+    id
+    content
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteComment {
+  onDeleteComment {
+    id
+    content
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCharacter {
+  onCreateCharacter {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCharacter {
+  onUpdateCharacter {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCharacter {
+  onDeleteCharacter {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateSkill {
+  onCreateSkill {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateSkill {
+  onUpdateSkill {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteSkill {
+  onDeleteSkill {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateApplicantCharacter {
+  onCreateApplicantCharacter {
+    id
+    character {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateApplicantCharacter {
+  onUpdateApplicantCharacter {
+    id
+    character {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteApplicantCharacter {
+  onDeleteApplicantCharacter {
+    id
+    character {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateApplicantSkill {
+  onCreateApplicantSkill {
+    id
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    skill {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateApplicantSkill {
+  onUpdateApplicantSkill {
+    id
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    skill {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteApplicantSkill {
+  onDeleteApplicantSkill {
+    id
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    skill {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateArea {
+  onCreateArea {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateArea {
+  onUpdateArea {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteArea {
+  onDeleteArea {
+    id
+    content
     createdAt
     updatedAt
   }
@@ -192,6 +1295,8 @@ subscription OnCreateUser {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateUser {
@@ -230,6 +1335,8 @@ subscription OnUpdateUser {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteUser {
@@ -268,6 +1375,167 @@ subscription OnDeleteUser {
       }
       nextToken
     }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateApplicant {
+  onCreateApplicant {
+    id
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    name
+    email
+    firstName
+    lastName
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    logo
+    backgroundImg
+    about
+    characters {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    skills {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateApplicant {
+  onUpdateApplicant {
+    id
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    name
+    email
+    firstName
+    lastName
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    logo
+    backgroundImg
+    about
+    characters {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    skills {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteApplicant {
+  onDeleteApplicant {
+    id
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    name
+    email
+    firstName
+    lastName
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    logo
+    backgroundImg
+    about
+    characters {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    skills {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
   }
 }
 subscription OnCreateRoom {
@@ -290,6 +1558,8 @@ subscription OnCreateRoom {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     inviting {
       items {
@@ -310,8 +1580,6 @@ subscription OnCreateRoom {
       }
       nextToken
     }
-    createdAt
-    updatedAt
     messages {
       items {
         id
@@ -324,6 +1592,8 @@ subscription OnCreateRoom {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateRoom {
@@ -346,6 +1616,8 @@ subscription OnUpdateRoom {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     inviting {
       items {
@@ -366,8 +1638,6 @@ subscription OnUpdateRoom {
       }
       nextToken
     }
-    createdAt
-    updatedAt
     messages {
       items {
         id
@@ -380,6 +1650,8 @@ subscription OnUpdateRoom {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteRoom {
@@ -402,6 +1674,8 @@ subscription OnDeleteRoom {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     inviting {
       items {
@@ -422,8 +1696,6 @@ subscription OnDeleteRoom {
       }
       nextToken
     }
-    createdAt
-    updatedAt
     messages {
       items {
         id
@@ -436,5 +1708,7 @@ subscription OnDeleteRoom {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }

@@ -1,4 +1,717 @@
 # this is an auto generated file. This will be overwritten
+query GetCompany($id: ID!) {
+  getCompany(id: $id) {
+    id
+    name
+    email
+    logo
+    backgroundImg
+    about
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    owner {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCompanys(
+  $id: ID
+  $filter: ModelCompanyFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listCompanys(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetArticleTag($id: ID!) {
+  getArticleTag(id: $id) {
+    id
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    articleTagMaster {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListArticleTags(
+  $id: ID
+  $filter: ModelArticleTagFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listArticleTags(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      article {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      articleTagMaster {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetArticleTagMaster($id: ID!) {
+  getArticleTagMaster(id: $id) {
+    id
+    content
+    articles {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListArticleTagMasters(
+  $id: ID
+  $filter: ModelArticleTagMasterFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listArticleTagMasters(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      content
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetArticle($id: ID!) {
+  getArticle(id: $id) {
+    id
+    title
+    tags {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    thumbnail
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    isOpen
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListArticles(
+  $id: ID
+  $filter: ModelArticleFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listArticles(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetComment($id: ID!) {
+  getComment(id: $id) {
+    id
+    content
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    article {
+      id
+      title
+      tags {
+        nextToken
+      }
+      thumbnail
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      content
+      isOpen
+      comments {
+        nextToken
+      }
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListComments(
+  $id: ID
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listComments(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      content
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      article {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCharacter($id: ID!) {
+  getCharacter(id: $id) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCharacters(
+  $id: ID
+  $filter: ModelCharacterFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listCharacters(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetSkill($id: ID!) {
+  getSkill(id: $id) {
+    id
+    content
+    applicants {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListSkills(
+  $id: ID
+  $filter: ModelSkillFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listSkills(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetApplicantCharacter($id: ID!) {
+  getApplicantCharacter(id: $id) {
+    id
+    character {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListApplicantCharacters(
+  $id: ID
+  $filter: ModelApplicantCharacterFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listApplicantCharacters(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      character {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      applicant {
+        id
+        name
+        email
+        firstName
+        lastName
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetApplicantSkill($id: ID!) {
+  getApplicantSkill(id: $id) {
+    id
+    applicant {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    skill {
+      id
+      content
+      applicants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListApplicantSkills(
+  $id: ID
+  $filter: ModelApplicantSkillFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listApplicantSkills(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      applicant {
+        id
+        name
+        email
+        firstName
+        lastName
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      skill {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetArea($id: ID!) {
+  getArea(id: $id) {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+query ListAreas(
+  $id: ID
+  $filter: ModelAreaFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listAreas(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetUser($id: ID!) {
   getUser(id: $id) {
     id
@@ -35,6 +748,8 @@ query GetUser($id: ID!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 query ListUsers(
@@ -65,6 +780,102 @@ query ListUsers(
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetApplicant($id: ID!) {
+  getApplicant(id: $id) {
+    id
+    user {
+      id
+      username
+      displayName
+      logo
+      invitedRooms {
+        nextToken
+      }
+      joinedRooms {
+        nextToken
+      }
+      ownedRooms {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    name
+    email
+    firstName
+    lastName
+    area {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    logo
+    backgroundImg
+    about
+    characters {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    skills {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListApplicants(
+  $filter: ModelApplicantFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listApplicants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      user {
+        id
+        username
+        displayName
+        logo
+        createdAt
+        updatedAt
+      }
+      name
+      email
+      firstName
+      lastName
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      logo
+      backgroundImg
+      about
+      characters {
+        nextToken
+      }
+      skills {
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
     nextToken
   }
@@ -82,6 +893,8 @@ query GetInvitedRoom($id: ID!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -89,11 +902,11 @@ query GetInvitedRoom($id: ID!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUser {
       id
@@ -109,6 +922,8 @@ query GetInvitedRoom($id: ID!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     toUsername
     fromUser {
@@ -125,6 +940,8 @@ query GetInvitedRoom($id: ID!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     status
     createdAt
@@ -160,6 +977,8 @@ query ListInvitedRooms(
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       toUsername
       fromUser {
@@ -167,6 +986,8 @@ query ListInvitedRooms(
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       status
       createdAt
@@ -195,6 +1016,8 @@ query GetRoom($id: ID!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     inviting {
       items {
@@ -215,8 +1038,6 @@ query GetRoom($id: ID!) {
       }
       nextToken
     }
-    createdAt
-    updatedAt
     messages {
       items {
         id
@@ -229,6 +1050,8 @@ query GetRoom($id: ID!) {
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 query ListRooms(
@@ -255,6 +1078,8 @@ query ListRooms(
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -262,11 +1087,11 @@ query ListRooms(
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     nextToken
   }
@@ -292,9 +1117,9 @@ query GetMessage($id: ID!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
-    createdAt
-    updatedAt
     room {
       id
       name
@@ -305,6 +1130,8 @@ query GetMessage($id: ID!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -312,12 +1139,14 @@ query GetMessage($id: ID!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
+    createdAt
+    updatedAt
   }
 }
 query ListMessages(
@@ -337,9 +1166,9 @@ query ListMessages(
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
       room {
         id
         name
@@ -348,6 +1177,8 @@ query ListMessages(
         createdAt
         updatedAt
       }
+      createdAt
+      updatedAt
     }
     nextToken
   }
@@ -365,6 +1196,8 @@ query GetRoomUser($id: ID!) {
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       inviting {
         nextToken
@@ -372,11 +1205,11 @@ query GetRoomUser($id: ID!) {
       users {
         nextToken
       }
-      createdAt
-      updatedAt
       messages {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     user {
       id
@@ -392,6 +1225,8 @@ query GetRoomUser($id: ID!) {
       ownedRooms {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     username
     createdAt
@@ -427,6 +1262,8 @@ query ListRoomUsers(
         username
         displayName
         logo
+        createdAt
+        updatedAt
       }
       username
       createdAt
