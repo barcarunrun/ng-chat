@@ -1,18 +1,18 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
 // 追加
-import {Router} from "@angular/router";
-import {Observable} from "rxjs/Observable";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {fromPromise} from "rxjs/observable/fromPromise";
-import {map, tap, catchError} from "rxjs/operators";
-import {of} from "rxjs/observable/of";
-import Amplify, {Auth, Hub} from "aws-amplify";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs/Observable";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { fromPromise } from "rxjs/observable/fromPromise";
+import { map, tap, catchError } from "rxjs/operators";
+import { of } from "rxjs/observable/of";
+import Amplify, { Auth, Hub } from "aws-amplify";
 import awsconfig from "../../aws-exports";
-import {MyAPIService} from "../API.my";
-import {input} from "@aws-amplify/ui";
+import { MyAPIService } from "../API.my";
+import { input } from "@aws-amplify/ui";
 
-import {RoomService} from "../store/room/room.service";
-import {ulid} from "ulid";
+import { RoomService } from "../store/room/room.service";
+import { ulid } from "ulid";
 
 @Injectable()
 export class AuthService {
@@ -29,6 +29,7 @@ export class AuthService {
     // in your redirected sign in page
     // when the page is loaded, run the following function
     console.log("Hub.listen");
+
     Hub.listen("auth", data => {
       switch (data.payload.event) {
         case "signIn":
@@ -42,7 +43,9 @@ export class AuthService {
                 id: data.payload.data.username,
                 username: data.payload.data.username,
                 displayName: data.payload.data.username,
-                logo: "logo_url"
+                logo: "logo_url",
+                createdAt: 1,
+                updatedAt: 2
               });
               console.log("add new user to table");
             } else {
@@ -50,7 +53,7 @@ export class AuthService {
             }
             // 参加中のチャットルームを取得
             this.api
-              .ListRoomUsers(null, {username: {eq: loginedUser.username}})
+              .ListRoomUsers(null, { username: { eq: loginedUser.username } })
               .then(roomsGql => {
                 console.log("参加中のチャットルーム:", roomsGql.items);
                 roomsGql.items.forEach(item =>

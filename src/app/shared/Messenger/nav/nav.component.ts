@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {AuthService} from "../auth/auth.service";
-import {tap} from "rxjs/operators";
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../../../auth/auth.service";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-nav",

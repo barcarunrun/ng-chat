@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {APIService} from "./API.service";
-import {RoomService} from "./store/room/room.service";
-import {AuthService} from "./auth/auth.service";
-import {tap} from "rxjs/operators";
-import {Router, ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { APIService } from "./API.service";
+import { RoomService } from "./store/room/room.service";
+import { AuthService } from "./auth/auth.service";
+import { tap } from "rxjs/operators";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-root",
