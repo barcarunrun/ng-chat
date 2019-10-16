@@ -111,7 +111,7 @@ export class MyAPIService extends APIService {
   MyOnCreateRoomUserListener(
     username: string
   ): Observable<OnCreateRoomUserSubscription> {
-    const statement = `subscription OnCreateRoomUser($username: String) {
+    const statement = `subscription OnCreateRoomUser($username: String!) {
         onCreateRoomUser(username: $username) {
           __typename
           id
