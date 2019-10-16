@@ -1,20 +1,11 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="https://bulma.io">
-      <img
-        src="/assets/logo.jpg"
-        width="112"
-        style="max-height:100%!important;"
-      />
+      <img src="/assets/logo.jpg" width="112" style="max-height:100%!important;" />
     </a>
 
-    <a
-      role="button"
-      class="navbar-burger burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbarBasicExample"
-    >
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -23,8 +14,11 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" style="font-family: auto;">
+      <a class="navbar-item" style="font-family: auto;" routerLink="/">
         Home
+      </a>
+      <a class="navbar-item" style="font-family: auto;" routerLink="/messenger">
+        メッセージ
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
@@ -49,18 +43,10 @@
     <div class="navbar-end" style="padding-right:10%;">
       <div class="navbar-item">
         <div class="buttons">
-          <a
-            class="button is-primary"
-            style="background-color: #f4ad76;font-family: auto;"
-            href="./login.html"
-          >
+          <a class="button is-primary" style="background-color: #f4ad76;font-family: auto;" href="./login.html">
             <strong>Sign up</strong>
           </a>
-          <a
-            class="button is-light"
-            style="background-color:#fbe3d1;font-family: auto;"
-            href="./signup.html"
-          >
+          <a class="button is-light" style="background-color:#fbe3d1;font-family: auto;" href="./signup.html">
             Log in
           </a>
         </div>

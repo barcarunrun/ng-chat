@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { APIService } from "./API.service";
-import { RoomService } from "./store/room/room.service";
-import { AuthService } from "./auth/auth.service";
-import { tap } from "rxjs/operators";
-import { Router, ActivatedRoute } from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import {APIService} from "./API.service";
+import {RoomService} from "./store/room/room.service";
+import {AuthService} from "./auth/auth.service";
+import {tap} from "rxjs/operators";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -25,7 +25,9 @@ export class AppComponent implements OnInit {
     this.roomSubscription = this.api.OnCreateRoomListener.subscribe({
       next: newRoom => {
         this.roomService.addRoom(newRoom.value.data.onCreateRoom);
-        this.router.navigate(["/rooms/" + newRoom.value.data.onCreateRoom.id]);
+        this.router.navigate([
+          "/messanger/rooms/" + newRoom.value.data.onCreateRoom.id
+        ]);
       }
     });
     this.auth.isAuthenticated().pipe(

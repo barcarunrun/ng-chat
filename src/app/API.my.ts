@@ -111,7 +111,7 @@ export class MyAPIService extends APIService {
   MyOnCreateRoomUserListener(
     username: string
   ): Observable<OnCreateRoomUserSubscription> {
-    const statement = `subscription OnCreateRoomUser($username: String) {
+    const statement = `subscription OnCreateRoomUser($username: String!) {
         onCreateRoomUser(username: $username) {
           __typename
           id
@@ -212,7 +212,7 @@ export class MyAPIService extends APIService {
   MyOnCreateInvitedRoomListener(
     toUsername: string
   ): Observable<OnCreateInvitedRoomSubscription> {
-    const statement = `subscription OnCreateInvitedRoom($toUsername: String) {
+    const statement = `subscription OnCreateInvitedRoom($toUsername: String!) {
         onCreateInvitedRoom(toUsername: $toUsername) {
           __typename
           id

@@ -23,7 +23,7 @@ export class RoomListComponent implements OnInit {
   roomid: string;
   newRoom: CreateRoomInput;
   invitedRooms: Array<object>;
-  invitedRoomSubscription: any;
+  // invitedRoomSubscription: any;
   addedRoomUserSubscription: any;
   showRoomDetail$: Observable<boolean>;
 
@@ -65,7 +65,7 @@ export class RoomListComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.invitedRoomSubscription.unsubscribe();
+    // this.invitedRoomSubscription.unsubscribe();
     this.addedRoomUserSubscription.unsubscribe();
   }
 

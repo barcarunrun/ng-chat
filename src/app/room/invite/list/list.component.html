@@ -1,5 +1,8 @@
 <div>
-  <div class="column is-full room" *ngFor="let invitedRoom of invitedRooms">
+  <div ng-if="invitedRooms.length === 0">
+    <p>招待がありません</p>
+  </div>
+  <div ng-if="invitedRooms.length > 0" class="column is-full room" *ngFor="let invitedRoom of invitedRooms">
     <p>{{ invitedRoom.fromUser.displayName }}さんから、「{{ invitedRoom.room.name }}」 へ招待されいます</p>
     <br>
     <button class="button is-medium is-primary" (click)="acceptInvite(invitedRoom.id)">参加する</button>

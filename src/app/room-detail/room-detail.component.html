@@ -6,7 +6,8 @@
   <p class="room-invite hide-over-768px">
     <button class="button back-to-room-list-button" (click)="unShowRoomDetail()">戻る</button>
   </p>
-  <div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5">
+  <!-- <div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5"> -->
+  <div class="chat is-show"> 
     <i class="icon ion-ios-chatbubbles"></i>
     <div class="chat-box" id="chatbox">
       <article class="media" [class.my-media]="isMyMessage(message.owner)" *ngFor="let message of messages"
@@ -43,7 +44,7 @@
     </figure> -->
       <div class="media-content">
         <div class="field inputfield">
-          <p class="control">
+          <p class="control chat-input" style="height: 100%;">
             <textarea class="textarea" [(ngModel)]="message" placeholder="ここにメッセージ内容を入力"></textarea>
           </p>
         </div>
