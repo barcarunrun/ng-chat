@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 // 追加
-import { Router } from "@angular/router";
-import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { fromPromise } from "rxjs/observable/fromPromise";
-import { map, tap, catchError } from "rxjs/operators";
-import { of } from "rxjs/observable/of";
-import Amplify, { Auth, Hub } from "aws-amplify";
+import {Router} from "@angular/router";
+import {Observable} from "rxjs/Observable";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {fromPromise} from "rxjs/observable/fromPromise";
+import {map, tap, catchError} from "rxjs/operators";
+import {of} from "rxjs/observable/of";
+import Amplify, {Auth, Hub} from "aws-amplify";
 import awsconfig from "../../aws-exports";
-import { MyAPIService } from "../API.my";
-import { input } from "@aws-amplify/ui";
+import {MyAPIService} from "../API.my";
+import {input} from "@aws-amplify/ui";
 
-import { RoomService } from "../store/room/room.service";
-import { ulid } from "ulid";
+import {RoomService} from "../store/room/room.service";
+import {ulid} from "ulid";
 
 @Injectable()
 export class AuthService {
@@ -31,10 +31,11 @@ export class AuthService {
     console.log("Hub.listen");
 
     Hub.listen("auth", data => {
+      console.log("data.payload.event: ", data.payload.event);
       switch (data.payload.event) {
         case "signIn":
           console.log("now the user is signed in");
-          this.router.navigate(["/home"]);
+          this.router.navigate(["/"]);
 
           // AppSync上のユーザーを作成
           this.api.GetUser(data.payload.data.username).then(loginedUser => {
@@ -53,7 +54,7 @@ export class AuthService {
             }
             // 参加中のチャットルームを取得
             this.api
-              .ListRoomUsers(null, { username: { eq: loginedUser.username } })
+              .ListRoomUsers(null, {username: {eq: loginedUser.username}})
               .then(roomsGql => {
                 console.log("参加中のチャットルーム:", roomsGql.items);
                 roomsGql.items.forEach(item =>

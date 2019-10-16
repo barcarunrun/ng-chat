@@ -212,7 +212,7 @@ export class MyAPIService extends APIService {
   MyOnCreateInvitedRoomListener(
     toUsername: string
   ): Observable<OnCreateInvitedRoomSubscription> {
-    const statement = `subscription OnCreateInvitedRoom($toUsername: String) {
+    const statement = `subscription OnCreateInvitedRoom($toUsername: String!) {
         onCreateInvitedRoom(toUsername: $toUsername) {
           __typename
           id
