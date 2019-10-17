@@ -53,14 +53,14 @@ export class AuthService {
               console.log("user table exist: ", loginedUser);
             }
             // 参加中のチャットルームを取得
-            this.api
-              .ListRoomUsers(null, {username: {eq: loginedUser.username}})
-              .then(roomsGql => {
-                console.log("参加中のチャットルーム:", roomsGql.items);
-                roomsGql.items.forEach(item =>
-                  this.roomService.addRoom(item.room)
-                );
-              });
+            // this.api
+            //   .ListRoomUsers(null, {username: {eq: loginedUser.username}})
+            //   .then(roomsGql => {
+            //     console.log("参加中のチャットルーム:", roomsGql.items);
+            //     roomsGql.items.forEach(item =>
+            //       this.roomService.addRoom(item.room)
+            //     );
+            //   });
           });
           break;
         case "signIn_failure":

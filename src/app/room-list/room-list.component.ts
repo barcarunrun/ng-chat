@@ -43,12 +43,12 @@ export class RoomListComponent implements OnInit {
 
     Auth.currentAuthenticatedUser().then(user => {
       // 参加中のチャットルームを取得
-      this.api
-        .ListRoomUsers(null, {username: {eq: user.username}})
-        .then(roomsGql => {
-          console.log("参加中のチャットルーム:", roomsGql.items);
-          roomsGql.items.forEach(item => this.roomService.addRoom(item.room));
-        });
+      // this.api
+      //   .ListRoomUsers(null, {username: {eq: user.username}})
+      //   .then(roomsGql => {
+      //     console.log("参加中のチャットルーム:", roomsGql.items);
+      //     roomsGql.items.forEach(item => this.roomService.addRoom(item.room));
+      //   });
 
       // 新規参加チャットルームを待機する
       this.addedRoomUserSubscription = this.api

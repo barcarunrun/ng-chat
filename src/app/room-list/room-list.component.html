@@ -21,7 +21,7 @@
       </figure>
       招待されているチャット
     </a>
-    <a class="column is-full room" *ngFor="let room of rooms" routerLink="/messenger/rooms/{{room.id}}"
+    <a class="column is-full room" *ngFor="let room of rooms" routerLink="/messenger/rooms/{{room.id}}" [id]="room.id"
       routerLinkActive="active" (click)="showRoomDetail()">
       <figure class="image is-32x32 room-icon">
         <img class="is-rounded" [attr.src]="room.image" />
