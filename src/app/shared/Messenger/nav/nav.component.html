@@ -18,8 +18,8 @@
         Home
       </a>
 
-      <a class="navbar-item" routerLink="/">
-        Documentation
+      <a class="navbar-item" routerLink="/messenger">
+        メッセージ
       </a>
     </div>
 
@@ -33,6 +33,9 @@
             Log in
           </a>
         </div>
+        <a class="navbar-item" routerLink="/applicantAdmin/profile">
+          マイページ
+        </a>
         <div class="greeting" [class.not-show]="isLogin">
           <amplify-auth-greetings></amplify-auth-greetings>
         </div>
