@@ -47,6 +47,7 @@ import { UserlistComponent } from "./companyAdmin/userlist/userlist.component";
 
 import { IndexComponent } from "./index/index/index.component";
 import { DetailComponent } from "./index/detail/detail.component";
+import { NavigationBarComponent } from './shared/default/navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { DetailComponent } from "./index/detail/detail.component";
     EditComponent,
     UserlistComponent,
     IndexComponent,
-    DetailComponent
+    DetailComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,

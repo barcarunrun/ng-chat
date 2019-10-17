@@ -1,0 +1,20 @@
+.navigation-bar {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  width: 100vw;
+  background-color: white;
+  display: table;
+}
+
+@media screen and (min-width: 769px) {
+  .navigation-bar {
+    display: none;
+  }
+}
+
+.navigation-bar a {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
