@@ -52,6 +52,9 @@ import {TableComponent} from "./companyAdmin/table/table.component";
 import {IndexComponent} from "./index/index/index.component";
 import {DetailComponent} from "./index/detail/detail.component";
 import {NavigationBarComponent} from "./shared/default/navigation-bar/navigation-bar.component";
+import {CreateCompanyUserComponent} from "./auth/components/company/create/create.component";
+import {AuthLayoutComponent} from "./auth/components/layout/layout.component";
+import { CreateComponent } from './auth/components/applicant/create/create.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import {NavigationBarComponent} from "./shared/default/navigation-bar/navigation
     IndexComponent,
     DetailComponent,
     TableComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    CreateCompanyUserComponent,
+    AuthLayoutComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

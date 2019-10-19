@@ -21,6 +21,10 @@ import {UserlistComponent} from "./companyAdmin/userlist/userlist.component";
 import {IndexComponent} from "./index/index/index.component";
 import {DetailComponent} from "./index/detail/detail.component";
 
+// Auth
+import {AuthLayoutComponent} from "./auth/components/layout/layout.component";
+import {CreateCompanyUserComponent} from "./auth/components/company/create/create.component";
+
 const routes: Routes = [
   //  { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
   // {path: "home", component: RoomListComponent, canActivate: [AuthGuard]},
@@ -79,6 +83,22 @@ const routes: Routes = [
       {
         path: "edit",
         component: EditComponent
+      }
+    ]
+  },
+  {
+    path: "auth",
+    component: DefaultComponent,
+    children: [
+      {
+        path: "company",
+        component: AuthLayoutComponent,
+        children: [
+          {
+            path: "create",
+            component: CreateCompanyUserComponent
+          }
+        ]
       }
     ]
   },
