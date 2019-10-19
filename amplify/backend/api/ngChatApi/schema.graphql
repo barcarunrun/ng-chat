@@ -32,7 +32,7 @@ type Company @model @key(fields: ["id"]) {
   logo: String
   backgroundImg: String
   about: String
-  area: Area @connection
+  area: Area @connection(name: "CompanyArea")
   owner: User! @connection
 
   articles: [Article]! @connection(name: "CompanyArticle")
@@ -71,7 +71,7 @@ type Article @model @key(fields: ["id"]) {
   content: String!
   isOpen: ArticleStatus!
   comments: [Comment]! @connection(name: "ArticleComments")
-  area: Area!
+  area: Area! @connection(name: "ArticleArea")
 
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
@@ -140,6 +140,8 @@ type Area
   @key(name: "Bycontent", fields: ["content"]) {
   id: ID!
   content: String!
+  articles: [Article!]! @connection(name: "ArticleArea")
+  companies: [Company!]! @connection(name: "CompanyArea")
 
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!

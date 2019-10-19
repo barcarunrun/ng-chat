@@ -10,6 +10,12 @@ query GetCompany($id: ID!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -270,6 +276,12 @@ query GetArticle($id: ID!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -685,6 +697,31 @@ query GetArea($id: ID!) {
   getArea(id: $id) {
     id
     content
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companies {
+      items {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -706,6 +743,12 @@ query ListAreas(
     items {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -813,6 +856,12 @@ query GetApplicant($id: ID!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }

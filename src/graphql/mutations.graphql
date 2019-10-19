@@ -10,6 +10,12 @@ mutation CreateCompany($input: CreateCompanyInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -57,6 +63,12 @@ mutation UpdateCompany($input: UpdateCompanyInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -104,6 +116,12 @@ mutation DeleteCompany($input: DeleteCompanyInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -383,6 +401,12 @@ mutation CreateArticle($input: CreateArticleInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -444,6 +468,12 @@ mutation UpdateArticle($input: UpdateArticleInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -505,6 +535,12 @@ mutation DeleteArticle($input: DeleteArticleInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -1068,6 +1104,31 @@ mutation CreateArea($input: CreateAreaInput!) {
   createArea(input: $input) {
     id
     content
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companies {
+      items {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -1076,6 +1137,31 @@ mutation UpdateArea($input: UpdateAreaInput!) {
   updateArea(input: $input) {
     id
     content
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companies {
+      items {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -1084,6 +1170,31 @@ mutation DeleteArea($input: DeleteAreaInput!) {
   deleteArea(input: $input) {
     id
     content
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companies {
+      items {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -1235,6 +1346,12 @@ mutation CreateApplicant($input: CreateApplicantInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -1288,6 +1405,12 @@ mutation UpdateApplicant($input: UpdateApplicantInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -1341,6 +1464,12 @@ mutation DeleteApplicant($input: DeleteApplicantInput!) {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
