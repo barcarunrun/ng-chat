@@ -23,7 +23,10 @@ import {DetailComponent} from "./index/detail/detail.component";
 
 // Auth
 import {AuthLayoutComponent} from "./auth/components/layout/layout.component";
+import {CreateApplicantUserComponent} from "./auth/components/applicant/create/create.component";
+import {LoginApplicantUserComponent} from "./auth/components/applicant/login/login.component";
 import {CreateCompanyUserComponent} from "./auth/components/company/create/create.component";
+import {LoginCompanyUserComponent} from "./auth/components/company/login/login.component";
 
 const routes: Routes = [
   //  { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -91,9 +94,28 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       {
+        path: "",
+        component: AuthLayoutComponent,
+        children: [
+          {
+            path: "",
+            component: LoginApplicantUserComponent
+          },
+
+          {
+            path: "create",
+            component: CreateApplicantUserComponent
+          }
+        ]
+      },
+      {
         path: "company",
         component: AuthLayoutComponent,
         children: [
+          {
+            path: "",
+            component: LoginCompanyUserComponent
+          },
           {
             path: "create",
             component: CreateCompanyUserComponent
