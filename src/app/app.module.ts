@@ -52,6 +52,7 @@ import { TableComponent } from "./companyAdmin/table/table.component";
 import { IndexComponent } from "./index/index/index.component";
 import { DetailComponent } from "./index/detail/detail.component";
 import { NavigationBarComponent } from "./shared/default/navigation-bar/navigation-bar.component";
+import { CreateComponent } from './applicantAdmin/auth/create/create.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { NavigationBarComponent } from "./shared/default/navigation-bar/navigati
     IndexComponent,
     DetailComponent,
     TableComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
