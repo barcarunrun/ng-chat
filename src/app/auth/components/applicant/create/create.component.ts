@@ -7,7 +7,7 @@ import {Auth} from "aws-amplify";
   templateUrl: "./create.component.html",
   styleUrls: ["./create.component.css"]
 })
-export class CreateComponent implements OnInit {
+export class CreateApplicantUserComponent implements OnInit {
   username: string;
   password: string;
   email: string;

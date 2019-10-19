@@ -52,9 +52,11 @@ import {TableComponent} from "./companyAdmin/table/table.component";
 import {IndexComponent} from "./index/index/index.component";
 import {DetailComponent} from "./index/detail/detail.component";
 import {NavigationBarComponent} from "./shared/default/navigation-bar/navigation-bar.component";
-import {CreateCompanyUserComponent} from "./auth/components/company/create/create.component";
 import {AuthLayoutComponent} from "./auth/components/layout/layout.component";
-import { CreateComponent } from './auth/components/applicant/create/create.component';
+import {CreateApplicantUserComponent} from "./auth/components/applicant/create/create.component";
+import {LoginApplicantUserComponent} from "./auth/components/applicant/login/login.component";
+import {CreateCompanyUserComponent} from "./auth/components/company/create/create.component";
+import {LoginCompanyUserComponent} from "./auth/components/company/login/login.component";
 
 @NgModule({
   declarations: [
@@ -83,9 +85,11 @@ import { CreateComponent } from './auth/components/applicant/create/create.compo
     DetailComponent,
     TableComponent,
     NavigationBarComponent,
-    CreateCompanyUserComponent,
     AuthLayoutComponent,
-    CreateComponent
+    CreateCompanyUserComponent,
+    LoginCompanyUserComponent,
+    CreateApplicantUserComponent,
+    LoginApplicantUserComponent
   ],
   imports: [
     BrowserModule,
