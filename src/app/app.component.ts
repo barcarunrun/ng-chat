@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {APIService} from "./API.service";
-import {RoomService} from "./store/room/room.service";
-import {AuthService} from "./auth/auth.service";
-import {tap} from "rxjs/operators";
-import {Router, ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { APIService } from "./API.service";
+import { RoomService } from "./store/room/room.service";
+import { AuthService } from "./auth/auth.service";
+import { tap } from "rxjs/operators";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -11,7 +11,9 @@ import {Router, ActivatedRoute} from "@angular/router";
   styleUrls: ["./app.component.sass"]
 })
 export class AppComponent implements OnInit {
-  title = "ng-chat";
+  static readonly Image_URL: string =
+    "https://ng-chatd6789a4c14844d64953bec60ce84fff6-master.s3-ap-northeast-1.amazonaws.com/public";
+  title = "Lotre";
   isLogin: boolean = false;
   roomSubscription: any;
 

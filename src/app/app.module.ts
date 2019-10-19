@@ -25,6 +25,9 @@ import { StoreModule } from "@ngrx/store";
 import { showRoomDetailReducer } from "./store/session/session.reducer";
 
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
+import { AdminLayoutCompanyComponent } from "./layouts/admin-company-layout/admin-company-layout.component";
+
+import { SidebarCompanyComponent } from "./shared/Admin_company/sidebar/sidebar.component";
 import { RoomMainComponent } from "./layouts/room-layout/room-layout.component";
 import { DefaultComponent } from "./layouts/default-layout/default-layout.component";
 
@@ -44,6 +47,7 @@ import { UserComponent } from "./applicantAdmin/user/user.component";
 import { CompanyComponent } from "./companyAdmin/user/user.component";
 import { EditComponent } from "./companyAdmin/edit/edit.component";
 import { UserlistComponent } from "./companyAdmin/userlist/userlist.component";
+import { TableComponent } from "./companyAdmin/table/table.component";
 
 import { IndexComponent } from "./index/index/index.component";
 import { DetailComponent } from "./index/detail/detail.component";
@@ -51,6 +55,8 @@ import { DetailComponent } from "./index/detail/detail.component";
 @NgModule({
   declarations: [
     AdminLayoutComponent,
+    AdminLayoutCompanyComponent,
+    SidebarCompanyComponent,
     RoomMainComponent,
     DefaultComponent,
     AppComponent,
@@ -70,7 +76,8 @@ import { DetailComponent } from "./index/detail/detail.component";
     EditComponent,
     UserlistComponent,
     IndexComponent,
-    DetailComponent
+    DetailComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

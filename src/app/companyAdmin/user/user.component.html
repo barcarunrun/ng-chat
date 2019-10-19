@@ -2,16 +2,12 @@
   <div class="col-md-4">
     <div class="card card-user">
       <div class="image">
-        <img src="assets/img/damir-bosnjak.jpg" alt="..." />
+        <img [src]="fileUrlBackground" alt="..." />
       </div>
       <div class="card-body">
         <div class="author">
           <a href="#">
-            <img
-              class="avatar border-gray"
-              src="assets/img/mike.jpg"
-              alt="..."
-            />
+            <img class="avatar border-gray" [src]="fileUrlProfile" alt="..." />
             <h5 class="title">Techforward株式会社</h5>
           </a>
           <p class="description">
@@ -88,11 +84,18 @@
                     class="custom-file-input"
                     id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01"
+                    (change)="onFileChangedBackground($event)"
+                    #fileInput
                   />
                   <label class="custom-file-label" for="inputGroupFile01"
                     >Choose file</label
                   >
                 </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div *ngIf="fileUrlBackgroundTmp" class="preview-image">
+                <img [src]="fileUrlBackgroundTmp" alt="" />
               </div>
             </div>
           </div>
@@ -104,19 +107,30 @@
                   <input
                     type="file"
                     class="custom-file-input"
-                    id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01"
+                    id="inputGroupFile02"
+                    aria-describedby="inputGroupFileAddon02"
+                    (change)="onFileChangedProfile($event)"
+                    #fileInput
                   />
-                  <label class="custom-file-label" for="inputGroupFile01"
+                  <label class="custom-file-label" for="inputGroupFile02"
                     >Choose file</label
                   >
                 </div>
               </div>
             </div>
+            <div class="col-md-6">
+              <div *ngIf="fileUrlProfileTmp" class="preview-image">
+                <img [src]="fileUrlProfileTmp" alt="" />
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">
+              <button
+                type="submit"
+                class="btn btn-primary btn-round"
+                (click)="publish()"
+              >
                 Update Profile
               </button>
             </div>

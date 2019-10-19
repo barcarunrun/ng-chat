@@ -1,6 +1,6 @@
 {
     "identityPoolName": "ngchatcbefc472_identitypool_cbefc472",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "ngchatcbefc472",
     "userPoolName": "ngchatcbefc472_userpool_cbefc472",
     "autoVerifiedAttributes": [

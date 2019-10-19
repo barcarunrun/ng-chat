@@ -6,17 +6,21 @@ import {
   ViewChildren
 } from "@angular/core";
 
-import {ActivatedRoute} from "@angular/router";
-import API, {graphqlOperation} from "@aws-amplify/api";
+import { ActivatedRoute } from "@angular/router";
+import API, { graphqlOperation } from "@aws-amplify/api";
 
-import {CreateMessageInput, APIService, CreateRoomInput} from "../API.service";
-import Amplify, {Auth, Hub} from "aws-amplify";
-import {MyAPIService} from "../API.my";
+import {
+  CreateMessageInput,
+  APIService,
+  CreateRoomInput
+} from "../API.service";
+import Amplify, { Auth, Hub } from "aws-amplify";
+import { MyAPIService } from "../API.my";
 
-import {Store, select} from "@ngrx/store";
-import {Observable} from "rxjs";
-import {unShowRoomDetail} from "../store/session/session.action";
-import {ulid} from "ulid";
+import { Store, select } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { unShowRoomDetail } from "../store/session/session.action";
+import { ulid } from "ulid";
 
 @Component({
   selector: "app-room-detail",
@@ -40,7 +44,7 @@ export class RoomDetailComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private api: MyAPIService,
-    private store: Store<{showRoomDetail: boolean}>
+    private store: Store<{ showRoomDetail: boolean }>
   ) {
     this.showRoomDetail$ = store.pipe(select("showRoomDetail"));
   }

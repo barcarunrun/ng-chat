@@ -1,35 +1,33 @@
-import {NgModule} from "@angular/core";
-import {Routes, RouterModule} from "@angular/router";
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 // 追加
-import {LoginComponent} from "./login/login.component";
-import {AuthGuard} from "./auth/auth.guard";
-import {RoomDetailComponent} from "./room-detail/room-detail.component";
-import {RoomInviteListComponent} from "./room/invite/list/list.component";
-import {RoomHomeComponent} from "./room-home/room-home.component";
-import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
-import {RoomMainComponent} from "./layouts/room-layout/room-layout.component";
-import {DefaultComponent} from "./layouts/default-layout/default-layout.component";
+import { LoginComponent } from "./login/login.component";
+import { AuthGuard } from "./auth/auth.guard";
+import { RoomDetailComponent } from "./room-detail/room-detail.component";
+import { RoomInviteListComponent } from "./room/invite/list/list.component";
+import { RoomHomeComponent } from "./room-home/room-home.component";
+import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
+import { AdminLayoutCompanyComponent } from "./layouts/admin-company-layout/admin-company-layout.component";
+import { RoomMainComponent } from "./layouts/room-layout/room-layout.component";
+import { DefaultComponent } from "./layouts/default-layout/default-layout.component";
 
-import {UserComponent} from "./applicantAdmin/user/user.component";
+import { UserComponent } from "./applicantAdmin/user/user.component";
 
-import {CompanyComponent} from "./companyAdmin/user/user.component";
-import {EditComponent} from "./companyAdmin/edit/edit.component";
-import {UserlistComponent} from "./companyAdmin/userlist/userlist.component";
-import {IndexComponent} from "./index/index/index.component";
-import {DetailComponent} from "./index/detail/detail.component";
+import { CompanyComponent } from "./companyAdmin/user/user.component";
+import { TableComponent } from "./companyAdmin/table/table.component";
+import { EditComponent } from "./companyAdmin/edit/edit.component";
+import { UserlistComponent } from "./companyAdmin/userlist/userlist.component";
+
+import { IndexComponent } from "./index/index/index.component";
+import { DetailComponent } from "./index/detail/detail.component";
 
 const routes: Routes = [
   //  { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
   // {path: "home", component: RoomListComponent, canActivate: [AuthGuard]},
-
   {
     path: "messenger",
     component: RoomMainComponent,
     children: [
-      {
-        path: "login",
-        component: LoginComponent
-      },
       {
         path: "rooms/:id",
         component: RoomDetailComponent,
@@ -47,15 +45,11 @@ const routes: Routes = [
       }
     ]
   },
+
   {
     path: "applicantAdmin",
     component: AdminLayoutComponent,
     children: [
-      {
-        path: "login",
-        loadChildren:
-          "./layouts/admin-layout/admin-layout.module#AdminLayoutModule"
-      },
       {
         path: "profile",
         component: UserComponent
@@ -64,13 +58,8 @@ const routes: Routes = [
   },
   {
     path: "companyAdmin",
-    component: AdminLayoutComponent,
+    component: AdminLayoutCompanyComponent,
     children: [
-      {
-        path: "login",
-        loadChildren:
-          "./layouts/admin-layout/admin-layout.module#AdminLayoutModule"
-      },
       {
         path: "profile",
         component: CompanyComponent
@@ -78,6 +67,10 @@ const routes: Routes = [
       {
         path: "messenger",
         component: RoomMainComponent
+      },
+      {
+        path: "articlelist",
+        component: TableComponent
       },
       {
         path: "userlist",
@@ -99,6 +92,10 @@ const routes: Routes = [
       },
       {
         path: "login",
+        component: LoginComponent
+      },
+      {
+        path: "signup",
         component: LoginComponent
       },
       {

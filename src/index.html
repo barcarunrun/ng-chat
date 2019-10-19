@@ -2,11 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>NgChat</title>
+    <title>Lotre</title>
     <base href="/" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link href="./assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
@@ -35,6 +34,84 @@
       rel="stylesheet"
       href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css"
     />
+    <link
+      href="~bulma-calendar/dist/css/bulma-calendar.min.css"
+      rel="stylesheet"
+    />
+    <script src="~bulma-calendar/dist/js/bulma-calendar.min.js"></script>
+    <script>
+      var calendars = bulmaCalendar.attach('[type="date"]', options);
+
+      // Loop on each calendar initialized
+      for (var i = 0; i < calendars.length; i++) {
+        // Add listener to date:selected event
+        calendars[i].on("select", date => {
+          console.log(date);
+        });
+      }
+
+      // To access to bulmaCalendar instance of an element
+      var element = document.querySelector("#my-element");
+      if (element) {
+        // bulmaCalendar instance is available as element.bulmaCalendar
+        element.bulmaCalendar.on("select", function(datepicker) {
+          console.log(datepicker.data.value());
+        });
+      }
+    </script>
+    <style>
+      button[title="Strikethrough"] {
+        display: none;
+      }
+      button[title="Subscript"] {
+        display: none;
+      }
+      button[title="Superscript"] {
+        display: none;
+      }
+      button[title="Justify Full"] {
+        display: none;
+      }
+      button[title="Indent"] {
+        display: none;
+      }
+      button[title="Outdent"] {
+        display: none;
+      }
+      button[title="Clear Formatting"] {
+        display: none;
+      }
+      .angular-editor-toolbar-set:nth-of-type(4) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(5) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(6) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(7) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(8) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(9) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(10) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(11) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(12) {
+        display: none !important;
+      }
+      .angular-editor-toolbar-set:nth-of-type(13) {
+        display: none !important;
+      }
+    </style>
   </head>
 
   <body>
