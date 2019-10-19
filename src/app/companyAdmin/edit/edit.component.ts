@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { AngularEditorConfig } from "@kolkov/angular-editor";
+import {Component, OnInit} from "@angular/core";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
-import { CreateArticleInput, ArticleStatus } from "../../API.service";
-import API, { graphqlOperation } from "@aws-amplify/api";
+import {CreateArticleInput, ArticleStatus} from "../../API.service";
+import API, {graphqlOperation} from "@aws-amplify/api";
 
-import { Auth, Storage } from "aws-amplify";
+import {Auth, Storage} from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import { MyAPIService } from "../../API.my";
-import { ulid } from "ulid";
-import { unescapeIdentifier } from "@angular/compiler";
-import { stringify } from "querystring";
+import {MyAPIService} from "../../API.my";
+import {ulid} from "ulid";
+import {unescapeIdentifier} from "@angular/compiler";
+import {stringify} from "querystring";
 
 @Component({
   selector: "table-cmp",
@@ -75,7 +75,7 @@ export class EditComponent implements OnInit {
     this.user = loginedUser;
   }
   reader = new FileReader();
-  fileUrl = "";
+  fileUrl: string | ArrayBuffer;
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
@@ -98,7 +98,8 @@ export class EditComponent implements OnInit {
       thumbnail: filename,
       content: this.htmlContent,
       isOpen: ArticleStatus.open,
-      articleCompanyId: this.user.id,
+      articleCompanyId: "bbbb",
+      articleAreaId: "aaaa",
 
       createdAt: now,
       updatedAt: now

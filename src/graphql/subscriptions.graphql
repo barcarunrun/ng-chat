@@ -181,6 +181,12 @@ subscription OnCreateCompany {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -228,6 +234,12 @@ subscription OnUpdateCompany {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -275,6 +287,12 @@ subscription OnDeleteCompany {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -554,6 +572,12 @@ subscription OnCreateArticle {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -615,6 +639,12 @@ subscription OnUpdateArticle {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -676,6 +706,12 @@ subscription OnDeleteArticle {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -1239,6 +1275,31 @@ subscription OnCreateArea {
   onCreateArea {
     id
     content
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companies {
+      items {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -1247,6 +1308,31 @@ subscription OnUpdateArea {
   onUpdateArea {
     id
     content
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companies {
+      items {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -1255,6 +1341,31 @@ subscription OnDeleteArea {
   onDeleteArea {
     id
     content
+    articles {
+      items {
+        id
+        title
+        thumbnail
+        content
+        isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    companies {
+      items {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -1406,6 +1517,12 @@ subscription OnCreateApplicant {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -1459,6 +1576,12 @@ subscription OnUpdateApplicant {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -1512,6 +1635,12 @@ subscription OnDeleteApplicant {
     area {
       id
       content
+      articles {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
       createdAt
       updatedAt
     }

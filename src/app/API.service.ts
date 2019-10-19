@@ -87,6 +87,7 @@ export type CreateArticleInput = {
   createdAt: number;
   updatedAt: number;
   articleCompanyId: string;
+  articleAreaId: string;
 };
 
 export type UpdateArticleInput = {
@@ -98,6 +99,7 @@ export type UpdateArticleInput = {
   createdAt?: number | null;
   updatedAt?: number | null;
   articleCompanyId?: string | null;
+  articleAreaId?: string | null;
 };
 
 export type DeleteArticleInput = {
@@ -625,6 +627,14 @@ export type CreateCompanyMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -679,6 +689,14 @@ export type UpdateCompanyMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -733,6 +751,14 @@ export type DeleteCompanyMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -1054,6 +1080,14 @@ export type CreateArticleMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -1124,6 +1158,14 @@ export type UpdateArticleMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -1194,6 +1236,14 @@ export type DeleteArticleMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -1838,6 +1888,35 @@ export type CreateAreaMutation = {
   __typename: "Area";
   id: string;
   content: string;
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  companies: {
+    __typename: "ModelCompanyConnection";
+    items: Array<{
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -1846,6 +1925,35 @@ export type UpdateAreaMutation = {
   __typename: "Area";
   id: string;
   content: string;
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  companies: {
+    __typename: "ModelCompanyConnection";
+    items: Array<{
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -1854,6 +1962,35 @@ export type DeleteAreaMutation = {
   __typename: "Area";
   id: string;
   content: string;
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  companies: {
+    __typename: "ModelCompanyConnection";
+    items: Array<{
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -2028,6 +2165,14 @@ export type CreateApplicantMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -2090,6 +2235,14 @@ export type UpdateApplicantMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -2152,6 +2305,14 @@ export type DeleteApplicantMutation = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -3004,6 +3165,14 @@ export type GetCompanyQuery = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -3261,6 +3430,14 @@ export type GetArticleQuery = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -3649,6 +3826,35 @@ export type GetAreaQuery = {
   __typename: "Area";
   id: string;
   content: string;
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  companies: {
+    __typename: "ModelCompanyConnection";
+    items: Array<{
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -3659,6 +3865,14 @@ export type ListAreasQuery = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null> | null;
@@ -3769,6 +3983,14 @@ export type GetApplicantQuery = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -4463,6 +4685,14 @@ export type OnCreateCompanySubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -4517,6 +4747,14 @@ export type OnUpdateCompanySubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -4571,6 +4809,14 @@ export type OnDeleteCompanySubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -4892,6 +5138,14 @@ export type OnCreateArticleSubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -4962,6 +5216,14 @@ export type OnUpdateArticleSubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -5032,6 +5294,14 @@ export type OnDeleteArticleSubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -5676,6 +5946,35 @@ export type OnCreateAreaSubscription = {
   __typename: "Area";
   id: string;
   content: string;
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  companies: {
+    __typename: "ModelCompanyConnection";
+    items: Array<{
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -5684,6 +5983,35 @@ export type OnUpdateAreaSubscription = {
   __typename: "Area";
   id: string;
   content: string;
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  companies: {
+    __typename: "ModelCompanyConnection";
+    items: Array<{
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -5692,6 +6020,35 @@ export type OnDeleteAreaSubscription = {
   __typename: "Area";
   id: string;
   content: string;
+  articles: {
+    __typename: "ModelArticleConnection";
+    items: Array<{
+      __typename: "Article";
+      id: string;
+      title: string;
+      thumbnail: string | null;
+      content: string;
+      isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  companies: {
+    __typename: "ModelCompanyConnection";
+    items: Array<{
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -5866,6 +6223,14 @@ export type OnCreateApplicantSubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -5928,6 +6293,14 @@ export type OnUpdateApplicantSubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -5990,6 +6363,14 @@ export type OnDeleteApplicantSubscription = {
     __typename: "Area";
     id: string;
     content: string;
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    companies: {
+      __typename: "ModelCompanyConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   } | null;
@@ -6244,6 +6625,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -6310,6 +6699,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -6376,6 +6773,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -6781,6 +7186,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -6863,6 +7276,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -6945,6 +7366,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -7779,6 +8208,35 @@ export class APIService {
           __typename
           id
           content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -7797,6 +8255,35 @@ export class APIService {
           __typename
           id
           content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -7815,6 +8302,35 @@ export class APIService {
           __typename
           id
           content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -8031,6 +8547,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -8105,6 +8629,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -8179,6 +8711,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -9179,6 +9719,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -9553,6 +10101,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -10175,6 +10731,35 @@ export class APIService {
           __typename
           id
           content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -10201,6 +10786,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -10373,6 +10966,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -11273,6 +11874,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -11335,6 +11944,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -11397,6 +12014,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -11774,6 +12399,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -11852,6 +12485,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -11930,6 +12571,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -12694,6 +13343,35 @@ export class APIService {
           __typename
           id
           content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -12708,6 +13386,35 @@ export class APIService {
           __typename
           id
           content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -12722,6 +13429,35 @@ export class APIService {
           __typename
           id
           content
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -12922,6 +13658,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -12992,6 +13736,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -13062,6 +13814,14 @@ export class APIService {
             __typename
             id
             content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
