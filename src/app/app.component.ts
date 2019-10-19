@@ -4,6 +4,7 @@ import { RoomService } from "./store/room/room.service";
 import { AuthService } from "./auth/auth.service";
 import { tap } from "rxjs/operators";
 import { Router, ActivatedRoute } from "@angular/router";
+import Amplify, { Auth, Hub } from "aws-amplify";
 
 @Component({
   selector: "app-root",
@@ -24,13 +25,15 @@ export class AppComponent implements OnInit {
     private roomService: RoomService,
     private auth: AuthService
   ) {
-    this.roomSubscription = this.api.OnCreateRoomListener.subscribe({
-      next: newRoom => {
-        this.roomService.addRoom(newRoom.value.data.onCreateRoom);
-        this.router.navigate([
-          "/messanger/rooms/" + newRoom.value.data.onCreateRoom.id
-        ]);
-      }
+    Auth.currentAuthenticatedUser().then(user => {
+      console.log("currentAuthenticatedUser:", user);
+      // 参加中のチャットルームを取得
+      this.api
+        .ListRoomUsers(null, { username: { eq: user.username } })
+        .then(roomsGql => {
+          console.log("参加中のチャットルーム:", roomsGql.items);
+          roomsGql.items.forEach(item => this.roomService.addRoom(item.room));
+        });
     });
     this.auth.isAuthenticated().pipe(
       tap(loggedIn => {

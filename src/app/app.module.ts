@@ -51,6 +51,7 @@ import { TableComponent } from "./companyAdmin/table/table.component";
 
 import { IndexComponent } from "./index/index/index.component";
 import { DetailComponent } from "./index/detail/detail.component";
+import { NavigationBarComponent } from './shared/default/navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,11 @@ import { DetailComponent } from "./index/detail/detail.component";
     UserlistComponent,
     IndexComponent,
     DetailComponent,
+<<<<<<< HEAD
     TableComponent
+=======
+    NavigationBarComponent
+>>>>>>> 1a287507578d5bcc9df3d231f165ae479d1573e2
   ],
   imports: [
     BrowserModule,
