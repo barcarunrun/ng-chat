@@ -4,7 +4,7 @@
 <div class="field">
   <label class="label">ユーザー名</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+    <input class="input is-success" type="text" placeholder="Text input" [(ngModel)]="username">
     <span class="icon is-small is-left">
       <i class="nc-icon nc-single-02" style="font-size: 12px;"></i>
     </span>
@@ -19,7 +19,7 @@
 <div class="field">
   <label class="label">パスワード</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+    <input class="input is-success" type="text" placeholder="Text input" [(ngModel)]="password">
     <span class="icon is-small is-right">
       <i class="nc-icon nc-check-2" style="font-size: 12px;"></i>
     </span>
@@ -29,6 +29,6 @@
 
 <div class="field is-grouped">
   <div class="control">
-    <button class="button is-link">ログイン</button>
+    <button class="button is-link" (click)="SignIn()">ログイン</button>
   </div>
 </div>
