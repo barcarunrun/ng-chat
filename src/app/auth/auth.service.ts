@@ -66,11 +66,11 @@ export class AuthService {
         case "signIn_failure":
           console.log("the user failed to sign in");
           console.log("the error is", data.payload.data);
-          this.router.navigate(["/login"]);
+          this.router.navigate(["/auth"]);
           break;
         default:
           console.log("default");
-          this.router.navigate(["/login"]);
+          this.router.navigate(["/auth"]);
           this.roomService.delRooms();
           break;
       }
