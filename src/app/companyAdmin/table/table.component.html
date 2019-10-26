@@ -44,80 +44,39 @@
               </th>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let article of articleList; let i = index">
                 <td>
-                  いのちのてざわり 循環が見える 食べもの
+                  {{ article.title }}
                 </td>
                 <td>
                   ダイニング担当、ベーカリー担当など
                 </td>
                 <td>
-                  千葉・木更津
+                  {{ article.area.content }}
                 </td>
                 <td>
-                  2019.9.28
+                  {{ unixTime2ymd(article.createdAt) }}
                 </td>
-                <td style="text-align: center;">
-                  <button type="submit" class="btn btn-primary btn-round">
+                <td
+                  style="text-align: center;"
+                  *ngIf="article.isOpen === 'open'"
+                >
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-round"
+                    (click)="change(article.id)"
+                  >
                     公開中
                   </button>
                 </td>
-                <td>
+                <td
+                  style="text-align: center;"
+                  *ngIf="article.isOpen != 'open'"
+                >
                   <button
                     type="submit"
-                    class="btn btn-primary btn-round"
-                    onclick="location.href='/companyAdmin/edit'"
-                  >
-                    編集
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  いのちのてざわり 循環が見える 食べもの
-                </td>
-                <td>
-                  ダイニング担当、ベーカリー担当など
-                </td>
-                <td>
-                  千葉・木更津
-                </td>
-                <td>
-                  2019.9.28
-                </td>
-                <td style="text-align: center;">
-                  <button type="submit" class="btn btn-primary btn-round">
-                    公開中
-                  </button>
-                </td>
-                <td>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-round"
-                    onclick="location.href='/companyAdmin/edit'"
-                  >
-                    編集
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  いのちのてざわり 循環が見える 食べもの
-                </td>
-                <td>
-                  ダイニング担当、ベーカリー担当など
-                </td>
-                <td>
-                  千葉・木更津
-                </td>
-                <td>
-                  2019.9.28
-                </td>
-                <td style="text-align: center;">
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-round"
-                    style="background-color: #ce5451;"
+                    class="btn btn-danger btn-round"
+                    (click)="change(article.id)"
                   >
                     非公開中
                   </button>
@@ -126,119 +85,7 @@
                   <button
                     type="submit"
                     class="btn btn-primary btn-round"
-                    onclick="location.href='/companyAdmin/edit'"
-                  >
-                    編集
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  いのちのてざわり 循環が見える 食べもの
-                </td>
-                <td>
-                  ダイニング担当、ベーカリー担当など
-                </td>
-                <td>
-                  千葉・木更津
-                </td>
-                <td>
-                  2019.9.28
-                </td>
-                <td style="text-align: center;">
-                  <button type="submit" class="btn btn-primary btn-round">
-                    公開中
-                  </button>
-                </td>
-                <td>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-round"
-                    onclick="location.href='/companyAdmin/edit'"
-                  >
-                    編集
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  いのちのてざわり 循環が見える 食べもの
-                </td>
-                <td>
-                  ダイニング担当、ベーカリー担当など
-                </td>
-                <td>
-                  千葉・木更津
-                </td>
-                <td>
-                  2019.9.28
-                </td>
-                <td style="text-align: center;">
-                  <button type="submit" class="btn btn-primary btn-round">
-                    公開中
-                  </button>
-                </td>
-                <td>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-round"
-                    onclick="location.href='/companyAdmin/edit'"
-                  >
-                    編集
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  いのちのてざわり 循環が見える 食べもの
-                </td>
-                <td>
-                  ダイニング担当、ベーカリー担当など
-                </td>
-                <td>
-                  千葉・木更津
-                </td>
-                <td>
-                  2019.9.28
-                </td>
-                <td style="text-align: center;">
-                  <button type="submit" class="btn btn-primary btn-round">
-                    公開中
-                  </button>
-                </td>
-                <td>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-round"
-                    onclick="location.href='/companyAdmin/edit'"
-                  >
-                    編集
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  いのちのてざわり 循環が見える 食べもの
-                </td>
-                <td>
-                  ダイニング担当、ベーカリー担当など
-                </td>
-                <td>
-                  千葉・木更津
-                </td>
-                <td>
-                  2019.9.28
-                </td>
-                <td style="text-align: center;">
-                  <button type="submit" class="btn btn-primary btn-round">
-                    公開中
-                  </button>
-                </td>
-                <td>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-round"
-                    onclick="location.href='/companyAdmin/edit'"
+                    (click)="redirect(article.id)"
                   >
                     編集
                   </button>

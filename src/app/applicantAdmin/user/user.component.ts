@@ -31,6 +31,12 @@ export class UserComponent implements OnInit {
   fileUrlProfileTmp = "";
   selectedFileBackground: File;
   selectedFileProfile: File;
+  applicantName: any;
+  lastName: any;
+  firstName: any;
+  applicantId: any;
+  applicantAbout: any;
+  applicantEmail: any;
 
   constructor(private api: MyAPIService) {}
 
@@ -53,6 +59,15 @@ export class UserComponent implements OnInit {
         this.fileUrlProfile = result;
       })
       .catch(err => console.log(err));
+    await this.api.MyGetApplicant("test").then(data => {
+      console.log(data);
+      this.applicantName = data.lastName + " " + data.firstName;
+      this.applicantId = data.id;
+      this.applicantAbout = data.about;
+      this.applicantEmail = data.email;
+      this.lastName = data.lastName;
+      this.firstName = data.firstName;
+    });
   }
 
   onFileChangedBackground(event) {
@@ -71,7 +86,7 @@ export class UserComponent implements OnInit {
   }
 
   async publish() {
-    const now = Math.floor(new Date().getTime() / 1000);
+    const now = Math.floor(new Date().getTime());
     this.uploadBackgroundImg(this.filename);
     this.uploadProfileImg(this.filename);
     setTimeout("location.reload()", 1000);

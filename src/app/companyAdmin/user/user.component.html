@@ -8,15 +8,11 @@
         <div class="author">
           <a href="#">
             <img class="avatar border-gray" [src]="fileUrlProfile" alt="..." />
-            <h5 class="title">Techforward株式会社</h5>
+            <h5 class="title">{{ companyName }}</h5>
           </a>
-          <p class="description">
-            @techforward
-          </p>
+          <p class="description">@{{ companyId }}</p>
         </div>
-        <p class="description text-center">
-          "ITシステム開発なら御社に！"
-        </p>
+        <p class="description text-center">"{{ companyAbout }}"</p>
       </div>
       <div class="card-footer">
         <hr />
@@ -38,7 +34,8 @@
                   type="text"
                   class="form-control"
                   placeholder="Companyname"
-                  value="eiichisugiyama"
+                  name="companyName"
+                  [(ngModel)]="companyName"
                 />
               </div>
             </div>
@@ -46,7 +43,13 @@
             <div class="col-md-7 pl-1">
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" placeholder="Email" />
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  name="companyEmail"
+                  [(ngModel)]="companyEmail"
+                />
               </div>
             </div>
           </div>
@@ -68,9 +71,11 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>About Me</label>
-                <textarea class="form-control textarea">
-なんでも作るシステム開発会社です</textarea
-                >
+                <textarea
+                  class="form-control textarea"
+                  name="companyAbout"
+                  [(ngModel)]="companyAbout"
+                ></textarea>
               </div>
             </div>
           </div>

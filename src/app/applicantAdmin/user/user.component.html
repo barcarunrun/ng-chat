@@ -8,15 +8,11 @@
         <div class="author">
           <a href="#">
             <img class="avatar border-gray" [src]="fileUrlProfile" alt="..." />
-            <h5 class="title">杉山英一</h5>
+            <h5 class="title">{{ applicantName }}</h5>
           </a>
-          <p class="description">
-            @eiichisugiyama
-          </p>
+          <p class="description">@{{ applicantId }}</p>
         </div>
-        <p class="description text-center">
-          "頑張って働きます！！！"
-        </p>
+        <p class="description text-center">"{{ applicantAbout }}"</p>
         <div style="padding: 10px;">
           <p class="description text-left" style="margin: 0;">
             スキル
@@ -99,34 +95,15 @@
       <div class="card-body">
         <form>
           <div class="row">
-            <div class="col-md-5 pr-1">
-              <div class="form-group">
-                <label>Username</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Username"
-                  value="eiichisugiyama"
-                />
-              </div>
-            </div>
-
-            <div class="col-md-7 pl-1">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" placeholder="Email" />
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>First Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Company"
-                  value="英一"
+                  placeholder="太郎"
+                  name="firstName"
+                  [(ngModel)]="firstName"
                 />
               </div>
             </div>
@@ -136,8 +113,23 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Last Name"
-                  value="杉山"
+                  placeholder="田中"
+                  name="lastName"
+                  [(ngModel)]="lastName"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  name="applicantEmail"
+                  [(ngModel)]="applicantEmail"
                 />
               </div>
             </div>
@@ -160,9 +152,11 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>About Me</label>
-                <textarea class="form-control textarea">
-フルスタックなITエンジニアです。</textarea
-                >
+                <textarea
+                  class="form-control textarea"
+                  name="applicantAbout"
+                  [(ngModel)]="applicantAbout"
+                ></textarea>
               </div>
             </div>
           </div>
@@ -176,7 +170,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color: grey;"
+                      style="background-color: grey;padding: 15px;"
                     >
                       真面目
                     </button>
@@ -185,7 +179,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color: #f6b989;"
+                      style="background-color: #f6b989;padding: 15px;"
                     >
                       気さく
                     </button>
@@ -194,7 +188,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color: #f6b989;"
+                      style="background-color: #f6b989;padding: 15px;"
                     >
                       お調子者
                     </button>
@@ -203,7 +197,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color: grey;"
+                      style="background-color: grey;padding: 15px;"
                     >
                       もの静か
                     </button>
@@ -212,7 +206,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color: #f6b989;"
+                      style="background-color: #f6b989;padding: 15px;"
                     >
                       照れ屋
                     </button>
@@ -221,7 +215,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color: grey;"
+                      style="background-color: grey;padding: 15px;"
                     >
                       おおざっぱ
                     </button>
@@ -240,7 +234,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color:#70d4d7"
+                      style="background-color:#70d4d7;padding: 15px;"
                     >
                       プログラミング
                     </button>
@@ -249,7 +243,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color:grey"
+                      style="background-color:grey;padding: 15px;"
                     >
                       マーケティング
                     </button>
@@ -258,7 +252,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color:grey"
+                      style="background-color:grey;padding: 15px;"
                     >
                       デザイン
                     </button>
@@ -267,7 +261,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color:#70d4d7"
+                      style="background-color:#70d4d7;padding: 15px;"
                     >
                       新規事業
                     </button>
@@ -276,7 +270,7 @@
                     <button
                       type="submit"
                       class="btn  btn-round"
-                      style="background-color:grey"
+                      style="background-color:grey;padding: 15px;"
                     >
                       ライター
                     </button>
@@ -285,7 +279,7 @@
                     <button
                       type="submit"
                       class="btn btn-round"
-                      style="background-color:#70d4d7"
+                      style="background-color:#70d4d7;padding: 15px;"
                     >
                       会計
                     </button>
@@ -294,7 +288,7 @@
                     <button
                       type="submit"
                       class="btn btn-round"
-                      style="background-color:grey"
+                      style="background-color:grey;padding: 15px;"
                     >
                       営業
                     </button>

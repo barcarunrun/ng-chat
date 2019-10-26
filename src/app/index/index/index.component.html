@@ -1,333 +1,111 @@
 <section class="container" style="padding-bottom: 100px;">
-  <div class="columns features">
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/1.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
+  <div *ngFor="let article of articleList; let i = index">
+    <div class="columns features" *ngIf="i % 3 == 0">
+      <div class="column is-4">
+        <div class="card is-shady">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="{{ articleImgList[i] }}"
+                alt="Placeholder image"
+                class="modal-button"
+                data-target="modal-image2"
+              />
+            </figure>
+          </div>
+
+          <div class="card-content">
+            <div class="content">
+              <h4>{{ articleList[i].title }}</h4>
+              <br />
+              <p
+                style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
+              >
+                空間ディレクション・プロデュース
+              </p>
+              <p style="text-align:left; font-size:12px; color:grey;">
+                東京・代々木公園 ｜ 〜 2019.9.25
+              </p>
+              <a (click)="redirect(articleList[i].id)">
+                <span
+                  class="button is-link modal-button"
+                  data-target="modal-image2"
+                  style="background-color:#ee771c;font-size: 14px;"
+                  >詳細を見る</span
+                >
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>“働く・暮らす・遊ぶ”を</h4>
-            <h4>シームレスにつなげ</h4>
-            <h4>自然体で生きる。。</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              空間ディレクション・プロデュース
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              東京・代々木公園 ｜ 〜 2019.9.25
-            </p>
-            <a href="/detail">
+      </div>
+
+      <div class="column is-4">
+        <div class="card is-shady">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="/assets/img/top/4.jpg"
+                alt="Placeholder image"
+                class="modal-button"
+                data-target="modal-image2"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <h4>{{ articleList[i + 1].title }}</h4>
+              <br />
+              <p
+                style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
+              >
+                家具・小物バイヤー、バイヤー助手
+              </p>
+              <p style="text-align:left; font-size:12px; color:grey;">
+                佐賀・鹿島 ｜ 〜 2019.9.23
+              </p>
+
               <span
                 class="button is-link modal-button"
                 data-target="modal-image2"
                 style="background-color:#ee771c;font-size: 14px;"
                 >詳細を見る</span
               >
-            </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/2.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>群馬の山奥、奇跡の宿</h4>
-            <h4>グランピングの次は</h4>
-            <h4>温泉ゲストハウス</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              温泉旅館のサービススタッフ
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              群馬・四万温泉 ｜ 〜 2019.9.23
-            </p>
-
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
+      <div class="column is-4">
+        <div class="card is-shady">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="/assets/img/top/4.jpg"
+                alt="Placeholder image"
+                class="modal-button"
+                data-target="modal-image2"
+              />
+            </figure>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/9.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>まだここにない</h4>
-            <h4>空間のために</h4>
-            <h4>商店建築のいまを切り取る</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              雑誌編集者
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              東京・新宿 ｜ 〜 2019.9.24
-            </p>
+          <div class="card-content">
+            <div class="content">
+              <h4>{{ articleList[i + 2].title }}</h4>
+              <br />
+              <p
+                style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
+              >
+                家具・小物バイヤー、バイヤー助手
+              </p>
+              <p style="text-align:left; font-size:12px; color:grey;">
+                佐賀・鹿島 ｜ 〜 2019.9.23
+              </p>
 
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="columns features">
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/4.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>誠実に、丁寧に</h4>
-            <h4>モノと人の</h4>
-            <h4>来し方行く末</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              家具・小物バイヤー、バイヤー助手
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              佐賀・鹿島 ｜ 〜 2019.9.23
-            </p>
-
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/5.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>いのちのてざわり</h4>
-            <h4>循環が見える</h4>
-            <h4>食べもの</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              ダイニング担当、ベーカリー担当など
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              千葉・木更津 ｜ 〜 2019.9.28
-            </p>
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/6.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>愛する名脇役たち</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              ショップスタッフ、スタジオスタッフ
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              東京・渋谷 ｜ 〜 2019.9.24
-            </p>
-
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="columns features">
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/7.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>「いただきます」の原点から</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              離島で1年間和食を学ぶ研修生
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              島根・海士町 ｜ 〜 2019.9.20
-            </p>
-
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/8.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>新しい一日は</h4>
-            <h4>野菜いっぱいの朝食から</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              調理スタッフ
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              京都・下京区 ｜ 〜 2019.9.24
-            </p>
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="column is-4">
-      <div class="card is-shady">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="/assets/img/top/3.jpg"
-              alt="Placeholder image"
-              class="modal-button"
-              data-target="modal-image2"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <h4>対話と直感</h4>
-            <h4>素直な酒づくり</h4>
-            <br />
-            <p
-              style="text-align:left; font-size:12px; color:grey; margin-bottom:0.5em;"
-            >
-              蔵人
-            </p>
-            <p style="text-align:left; font-size:12px; color:grey;">
-              佐賀・鹿島 ｜ 〜 2019.9.23
-            </p>
-
-            <span
-              class="button is-link modal-button"
-              data-target="modal-image2"
-              style="background-color:#ee771c;font-size: 14px;"
-              >詳細を見る</span
-            >
+              <span
+                class="button is-link modal-button"
+                data-target="modal-image2"
+                style="background-color:#ee771c;font-size: 14px;"
+                >詳細を見る</span
+              >
+            </div>
           </div>
         </div>
       </div>

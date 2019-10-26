@@ -1,41 +1,88 @@
-import { Component, OnInit } from '@angular/core';
+import { ArticleStatus, UpdateArticleInput } from "../../API.service";
+import { Component, OnInit, QueryList } from "@angular/core";
+import Amplify, { Auth, Hub, graphqlOperation, Storage } from "aws-amplify";
+import { MyAPIService } from "../../API.my";
 
 declare interface TableData {
-    headerRow: string[];
-    dataRows: string[][];
+  headerRow: string[];
+  dataRows: string[][];
 }
 
 @Component({
-    selector: 'table-cmp',
-    moduleId: module.id,
-    templateUrl: 'table.component.html'
+  selector: "table-cmp",
+  moduleId: module.id,
+  templateUrl: "table.component.html"
 })
+export class TableComponent implements OnInit {
+  articleList: Array<any>;
+  user: any;
+  articleStatus = open;
+  constructor(private api: MyAPIService) {}
+  async ngOnInit() {
+    const cognitUser = await Auth.currentAuthenticatedUser();
+    const loginedUser = await this.api.GetUser(cognitUser.username);
+    this.user = loginedUser;
+    //articleListにデータを突っ込む
+    this.api.ListArticles().then(data => {
+      this.articleList = data.items;
+    });
+  }
 
-export class TableComponent implements OnInit{
-    public tableData1: TableData;
-    public tableData2: TableData;
-    ngOnInit(){
-        this.tableData1 = {
-            headerRow: [ 'ID', 'Name', 'Country', 'City', 'Salary'],
-            dataRows: [
-                ['1', 'Dakota Rice', 'Niger', 'Oud-Turnhout', '$36,738'],
-                ['2', 'Minerva Hooper', 'Curaçao', 'Sinaai-Waas', '$23,789'],
-                ['3', 'Sage Rodriguez', 'Netherlands', 'Baileux', '$56,142'],
-                ['4', 'Philip Chaney', 'Korea, South', 'Overland Park', '$38,735'],
-                ['5', 'Doris Greene', 'Malawi', 'Feldkirchen in Kärnten', '$63,542'],
-                ['6', 'Mason Porter', 'Chile', 'Gloucester', '$78,615']
-            ]
+  unixTime2ymd(intTime) {
+    var d = new Date(intTime);
+    var year = d.getFullYear();
+    var d = new Date(intTime);
+    var y = new Date(intTime * 1000);
+    var year = d.getFullYear();
+    var month = d.getMonth() + 1;
+    var day = d.getDate();
+
+    return year + "-" + month + "-" + day;
+  }
+
+  redirect(id) {
+    location.href = "/companyAdmin/edit?id=" + id;
+  }
+
+  async change(id) {
+    var tmp;
+    const now = Math.floor(new Date().getTime());
+    this.api.GetArticle(id).then(data => {
+      tmp = data.isOpen;
+      console.log("qqqqqq" + tmp);
+      const article: UpdateArticleInput = {
+        id: id,
+        isOpen: ArticleStatus.close,
+        updatedAt: now
+      };
+      console.log("qqqqqqaaaaa" + tmp);
+      if (tmp == "open") {
+        console.log("12345");
+        const article: UpdateArticleInput = {
+          id: id,
+          isOpen: ArticleStatus.close,
+          updatedAt: now
         };
-        this.tableData2 = {
-            headerRow: [ 'ID', 'Name',  'Salary', 'Country', 'City' ],
-            dataRows: [
-                ['1', 'Dakota Rice','$36,738', 'Niger', 'Oud-Turnhout' ],
-                ['2', 'Minerva Hooper', '$23,789', 'Curaçao', 'Sinaai-Waas'],
-                ['3', 'Sage Rodriguez', '$56,142', 'Netherlands', 'Baileux' ],
-                ['4', 'Philip Chaney', '$38,735', 'Korea, South', 'Overland Park' ],
-                ['5', 'Doris Greene', '$63,542', 'Malawi', 'Feldkirchen in Kärnten', ],
-                ['6', 'Mason Porter', '$78,615', 'Chile', 'Gloucester' ]
-            ]
+        this.api.UpdateArticle(article).then(data => {
+          this.api.ListArticles().then(data => {
+            this.articleList = data.items;
+          });
+        });
+      } else {
+        console.log("123456789");
+        const article: UpdateArticleInput = {
+          id: id,
+          isOpen: ArticleStatus.open,
+          updatedAt: now
         };
-    }
+        this.api.UpdateArticle(article).then(data => {
+          this.api.ListArticles().then(data => {
+            this.articleList = data.items;
+          });
+        });
+      }
+
+      setTimeout("location.reload()", 1000);
+    });
+  }
 }

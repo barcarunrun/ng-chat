@@ -1,18 +1,17 @@
-import {Component, OnInit} from "@angular/core";
-import {AngularEditorConfig} from "@kolkov/angular-editor";
+import { Component, OnInit } from "@angular/core";
+import { AngularEditorConfig } from "@kolkov/angular-editor";
 
-import {CreateArticleInput, ArticleStatus} from "../../API.service";
-import API, {graphqlOperation} from "@aws-amplify/api";
+import { CreateArticleInput, ArticleStatus } from "../../API.service";
+import API, { graphqlOperation } from "@aws-amplify/api";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
-import {Auth, Storage} from "aws-amplify";
+import { Auth, Storage } from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import {MyAPIService} from "../../API.my";
-import {ulid} from "ulid";
-import {unescapeIdentifier} from "@angular/compiler";
-import {stringify} from "querystring";
+import { MyAPIService } from "../../API.my";
+import { ulid } from "ulid";
 
 @Component({
   selector: "table-cmp",
@@ -22,17 +21,15 @@ import {stringify} from "querystring";
 })
 export class EditComponent implements OnInit {
   user: any;
-  constructor(private api: MyAPIService) {}
-  public tableData1: TableData;
-  public tableData2: TableData;
-
+  constructor(private api: MyAPIService, private route: ActivatedRoute) {}
   selectedFile: File;
 
-  name = "Angular 6";
   htmlContent = "";
   title = "";
   temId = "";
   articleStatus = open;
+  reader = new FileReader();
+  fileUrl: Object | String;
 
   config: AngularEditorConfig = {
     editable: true,
@@ -73,9 +70,20 @@ export class EditComponent implements OnInit {
     const cognitUser = await Auth.currentAuthenticatedUser();
     const loginedUser = await this.api.GetUser(cognitUser.username);
     this.user = loginedUser;
+    let param1 = this.route.snapshot.queryParams["id"];
+
+    //Getのパラメータをkeyにarticleを取得
+    await this.api.GetArticle(param1).then(data => {
+      this.title = data.title;
+      this.htmlContent = data.content;
+      Storage.get("article/" + data.id + ".png")
+        .then(result => {
+          console.log(result);
+          this.fileUrl = result;
+        })
+        .catch(err => console.log("1234"));
+    });
   }
-  reader = new FileReader();
-  fileUrl: string | ArrayBuffer;
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
@@ -85,12 +93,9 @@ export class EditComponent implements OnInit {
     this.reader.readAsDataURL(this.selectedFile);
   }
   async publish() {
-    const now = Math.floor(new Date().getTime() / 1000);
+    const now = Math.floor(new Date().getTime());
     var tempId = ulid();
-    console.log(tempId);
     var filename = tempId + ".png";
-    console.log(tempId + "test");
-    console.log(tempId + "12345");
     this.uploadImg(tempId);
     const article: CreateArticleInput = {
       id: tempId,
@@ -100,11 +105,11 @@ export class EditComponent implements OnInit {
       isOpen: ArticleStatus.open,
       articleCompanyId: "bbbb",
       articleAreaId: "aaaa",
-
       createdAt: now,
       updatedAt: now
     };
     const sent = await this.api.CreateArticle(article);
+    setTimeout("location.reload()", 1000);
   }
 
   async uploadImg(id) {

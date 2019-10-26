@@ -1,7 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularEditorConfig } from "@kolkov/angular-editor";
 
-import { CreateArticleInput, ArticleStatus } from "../../API.service";
+import {
+  UpdateCompanyInput,
+  ArticleStatus,
+  ModelCompanyFilterInput
+} from "../../API.service";
 import API, { graphqlOperation } from "@aws-amplify/api";
 
 import { Auth, Storage } from "aws-amplify";
@@ -31,6 +35,10 @@ export class CompanyComponent implements OnInit {
   fileUrlProfileTmp = "";
   selectedFileBackground: File;
   selectedFileProfile: File;
+  companyName: any;
+  companyId: any;
+  companyAbout: any;
+  companyEmail: any;
 
   constructor(private api: MyAPIService) {}
 
@@ -53,6 +61,17 @@ export class CompanyComponent implements OnInit {
         this.fileUrlProfile = result;
       })
       .catch(err => console.log(err));
+    //idをキーに企業情報を取得
+    //const company: ModelCompanyFilterInput = {};
+    await this.api.ListCompanys().then(data => {
+      console.log(data);
+    });
+    await this.api.GetCompany("bbbb").then(data => {
+      this.companyName = data.name;
+      this.companyId = data.id;
+      this.companyAbout = data.about;
+      this.companyEmail = data.email;
+    });
   }
 
   onFileChangedBackground(event) {
@@ -71,9 +90,18 @@ export class CompanyComponent implements OnInit {
   }
 
   async publish() {
-    const now = Math.floor(new Date().getTime() / 1000);
+    const now = Math.floor(new Date().getTime());
     this.uploadBackgroundImg(this.filename);
     this.uploadProfileImg(this.filename);
+    const company: UpdateCompanyInput = {
+      id: "bbbb",
+      name: this.companyName,
+      email: this.companyEmail,
+      about: this.companyAbout,
+      updatedAt: now
+    };
+
+    this.api.UpdateCompany(company).then(data => {});
     setTimeout("location.reload()", 1000);
   }
   async uploadBackgroundImg(id) {
