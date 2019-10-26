@@ -44,6 +44,7 @@ export class AuthService {
                 id: data.payload.data.username,
                 username: data.payload.data.username,
                 displayName: data.payload.data.username,
+                user_role: data.payload.data.attributes["custom:user_role"],
                 logo: "logo_url",
                 createdAt: 1,
                 updatedAt: 2
