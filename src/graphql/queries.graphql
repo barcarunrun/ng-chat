@@ -24,6 +24,7 @@ query GetCompany($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -84,6 +85,7 @@ query ListCompanys(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -253,6 +255,7 @@ query GetArticle($id: ID!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -346,6 +349,7 @@ query GetComment($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -415,6 +419,7 @@ query ListComments(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -536,6 +541,7 @@ query GetApplicantCharacter($id: ID!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -615,6 +621,7 @@ query GetApplicantSkill($id: ID!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -761,6 +768,7 @@ query GetUser($id: ID!) {
     username
     displayName
     logo
+    user_role
     invitedRooms {
       items {
         id
@@ -814,6 +822,7 @@ query ListUsers(
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -837,6 +846,7 @@ query GetApplicant($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -901,6 +911,7 @@ query ListApplicants(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -942,6 +953,7 @@ query GetInvitedRoom($id: ID!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -962,6 +974,7 @@ query GetInvitedRoom($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -980,6 +993,7 @@ query GetInvitedRoom($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1026,6 +1040,7 @@ query ListInvitedRooms(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1035,6 +1050,7 @@ query ListInvitedRooms(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1056,6 +1072,7 @@ query GetRoom($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1127,6 +1144,7 @@ query ListRooms(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1157,6 +1175,7 @@ query GetMessage($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1179,6 +1198,7 @@ query GetMessage($id: ID!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1215,6 +1235,7 @@ query ListMessages(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1245,6 +1266,7 @@ query GetRoomUser($id: ID!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1265,6 +1287,7 @@ query GetRoomUser($id: ID!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1311,6 +1334,7 @@ query ListRoomUsers(
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }

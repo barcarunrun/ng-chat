@@ -24,6 +24,7 @@ mutation CreateCompany($input: CreateCompanyInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -77,6 +78,7 @@ mutation UpdateCompany($input: UpdateCompanyInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -130,6 +132,7 @@ mutation DeleteCompany($input: DeleteCompanyInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -378,6 +381,7 @@ mutation CreateArticle($input: CreateArticleInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -445,6 +449,7 @@ mutation UpdateArticle($input: UpdateArticleInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -512,6 +517,7 @@ mutation DeleteArticle($input: DeleteArticleInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -557,6 +563,7 @@ mutation CreateComment($input: CreateCommentInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -613,6 +620,7 @@ mutation UpdateComment($input: UpdateCommentInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -669,6 +677,7 @@ mutation DeleteComment($input: DeleteCommentInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -831,6 +840,7 @@ mutation CreateApplicantCharacter($input: CreateApplicantCharacterInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -879,6 +889,7 @@ mutation UpdateApplicantCharacter($input: UpdateApplicantCharacterInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -927,6 +938,7 @@ mutation DeleteApplicantCharacter($input: DeleteApplicantCharacterInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -966,6 +978,7 @@ mutation CreateApplicantSkill($input: CreateApplicantSkillInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1014,6 +1027,7 @@ mutation UpdateApplicantSkill($input: UpdateApplicantSkillInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1062,6 +1076,7 @@ mutation DeleteApplicantSkill($input: DeleteApplicantSkillInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1205,6 +1220,7 @@ mutation CreateUser($input: CreateUserInput!) {
     username
     displayName
     logo
+    user_role
     invitedRooms {
       items {
         id
@@ -1245,6 +1261,7 @@ mutation UpdateUser($input: UpdateUserInput!) {
     username
     displayName
     logo
+    user_role
     invitedRooms {
       items {
         id
@@ -1285,6 +1302,7 @@ mutation DeleteUser($input: DeleteUserInput!) {
     username
     displayName
     logo
+    user_role
     invitedRooms {
       items {
         id
@@ -1327,6 +1345,7 @@ mutation CreateApplicant($input: CreateApplicantInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1386,6 +1405,7 @@ mutation UpdateApplicant($input: UpdateApplicantInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1445,6 +1465,7 @@ mutation DeleteApplicant($input: DeleteApplicantInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1509,6 +1530,7 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1529,6 +1551,7 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1547,6 +1570,7 @@ mutation CreateInvitedRoom($input: CreateInvitedRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1577,6 +1601,7 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1597,6 +1622,7 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1615,6 +1641,7 @@ mutation UpdateInvitedRoom($input: UpdateInvitedRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1645,6 +1672,7 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1665,6 +1693,7 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1683,6 +1712,7 @@ mutation DeleteInvitedRoom($input: DeleteInvitedRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1711,6 +1741,7 @@ mutation CreateRoom($input: CreateRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1769,6 +1800,7 @@ mutation UpdateRoom($input: UpdateRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1827,6 +1859,7 @@ mutation DeleteRoom($input: DeleteRoomInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1886,6 +1919,7 @@ mutation CreateMessage($input: CreateMessageInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1908,6 +1942,7 @@ mutation CreateMessage($input: CreateMessageInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1939,6 +1974,7 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -1961,6 +1997,7 @@ mutation UpdateMessage($input: UpdateMessageInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -1992,6 +2029,7 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -2014,6 +2052,7 @@ mutation DeleteMessage($input: DeleteMessageInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -2046,6 +2085,7 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -2066,6 +2106,7 @@ mutation CreateRoomUser($input: CreateRoomUserInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -2096,6 +2137,7 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -2116,6 +2158,7 @@ mutation UpdateRoomUser($input: UpdateRoomUserInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
@@ -2146,6 +2189,7 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
         username
         displayName
         logo
+        user_role
         createdAt
         updatedAt
       }
@@ -2166,6 +2210,7 @@ mutation DeleteRoomUser($input: DeleteRoomUserInput!) {
       username
       displayName
       logo
+      user_role
       invitedRooms {
         nextToken
       }
