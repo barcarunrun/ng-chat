@@ -44,6 +44,7 @@ export class AuthService {
                 id: data.payload.data.username,
                 username: data.payload.data.username,
                 displayName: data.payload.data.username,
+                user_role: data.payload.data.attributes["custom:user_role"],
                 logo: "logo_url",
                 createdAt: 1,
                 updatedAt: 2
@@ -66,11 +67,11 @@ export class AuthService {
         case "signIn_failure":
           console.log("the user failed to sign in");
           console.log("the error is", data.payload.data);
-          this.router.navigate(["/login"]);
+          this.router.navigate(["/auth"]);
           break;
         default:
           console.log("default");
-          this.router.navigate(["/login"]);
+          this.router.navigate(["/auth"]);
           this.roomService.delRooms();
           break;
       }

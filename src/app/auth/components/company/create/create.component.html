@@ -1,0 +1,59 @@
+<p>企業ユーザー登録</p>
+
+<div class="field">
+  <label class="label">ユーザー名</label>
+  <div class="control has-icons-left has-icons-right">
+    <input class="input is-success" type="text" [(ngModel)]="username">
+    <span class="icon is-small is-left">
+      <i class="nc-icon nc-single-02" style="font-size: 12px;"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="nc-icon nc-check-2" style="font-size: 12px;"></i>
+    </span>
+  </div>
+  <p class="help is-success">This username is available</p>
+</div>
+
+<div class="field">
+  <label class="label">メールアドレス</label>
+  <div class="control has-icons-left has-icons-right">
+    <input class="input is-danger" type="email" [(ngModel)]="email">
+    <span class="icon is-small is-left">
+      <i class="nc-icon nc-email-85" style="font-size: 12px;"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-exclamation-triangle"></i>
+    </span>
+  </div>
+  <p class="help is-danger">正しいメールアドレスではありません。</p>
+</div>
+
+<div class="field">
+  <label class="label">パスワード</label>
+  <div class="control has-icons-left has-icons-right">
+    <input class="input is-success" type="text" [(ngModel)]="password">
+    <span class="icon is-small is-right">
+      <i class="nc-icon nc-check-2" style="font-size: 12px;"></i>
+    </span>
+  </div>
+  <p class="help is-success">よさそう</p>
+</div>
+
+<div class="field">
+  <div class="control">
+    <label class="checkbox">
+      <input type="checkbox">
+      <a href="#">利用規約</a>に同意します。
+    </label>
+  </div>
+</div>
+
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link" (click)="create()">アカウントを作成</button>
+  </div>
+  <div class="control">
+    <button class="button is-danger is-inverted">やめる</button>
+  </div>
+</div>

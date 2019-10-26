@@ -1,0 +1,11 @@
+.auth-layout {
+  padding: 2rem 5rem;
+  min-height: 75vh;
+  padding: 0 40vw;
+}
+
+@media screen and (max-width: 768px) {
+  .auth-layout {
+    padding: 0 10vw;
+  }
+}

@@ -179,6 +179,7 @@ type User
   username: String!
   displayName: String!
   logo: String!
+  user_role: String!
 
   invitedRooms: [InvitedRoom!]!
     @connection(name: "InvitedRooms", sortField: "createdAt")

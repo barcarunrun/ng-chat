@@ -227,6 +227,7 @@ export type CreateUserInput = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   createdAt: number;
   updatedAt: number;
 };
@@ -242,6 +243,7 @@ export type UpdateUserInput = {
   username?: string | null;
   displayName?: string | null;
   logo?: string | null;
+  user_role?: string | null;
   createdAt?: number | null;
   updatedAt?: number | null;
 };
@@ -541,6 +543,7 @@ export type ModelUserFilterInput = {
   username?: ModelStringFilterInput | null;
   displayName?: ModelStringFilterInput | null;
   logo?: ModelStringFilterInput | null;
+  user_role?: ModelStringFilterInput | null;
   createdAt?: ModelIntFilterInput | null;
   updatedAt?: ModelIntFilterInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
@@ -644,6 +647,7 @@ export type CreateCompanyMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -706,6 +710,7 @@ export type UpdateCompanyMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -768,6 +773,7 @@ export type DeleteCompanyMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -1053,6 +1059,7 @@ export type CreateArticleMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1131,6 +1138,7 @@ export type UpdateArticleMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1209,6 +1217,7 @@ export type DeleteArticleMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1261,6 +1270,7 @@ export type CreateCommentMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -1326,6 +1336,7 @@ export type UpdateCommentMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -1391,6 +1402,7 @@ export type DeleteCommentMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -1577,6 +1589,7 @@ export type CreateApplicantCharacterMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1632,6 +1645,7 @@ export type UpdateApplicantCharacterMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1687,6 +1701,7 @@ export type DeleteApplicantCharacterMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1731,6 +1746,7 @@ export type CreateApplicantSkillMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1786,6 +1802,7 @@ export type UpdateApplicantSkillMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -1841,6 +1858,7 @@ export type DeleteApplicantSkillMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -2001,6 +2019,7 @@ export type CreateUserMutation = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
     items: Array<{
@@ -2047,6 +2066,7 @@ export type UpdateUserMutation = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
     items: Array<{
@@ -2093,6 +2113,7 @@ export type DeleteUserMutation = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
     items: Array<{
@@ -2142,6 +2163,7 @@ export type CreateApplicantMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2212,6 +2234,7 @@ export type UpdateApplicantMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2282,6 +2305,7 @@ export type DeleteApplicantMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2358,6 +2382,7 @@ export type CreateInvitedRoomMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -2382,6 +2407,7 @@ export type CreateInvitedRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2404,6 +2430,7 @@ export type CreateInvitedRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2439,6 +2466,7 @@ export type UpdateInvitedRoomMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -2463,6 +2491,7 @@ export type UpdateInvitedRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2485,6 +2514,7 @@ export type UpdateInvitedRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2520,6 +2550,7 @@ export type DeleteInvitedRoomMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -2544,6 +2575,7 @@ export type DeleteInvitedRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2566,6 +2598,7 @@ export type DeleteInvitedRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2598,6 +2631,7 @@ export type CreateRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2666,6 +2700,7 @@ export type UpdateRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2734,6 +2769,7 @@ export type DeleteRoomMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2803,6 +2839,7 @@ export type CreateMessageMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2830,6 +2867,7 @@ export type CreateMessageMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -2865,6 +2903,7 @@ export type UpdateMessageMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2892,6 +2931,7 @@ export type UpdateMessageMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -2927,6 +2967,7 @@ export type DeleteMessageMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -2954,6 +2995,7 @@ export type DeleteMessageMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -2991,6 +3033,7 @@ export type CreateRoomUserMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3015,6 +3058,7 @@ export type CreateRoomUserMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -3050,6 +3094,7 @@ export type UpdateRoomUserMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3074,6 +3119,7 @@ export type UpdateRoomUserMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -3109,6 +3155,7 @@ export type DeleteRoomUserMutation = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3133,6 +3180,7 @@ export type DeleteRoomUserMutation = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -3182,6 +3230,7 @@ export type GetCompanyQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -3238,6 +3287,7 @@ export type ListCompanysQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3403,6 +3453,7 @@ export type GetArticleQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3496,6 +3547,7 @@ export type GetCommentQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -3563,6 +3615,7 @@ export type ListCommentsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3673,6 +3726,7 @@ export type GetApplicantCharacterQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3748,6 +3802,7 @@ export type GetApplicantSkillQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -3885,6 +3940,7 @@ export type GetUserQuery = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
     items: Array<{
@@ -3933,6 +3989,7 @@ export type ListUsersQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -3960,6 +4017,7 @@ export type GetApplicantQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4032,6 +4090,7 @@ export type ListApplicantsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4078,6 +4137,7 @@ export type GetInvitedRoomQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4102,6 +4162,7 @@ export type GetInvitedRoomQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4124,6 +4185,7 @@ export type GetInvitedRoomQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4164,6 +4226,7 @@ export type ListInvitedRoomsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4174,6 +4237,7 @@ export type ListInvitedRoomsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4196,6 +4260,7 @@ export type GetRoomQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4266,6 +4331,7 @@ export type ListRoomsQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4300,6 +4366,7 @@ export type GetMessageQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4327,6 +4394,7 @@ export type GetMessageQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4364,6 +4432,7 @@ export type ListMessagesQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4397,6 +4466,7 @@ export type GetRoomUserQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4421,6 +4491,7 @@ export type GetRoomUserQuery = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4461,6 +4532,7 @@ export type ListRoomUsersQuery = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4484,6 +4556,7 @@ export type OnCreateMessageSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4511,6 +4584,7 @@ export type OnCreateMessageSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4548,6 +4622,7 @@ export type OnCreateInvitedRoomSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4572,6 +4647,7 @@ export type OnCreateInvitedRoomSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4594,6 +4670,7 @@ export type OnCreateInvitedRoomSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4629,6 +4706,7 @@ export type OnCreateRoomUserSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -4653,6 +4731,7 @@ export type OnCreateRoomUserSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4702,6 +4781,7 @@ export type OnCreateCompanySubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4764,6 +4844,7 @@ export type OnUpdateCompanySubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -4826,6 +4907,7 @@ export type OnDeleteCompanySubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -5111,6 +5193,7 @@ export type OnCreateArticleSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5189,6 +5272,7 @@ export type OnUpdateArticleSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5267,6 +5351,7 @@ export type OnDeleteArticleSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5319,6 +5404,7 @@ export type OnCreateCommentSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -5384,6 +5470,7 @@ export type OnUpdateCommentSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -5449,6 +5536,7 @@ export type OnDeleteCommentSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -5635,6 +5723,7 @@ export type OnCreateApplicantCharacterSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5690,6 +5779,7 @@ export type OnUpdateApplicantCharacterSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5745,6 +5835,7 @@ export type OnDeleteApplicantCharacterSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5789,6 +5880,7 @@ export type OnCreateApplicantSkillSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5844,6 +5936,7 @@ export type OnUpdateApplicantSkillSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -5899,6 +5992,7 @@ export type OnDeleteApplicantSkillSubscription = {
       username: string;
       displayName: string;
       logo: string;
+      user_role: string;
       createdAt: number;
       updatedAt: number;
     };
@@ -6059,6 +6153,7 @@ export type OnCreateUserSubscription = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
     items: Array<{
@@ -6105,6 +6200,7 @@ export type OnUpdateUserSubscription = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
     items: Array<{
@@ -6151,6 +6247,7 @@ export type OnDeleteUserSubscription = {
   username: string;
   displayName: string;
   logo: string;
+  user_role: string;
   invitedRooms: {
     __typename: "ModelInvitedRoomConnection";
     items: Array<{
@@ -6200,6 +6297,7 @@ export type OnCreateApplicantSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -6270,6 +6368,7 @@ export type OnUpdateApplicantSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -6340,6 +6439,7 @@ export type OnDeleteApplicantSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -6413,6 +6513,7 @@ export type OnCreateRoomSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -6481,6 +6582,7 @@ export type OnUpdateRoomSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -6549,6 +6651,7 @@ export type OnDeleteRoomSubscription = {
     username: string;
     displayName: string;
     logo: string;
+    user_role: string;
     invitedRooms: {
       __typename: "ModelInvitedRoomConnection";
       nextToken: string | null;
@@ -6642,6 +6745,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -6716,6 +6820,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -6790,6 +6895,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -7159,6 +7265,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -7249,6 +7356,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -7339,6 +7447,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -7403,6 +7512,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -7480,6 +7590,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -7557,6 +7668,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -7821,6 +7933,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -7890,6 +8003,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -7959,6 +8073,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -8017,6 +8132,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -8084,6 +8200,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -8151,6 +8268,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -8351,6 +8469,7 @@ export class APIService {
           username
           displayName
           logo
+          user_role
           invitedRooms {
             __typename
             items {
@@ -8407,6 +8526,7 @@ export class APIService {
           username
           displayName
           logo
+          user_role
           invitedRooms {
             __typename
             items {
@@ -8463,6 +8583,7 @@ export class APIService {
           username
           displayName
           logo
+          user_role
           invitedRooms {
             __typename
             items {
@@ -8524,6 +8645,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -8606,6 +8728,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -8688,6 +8811,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -8776,6 +8900,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -8800,6 +8925,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -8822,6 +8948,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -8869,6 +8996,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -8893,6 +9021,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -8915,6 +9044,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -8962,6 +9092,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -8986,6 +9117,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9008,6 +9140,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9050,6 +9183,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9128,6 +9262,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9206,6 +9341,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9287,6 +9423,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9314,6 +9451,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -9361,6 +9499,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9388,6 +9527,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -9435,6 +9575,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9462,6 +9603,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -9511,6 +9653,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -9535,6 +9678,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9582,6 +9726,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -9606,6 +9751,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9653,6 +9799,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -9677,6 +9824,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9736,6 +9884,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -9808,6 +9957,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -10074,6 +10224,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -10206,6 +10357,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -10289,6 +10441,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -10500,6 +10653,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -10614,6 +10768,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -10829,6 +10984,7 @@ export class APIService {
           username
           displayName
           logo
+          user_role
           invitedRooms {
             __typename
             items {
@@ -10893,6 +11049,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -10943,6 +11100,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11029,6 +11187,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11092,6 +11251,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11116,6 +11276,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11138,6 +11299,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11194,6 +11356,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11204,6 +11367,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11249,6 +11413,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11335,6 +11500,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11392,6 +11558,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11419,6 +11586,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11470,6 +11638,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11520,6 +11689,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11544,6 +11714,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11600,6 +11771,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11649,6 +11821,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11676,6 +11849,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11721,6 +11895,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11745,6 +11920,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11767,6 +11943,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11810,6 +11987,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -11834,6 +12012,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11891,6 +12070,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -11961,6 +12141,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -12031,6 +12212,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -12372,6 +12554,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -12458,6 +12641,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -12544,6 +12728,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -12604,6 +12789,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -12677,6 +12863,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -12750,6 +12937,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -12986,6 +13174,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -13049,6 +13238,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -13112,6 +13302,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -13164,6 +13355,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -13227,6 +13419,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -13290,6 +13483,7 @@ export class APIService {
               username
               displayName
               logo
+              user_role
               createdAt
               updatedAt
             }
@@ -13474,6 +13668,7 @@ export class APIService {
           username
           displayName
           logo
+          user_role
           invitedRooms {
             __typename
             items {
@@ -13526,6 +13721,7 @@ export class APIService {
           username
           displayName
           logo
+          user_role
           invitedRooms {
             __typename
             items {
@@ -13578,6 +13774,7 @@ export class APIService {
           username
           displayName
           logo
+          user_role
           invitedRooms {
             __typename
             items {
@@ -13635,6 +13832,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -13713,6 +13911,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -13791,6 +13990,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -13870,6 +14070,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -13944,6 +14145,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
@@ -14018,6 +14220,7 @@ export class APIService {
             username
             displayName
             logo
+            user_role
             invitedRooms {
               __typename
               nextToken
