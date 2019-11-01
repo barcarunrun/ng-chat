@@ -1,17 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { AngularEditorConfig } from "@kolkov/angular-editor";
+import {Component, OnInit} from "@angular/core";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
-import { CreateCommentInput, ArticleStatus } from "../../API.service";
-import API, { graphqlOperation } from "@aws-amplify/api";
-import { Router, ActivatedRoute, Params } from "@angular/router";
+import {CreateCommentInput, ArticleStatus} from "../../API.service";
+import API, {graphqlOperation} from "@aws-amplify/api";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 
-import { Auth, Storage } from "aws-amplify";
+import {Auth, Storage} from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import { MyAPIService } from "../../API.my";
-import { ulid } from "ulid";
+import {MyAPIService} from "../../API.my";
+import { CreateInvitedRoomInput, invitedStatus } from "../../API.service";
+import {ulid} from "ulid";
 
 @Component({
   selector: "detail-cmp",
@@ -19,7 +20,7 @@ import { ulid } from "ulid";
   templateUrl: "detail.component.html"
 })
 export class DetailComponent implements OnInit {
-  constructor(private api: MyAPIService, private route: ActivatedRoute) {}
+  constructor(private router: Router, private api: MyAPIService, private route: ActivatedRoute) {}
   user: any;
   htmlContent = "";
   title = "";
@@ -70,5 +71,44 @@ export class DetailComponent implements OnInit {
     };
     console.log(commentInput);
     const sent = await this.api.CreateComment(commentInput).then();
+  }
+
+  async newRoom() {
+    // 応募&問い合わせする
+    const now = Math.floor(new Date().getTime() / 1000);
+    const cognitUser = await Auth.currentAuthenticatedUser();
+    const loginedUser = await this.api.GetUser(cognitUser.username);
+
+    const newRoomInput = {
+      id: ulid(),
+      name: cognitUser.username,
+      owner: cognitUser.username,
+      roomUserId: loginedUser.id,
+      image: "https://loremflickr.com/320/240?random=" + now,
+      createdAt: now,
+      updatedAt: now
+    };
+    const newRoom = await this.api.CreateRoom(newRoomInput);
+
+    const input: CreateInvitedRoomInput = {
+      id: ulid(),
+      invitedRoomRoomId: newRoom.id,
+      invitedRoomToUserId: 'company_user',
+      toUsername: 'company_user',
+      invitedRoomFromUserId: cognitUser.username,
+      status: invitedStatus.hold,
+      createdAt: now,
+      updatedAt: now
+    };
+    this.api.CreateInvitedRoom(input);
+
+    this.api.CreateRoomUser({
+      id: ulid(),
+      username: loginedUser.username,
+      roomUserRoomId: newRoom.id,
+      roomUserUserId: loginedUser.id,
+      createdAt: now,
+      updatedAt: now
+    }).then(() => this.router.navigate(["/messenger/rooms/" + newRoom.id ]))
   }
 }
