@@ -33,11 +33,11 @@
             Log in
           </a>
         </div>
-        <a class="navbar-item" routerLink="/applicantAdmin/profile">
-          マイページ
-        </a>
         <div class="greeting" [class.not-show]="isLogin">
-          <amplify-auth-greetings></amplify-auth-greetings>
+          <!-- <amplify-auth-greetings></amplify-auth-greetings> -->
+          <a class="navbar-item" routerLink="/applicantAdmin/profile">
+            マイページ
+          </a>
         </div>
       </div>
     </div>
