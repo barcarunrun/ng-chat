@@ -1,1 +1,70 @@
-<p>user-modal works!</p>
+<img class="is-rounded" [src]="src" (click)="toggleModal()">
+<div class="modal" [class.is-active]="isOpen">
+  <div class="modal-background" (click)="toggleModal()"></div>
+  <div class="modal-card">
+    <section class="modal-card-body">
+      <div class="card card-user">
+        <div class="image">
+          <img [src]="fileUrlBackground" alt="..." />
+        </div>
+        <div class="card-body">
+          <div class="author">
+            <a href="#">
+              <img class="avatar border-gray" [src]="fileUrlProfile" alt="..." />
+              <h5 class="title">{{ applicantName }}</h5>
+            </a>
+            <p class="description">@{{ applicantId }}</p>
+          </div>
+          <p class="description text-center">"{{ applicantAbout }}"</p>
+          <div style="padding: 10px;">
+            <p class="description text-left" style="margin: 0;">
+              スキル
+            </p>
+            <div class="d-flex">
+              <div>
+                <button type="submit" class="btn  btn-round" style="background-color:#70d4d7">
+                  プログラミング
+                </button>
+              </div>
+              <div>
+                <button type="submit" class="btn  btn-round" style="background-color:#70d4d7">
+                  新規事業
+                </button>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-round" style="background-color:#70d4d7">
+                  会計
+                </button>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 10px;">
+            <p class="description text-left" style="margin: 0;">
+              性格
+            </p>
+            <div class="d-flex">
+              <div>
+                <button type="submit" class="btn  btn-round" style="background-color: #f6b989;">
+                  照れ屋
+                </button>
+              </div>
+              <div>
+                <button type="submit" class="btn  btn-round" style="background-color: #f6b989;">
+                  気さく
+                </button>
+              </div>
+              <div>
+                <button type="submit" class="btn  btn-round" style="background-color: #f6b989;">
+                  お調子者
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <hr />
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
