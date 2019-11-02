@@ -18,7 +18,10 @@ enum invitedStatus {
   canceled
 }
 
-type Company @model @key(fields: ["id"]) {
+type Company
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   # stores: [Store]!  # ont to many
   #   @connection(
@@ -44,7 +47,10 @@ type Company @model @key(fields: ["id"]) {
   updatedAt: AWSTimestamp!
 }
 
-type ArticleTag @model @key(fields: ["id"]) {
+type ArticleTag
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   article: Article! @connection(name: "ArticleTags")
   articleTagMaster: ArticleTagMaster! @connection(name: "TagArticles")
@@ -56,7 +62,8 @@ type ArticleTag @model @key(fields: ["id"]) {
 type ArticleTagMaster
   @model
   @key(fields: ["id"])
-  @key(name: "Bycontent", fields: ["content"]) {
+  @key(name: "Bycontent", fields: ["content"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   content: String!
   articles: [ArticleTag]! @connection(name: "TagArticles")
@@ -65,7 +72,10 @@ type ArticleTagMaster
   updatedAt: AWSTimestamp!
 }
 
-type Article @model @key(fields: ["id"]) {
+type Article
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   title: String!
   tags: [ArticleTag]! @connection(name: "ArticleTags")
@@ -85,7 +95,10 @@ enum ArticleStatus {
   close
 }
 
-type Comment @model @key(fields: ["id"]) {
+type Comment
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   content: String
   user: User! @connection
@@ -100,7 +113,8 @@ type Comment @model @key(fields: ["id"]) {
 type WorkType
   @model
   @key(fields: ["id"])
-  @key(name: "Bycontent", fields: ["content"]) {
+  @key(name: "Bycontent", fields: ["content"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   content: String!
   companies: [CompanyWorkType]! @connection(name: "WorkTypeCompanies")
@@ -112,7 +126,8 @@ type WorkType
 type StyleType
   @model
   @key(fields: ["id"])
-  @key(name: "Bycontent", fields: ["content"]) {
+  @key(name: "Bycontent", fields: ["content"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   content: String!
   companies: [CompanyStyleType]! @connection(name: "StyleTypeCompanies")
@@ -121,7 +136,10 @@ type StyleType
   updatedAt: AWSTimestamp!
 }
 
-type CompanyWorkType @model @key(fields: ["id"]) {
+type CompanyWorkType
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   workType: WorkType! @connection(name: "WorkTypeCompanies")
   company: Company! @connection(name: "CompanyWorkTypes")
@@ -130,7 +148,10 @@ type CompanyWorkType @model @key(fields: ["id"]) {
   updatedAt: AWSTimestamp!
 }
 
-type CompanyStyleType @model @key(fields: ["id"]) {
+type CompanyStyleType
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   styleType: StyleType! @connection(name: "StyleTypeCompanies")
   company: Company! @connection(name: "CompanyStyleTypes")
@@ -143,7 +164,8 @@ type CompanyStyleType @model @key(fields: ["id"]) {
 type Character
   @model
   @key(fields: ["id"])
-  @key(name: "Bycontent", fields: ["content"]) {
+  @key(name: "Bycontent", fields: ["content"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   content: String!
   applicants: [ApplicantCharacter]! @connection(name: "CharacterApplicants")
@@ -155,7 +177,8 @@ type Character
 type Skill
   @model
   @key(fields: ["id"])
-  @key(name: "Bycontent", fields: ["content"]) {
+  @key(name: "Bycontent", fields: ["content"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   content: String!
   applicants: [ApplicantSkill]! @connection(name: "SkillApplicants")
@@ -164,7 +187,10 @@ type Skill
   updatedAt: AWSTimestamp!
 }
 
-type ApplicantCharacter @model @key(fields: ["id"]) {
+type ApplicantCharacter
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   character: Character! @connection(name: "CharacterApplicants")
   applicant: Applicant! @connection(name: "ApplicantCharacters")
@@ -173,7 +199,10 @@ type ApplicantCharacter @model @key(fields: ["id"]) {
   updatedAt: AWSTimestamp!
 }
 
-type ApplicantSkill @model @key(fields: ["id"]) {
+type ApplicantSkill
+  @model
+  @key(fields: ["id"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   applicant: Applicant! @connection(name: "ApplicantSkills")
   skill: Skill! @connection(name: "SkillApplicants")
@@ -185,7 +214,8 @@ type ApplicantSkill @model @key(fields: ["id"]) {
 type Area
   @model
   @key(fields: ["id"])
-  @key(name: "Bycontent", fields: ["content"]) {
+  @key(name: "Bycontent", fields: ["content"])
+  @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   content: String!
   articles: [Article!]! @connection(name: "ArticleArea")
@@ -194,29 +224,6 @@ type Area
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
 }
-
-# type Store @model {
-#   id: ID!
-#   admin: User!
-#   company: Company! @connection(name: "CompanyStores", keyField: "companyId")
-#   offres: [Offer!]!  # ont to many
-#     @connection(
-#       name: "StoreOffers"
-#       keyField: "offerId"
-#       sortField: "createdAt"
-#     )
-#   createdAt: AWSTimestamp!
-#   updatedAt: AWSTimestamp!
-# }
-
-# type Offer @model {
-#   id: ID!
-#   store: Store! @connection(name: "StoreOffers", keyField: "storeId")
-#   title: String!
-#   content: String!
-#   createdAt: AWSTimestamp!
-#   updatedAt: AWSTimestamp!
-# }
 
 type User
   @model
