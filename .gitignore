@@ -54,5 +54,4 @@ amplify/backend/awscloudformation
 build/
 dist/
 node_modules/
-
 awsconfiguration.json

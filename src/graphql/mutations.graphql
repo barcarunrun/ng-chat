@@ -49,6 +49,22 @@ mutation CreateCompany($input: CreateCompanyInput!) {
       }
       nextToken
     }
+    workTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    styleTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -103,6 +119,22 @@ mutation UpdateCompany($input: UpdateCompanyInput!) {
       }
       nextToken
     }
+    workTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    styleTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -152,6 +184,22 @@ mutation DeleteCompany($input: DeleteCompanyInput!) {
         thumbnail
         content
         isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    workTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    styleTypes {
+      items {
+        id
         createdAt
         updatedAt
       }
@@ -388,6 +436,12 @@ mutation CreateArticle($input: CreateArticleInput!) {
       articles {
         nextToken
       }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -456,6 +510,12 @@ mutation UpdateArticle($input: UpdateArticleInput!) {
       articles {
         nextToken
       }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -522,6 +582,12 @@ mutation DeleteArticle($input: DeleteArticleInput!) {
         updatedAt
       }
       articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
         nextToken
       }
       createdAt
@@ -717,6 +783,402 @@ mutation DeleteComment($input: DeleteCommentInput!) {
         content
         createdAt
         updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateWorkType($input: CreateWorkTypeInput!) {
+  createWorkType(input: $input) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateWorkType($input: UpdateWorkTypeInput!) {
+  updateWorkType(input: $input) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteWorkType($input: DeleteWorkTypeInput!) {
+  deleteWorkType(input: $input) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateStyleType($input: CreateStyleTypeInput!) {
+  createStyleType(input: $input) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateStyleType($input: UpdateStyleTypeInput!) {
+  updateStyleType(input: $input) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteStyleType($input: DeleteStyleTypeInput!) {
+  deleteStyleType(input: $input) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCompanyWorkType($input: CreateCompanyWorkTypeInput!) {
+  createCompanyWorkType(input: $input) {
+    id
+    workType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCompanyWorkType($input: UpdateCompanyWorkTypeInput!) {
+  updateCompanyWorkType(input: $input) {
+    id
+    workType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCompanyWorkType($input: DeleteCompanyWorkTypeInput!) {
+  deleteCompanyWorkType(input: $input) {
+    id
+    workType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCompanyStyleType($input: CreateCompanyStyleTypeInput!) {
+  createCompanyStyleType(input: $input) {
+    id
+    styleType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCompanyStyleType($input: UpdateCompanyStyleTypeInput!) {
+  updateCompanyStyleType(input: $input) {
+    id
+    styleType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCompanyStyleType($input: DeleteCompanyStyleTypeInput!) {
+  deleteCompanyStyleType(input: $input) {
+    id
+    styleType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
       }
       createdAt
       updatedAt

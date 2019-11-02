@@ -128,6 +128,82 @@ export type DeleteCommentInput = {
   id: string;
 };
 
+export type CreateWorkTypeInput = {
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateWorkTypeInput = {
+  id: string;
+  content?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+};
+
+export type DeleteWorkTypeInput = {
+  id: string;
+};
+
+export type CreateStyleTypeInput = {
+  id: string;
+  content: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateStyleTypeInput = {
+  id: string;
+  content?: string | null;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+};
+
+export type DeleteStyleTypeInput = {
+  id: string;
+};
+
+export type CreateCompanyWorkTypeInput = {
+  id: string;
+  createdAt: number;
+  updatedAt: number;
+  companyWorkTypeWorkTypeId: string;
+  companyWorkTypeCompanyId: string;
+};
+
+export type UpdateCompanyWorkTypeInput = {
+  id: string;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  companyWorkTypeWorkTypeId?: string | null;
+  companyWorkTypeCompanyId?: string | null;
+};
+
+export type DeleteCompanyWorkTypeInput = {
+  id: string;
+};
+
+export type CreateCompanyStyleTypeInput = {
+  id: string;
+  createdAt: number;
+  updatedAt: number;
+  companyStyleTypeStyleTypeId: string;
+  companyStyleTypeCompanyId: string;
+};
+
+export type UpdateCompanyStyleTypeInput = {
+  id: string;
+  createdAt?: number | null;
+  updatedAt?: number | null;
+  companyStyleTypeStyleTypeId?: string | null;
+  companyStyleTypeCompanyId?: string | null;
+};
+
+export type DeleteCompanyStyleTypeInput = {
+  id: string;
+};
+
 export type CreateCharacterInput = {
   id: string;
   content: string;
@@ -490,6 +566,44 @@ export type ModelCommentFilterInput = {
   not?: ModelCommentFilterInput | null;
 };
 
+export type ModelWorkTypeFilterInput = {
+  id?: ModelIDFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelWorkTypeFilterInput | null> | null;
+  or?: Array<ModelWorkTypeFilterInput | null> | null;
+  not?: ModelWorkTypeFilterInput | null;
+};
+
+export type ModelStyleTypeFilterInput = {
+  id?: ModelIDFilterInput | null;
+  content?: ModelStringFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelStyleTypeFilterInput | null> | null;
+  or?: Array<ModelStyleTypeFilterInput | null> | null;
+  not?: ModelStyleTypeFilterInput | null;
+};
+
+export type ModelCompanyWorkTypeFilterInput = {
+  id?: ModelIDFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelCompanyWorkTypeFilterInput | null> | null;
+  or?: Array<ModelCompanyWorkTypeFilterInput | null> | null;
+  not?: ModelCompanyWorkTypeFilterInput | null;
+};
+
+export type ModelCompanyStyleTypeFilterInput = {
+  id?: ModelIDFilterInput | null;
+  createdAt?: ModelIntFilterInput | null;
+  updatedAt?: ModelIntFilterInput | null;
+  and?: Array<ModelCompanyStyleTypeFilterInput | null> | null;
+  or?: Array<ModelCompanyStyleTypeFilterInput | null> | null;
+  not?: ModelCompanyStyleTypeFilterInput | null;
+};
+
 export type ModelCharacterFilterInput = {
   id?: ModelIDFilterInput | null;
   content?: ModelStringFilterInput | null;
@@ -677,6 +791,26 @@ export type CreateCompanyMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  workTypes: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  styleTypes: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -740,6 +874,26 @@ export type UpdateCompanyMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  workTypes: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  styleTypes: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -798,6 +952,26 @@ export type DeleteCompanyMutation = {
       thumbnail: string | null;
       content: string;
       isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  workTypes: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  styleTypes: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -1067,6 +1241,14 @@ export type CreateArticleMutation = {
       __typename: "ModelArticleConnection";
       nextToken: string | null;
     } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -1146,6 +1328,14 @@ export type UpdateArticleMutation = {
       __typename: "ModelArticleConnection";
       nextToken: string | null;
     } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -1223,6 +1413,14 @@ export type DeleteArticleMutation = {
     };
     articles: {
       __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
       nextToken: string | null;
     } | null;
     createdAt: number;
@@ -1454,6 +1652,462 @@ export type DeleteCommentMutation = {
     createdAt: number;
     updatedAt: number;
   } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateWorkTypeMutation = {
+  __typename: "WorkType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateWorkTypeMutation = {
+  __typename: "WorkType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteWorkTypeMutation = {
+  __typename: "WorkType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateStyleTypeMutation = {
+  __typename: "StyleType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateStyleTypeMutation = {
+  __typename: "StyleType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteStyleTypeMutation = {
+  __typename: "StyleType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateCompanyWorkTypeMutation = {
+  __typename: "CompanyWorkType";
+  id: string;
+  workType: {
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateCompanyWorkTypeMutation = {
+  __typename: "CompanyWorkType";
+  id: string;
+  workType: {
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteCompanyWorkTypeMutation = {
+  __typename: "CompanyWorkType";
+  id: string;
+  workType: {
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type CreateCompanyStyleTypeMutation = {
+  __typename: "CompanyStyleType";
+  id: string;
+  styleType: {
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type UpdateCompanyStyleTypeMutation = {
+  __typename: "CompanyStyleType";
+  id: string;
+  styleType: {
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type DeleteCompanyStyleTypeMutation = {
+  __typename: "CompanyStyleType";
+  id: string;
+  styleType: {
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
   createdAt: number;
   updatedAt: number;
 };
@@ -3260,6 +3914,26 @@ export type GetCompanyQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  workTypes: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  styleTypes: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -3293,6 +3967,14 @@ export type ListCompanysQuery = {
     };
     articles: {
       __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
       nextToken: string | null;
     } | null;
     createdAt: number;
@@ -3459,6 +4141,14 @@ export type GetArticleQuery = {
     };
     articles: {
       __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
       nextToken: string | null;
     } | null;
     createdAt: number;
@@ -3629,6 +4319,248 @@ export type ListCommentsQuery = {
       createdAt: number;
       updatedAt: number;
     } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetWorkTypeQuery = {
+  __typename: "WorkType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListWorkTypesQuery = {
+  __typename: "ModelWorkTypeConnection";
+  items: Array<{
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetStyleTypeQuery = {
+  __typename: "StyleType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListStyleTypesQuery = {
+  __typename: "ModelStyleTypeConnection";
+  items: Array<{
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetCompanyWorkTypeQuery = {
+  __typename: "CompanyWorkType";
+  id: string;
+  workType: {
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListCompanyWorkTypesQuery = {
+  __typename: "ModelCompanyWorkTypeConnection";
+  items: Array<{
+    __typename: "CompanyWorkType";
+    id: string;
+    workType: {
+      __typename: "WorkType";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
+    createdAt: number;
+    updatedAt: number;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetCompanyStyleTypeQuery = {
+  __typename: "CompanyStyleType";
+  id: string;
+  styleType: {
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type ListCompanyStyleTypesQuery = {
+  __typename: "ModelCompanyStyleTypeConnection";
+  items: Array<{
+    __typename: "CompanyStyleType";
+    id: string;
+    styleType: {
+      __typename: "StyleType";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    company: {
+      __typename: "Company";
+      id: string;
+      name: string;
+      email: string | null;
+      logo: string | null;
+      backgroundImg: string | null;
+      about: string | null;
+      createdAt: number;
+      updatedAt: number;
+    };
     createdAt: number;
     updatedAt: number;
   } | null> | null;
@@ -4811,6 +5743,26 @@ export type OnCreateCompanySubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  workTypes: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  styleTypes: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -4874,6 +5826,26 @@ export type OnUpdateCompanySubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  workTypes: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  styleTypes: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -4932,6 +5904,26 @@ export type OnDeleteCompanySubscription = {
       thumbnail: string | null;
       content: string;
       isOpen: ArticleStatus;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  workTypes: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  styleTypes: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
       createdAt: number;
       updatedAt: number;
     } | null> | null;
@@ -5201,6 +6193,14 @@ export type OnCreateArticleSubscription = {
       __typename: "ModelArticleConnection";
       nextToken: string | null;
     } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -5280,6 +6280,14 @@ export type OnUpdateArticleSubscription = {
       __typename: "ModelArticleConnection";
       nextToken: string | null;
     } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: number;
     updatedAt: number;
   };
@@ -5357,6 +6365,14 @@ export type OnDeleteArticleSubscription = {
     };
     articles: {
       __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
       nextToken: string | null;
     } | null;
     createdAt: number;
@@ -5588,6 +6604,462 @@ export type OnDeleteCommentSubscription = {
     createdAt: number;
     updatedAt: number;
   } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateWorkTypeSubscription = {
+  __typename: "WorkType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateWorkTypeSubscription = {
+  __typename: "WorkType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteWorkTypeSubscription = {
+  __typename: "WorkType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyWorkTypeConnection";
+    items: Array<{
+      __typename: "CompanyWorkType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateStyleTypeSubscription = {
+  __typename: "StyleType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateStyleTypeSubscription = {
+  __typename: "StyleType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteStyleTypeSubscription = {
+  __typename: "StyleType";
+  id: string;
+  content: string;
+  companies: {
+    __typename: "ModelCompanyStyleTypeConnection";
+    items: Array<{
+      __typename: "CompanyStyleType";
+      id: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateCompanyWorkTypeSubscription = {
+  __typename: "CompanyWorkType";
+  id: string;
+  workType: {
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateCompanyWorkTypeSubscription = {
+  __typename: "CompanyWorkType";
+  id: string;
+  workType: {
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteCompanyWorkTypeSubscription = {
+  __typename: "CompanyWorkType";
+  id: string;
+  workType: {
+    __typename: "WorkType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnCreateCompanyStyleTypeSubscription = {
+  __typename: "CompanyStyleType";
+  id: string;
+  styleType: {
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnUpdateCompanyStyleTypeSubscription = {
+  __typename: "CompanyStyleType";
+  id: string;
+  styleType: {
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type OnDeleteCompanyStyleTypeSubscription = {
+  __typename: "CompanyStyleType";
+  id: string;
+  styleType: {
+    __typename: "StyleType";
+    id: string;
+    content: string;
+    companies: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
+  company: {
+    __typename: "Company";
+    id: string;
+    name: string;
+    email: string | null;
+    logo: string | null;
+    backgroundImg: string | null;
+    about: string | null;
+    area: {
+      __typename: "Area";
+      id: string;
+      content: string;
+      createdAt: number;
+      updatedAt: number;
+    } | null;
+    owner: {
+      __typename: "User";
+      id: string;
+      username: string;
+      displayName: string;
+      logo: string;
+      user_role: string;
+      createdAt: number;
+      updatedAt: number;
+    };
+    articles: {
+      __typename: "ModelArticleConnection";
+      nextToken: string | null;
+    } | null;
+    workTypes: {
+      __typename: "ModelCompanyWorkTypeConnection";
+      nextToken: string | null;
+    } | null;
+    styleTypes: {
+      __typename: "ModelCompanyStyleTypeConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: number;
+    updatedAt: number;
+  };
   createdAt: number;
   updatedAt: number;
 };
@@ -6775,6 +8247,26 @@ export class APIService {
             }
             nextToken
           }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -6850,6 +8342,26 @@ export class APIService {
             }
             nextToken
           }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -6920,6 +8432,26 @@ export class APIService {
               thumbnail
               content
               isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
               createdAt
               updatedAt
             }
@@ -7273,6 +8805,14 @@ export class APIService {
               __typename
               nextToken
             }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -7364,6 +8904,14 @@ export class APIService {
               __typename
               nextToken
             }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -7452,6 +9000,14 @@ export class APIService {
               updatedAt
             }
             articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
               __typename
               nextToken
             }
@@ -7731,6 +9287,606 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteCommentMutation>response.data.deleteComment;
+  }
+  async CreateWorkType(
+    input: CreateWorkTypeInput
+  ): Promise<CreateWorkTypeMutation> {
+    const statement = `mutation CreateWorkType($input: CreateWorkTypeInput!) {
+        createWorkType(input: $input) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateWorkTypeMutation>response.data.createWorkType;
+  }
+  async UpdateWorkType(
+    input: UpdateWorkTypeInput
+  ): Promise<UpdateWorkTypeMutation> {
+    const statement = `mutation UpdateWorkType($input: UpdateWorkTypeInput!) {
+        updateWorkType(input: $input) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateWorkTypeMutation>response.data.updateWorkType;
+  }
+  async DeleteWorkType(
+    input: DeleteWorkTypeInput
+  ): Promise<DeleteWorkTypeMutation> {
+    const statement = `mutation DeleteWorkType($input: DeleteWorkTypeInput!) {
+        deleteWorkType(input: $input) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteWorkTypeMutation>response.data.deleteWorkType;
+  }
+  async CreateStyleType(
+    input: CreateStyleTypeInput
+  ): Promise<CreateStyleTypeMutation> {
+    const statement = `mutation CreateStyleType($input: CreateStyleTypeInput!) {
+        createStyleType(input: $input) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateStyleTypeMutation>response.data.createStyleType;
+  }
+  async UpdateStyleType(
+    input: UpdateStyleTypeInput
+  ): Promise<UpdateStyleTypeMutation> {
+    const statement = `mutation UpdateStyleType($input: UpdateStyleTypeInput!) {
+        updateStyleType(input: $input) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateStyleTypeMutation>response.data.updateStyleType;
+  }
+  async DeleteStyleType(
+    input: DeleteStyleTypeInput
+  ): Promise<DeleteStyleTypeMutation> {
+    const statement = `mutation DeleteStyleType($input: DeleteStyleTypeInput!) {
+        deleteStyleType(input: $input) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteStyleTypeMutation>response.data.deleteStyleType;
+  }
+  async CreateCompanyWorkType(
+    input: CreateCompanyWorkTypeInput
+  ): Promise<CreateCompanyWorkTypeMutation> {
+    const statement = `mutation CreateCompanyWorkType($input: CreateCompanyWorkTypeInput!) {
+        createCompanyWorkType(input: $input) {
+          __typename
+          id
+          workType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCompanyWorkTypeMutation>response.data.createCompanyWorkType;
+  }
+  async UpdateCompanyWorkType(
+    input: UpdateCompanyWorkTypeInput
+  ): Promise<UpdateCompanyWorkTypeMutation> {
+    const statement = `mutation UpdateCompanyWorkType($input: UpdateCompanyWorkTypeInput!) {
+        updateCompanyWorkType(input: $input) {
+          __typename
+          id
+          workType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCompanyWorkTypeMutation>response.data.updateCompanyWorkType;
+  }
+  async DeleteCompanyWorkType(
+    input: DeleteCompanyWorkTypeInput
+  ): Promise<DeleteCompanyWorkTypeMutation> {
+    const statement = `mutation DeleteCompanyWorkType($input: DeleteCompanyWorkTypeInput!) {
+        deleteCompanyWorkType(input: $input) {
+          __typename
+          id
+          workType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCompanyWorkTypeMutation>response.data.deleteCompanyWorkType;
+  }
+  async CreateCompanyStyleType(
+    input: CreateCompanyStyleTypeInput
+  ): Promise<CreateCompanyStyleTypeMutation> {
+    const statement = `mutation CreateCompanyStyleType($input: CreateCompanyStyleTypeInput!) {
+        createCompanyStyleType(input: $input) {
+          __typename
+          id
+          styleType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCompanyStyleTypeMutation>response.data.createCompanyStyleType;
+  }
+  async UpdateCompanyStyleType(
+    input: UpdateCompanyStyleTypeInput
+  ): Promise<UpdateCompanyStyleTypeMutation> {
+    const statement = `mutation UpdateCompanyStyleType($input: UpdateCompanyStyleTypeInput!) {
+        updateCompanyStyleType(input: $input) {
+          __typename
+          id
+          styleType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCompanyStyleTypeMutation>response.data.updateCompanyStyleType;
+  }
+  async DeleteCompanyStyleType(
+    input: DeleteCompanyStyleTypeInput
+  ): Promise<DeleteCompanyStyleTypeMutation> {
+    const statement = `mutation DeleteCompanyStyleType($input: DeleteCompanyStyleTypeInput!) {
+        deleteCompanyStyleType(input: $input) {
+          __typename
+          id
+          styleType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCompanyStyleTypeMutation>response.data.deleteCompanyStyleType;
   }
   async CreateCharacter(
     input: CreateCharacterInput
@@ -9914,6 +12070,26 @@ export class APIService {
             }
             nextToken
           }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -9962,6 +12138,14 @@ export class APIService {
               updatedAt
             }
             articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
               __typename
               nextToken
             }
@@ -10232,6 +12416,14 @@ export class APIService {
               __typename
               nextToken
             }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -10481,6 +12673,404 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListCommentsQuery>response.data.listComments;
+  }
+  async GetWorkType(id: string): Promise<GetWorkTypeQuery> {
+    const statement = `query GetWorkType($id: ID!) {
+        getWorkType(id: $id) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetWorkTypeQuery>response.data.getWorkType;
+  }
+  async ListWorkTypes(
+    id?: string,
+    filter?: ModelWorkTypeFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListWorkTypesQuery> {
+    const statement = `query ListWorkTypes($id: ID, $filter: ModelWorkTypeFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listWorkTypes(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListWorkTypesQuery>response.data.listWorkTypes;
+  }
+  async GetStyleType(id: string): Promise<GetStyleTypeQuery> {
+    const statement = `query GetStyleType($id: ID!) {
+        getStyleType(id: $id) {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetStyleTypeQuery>response.data.getStyleType;
+  }
+  async ListStyleTypes(
+    id?: string,
+    filter?: ModelStyleTypeFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListStyleTypesQuery> {
+    const statement = `query ListStyleTypes($id: ID, $filter: ModelStyleTypeFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listStyleTypes(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListStyleTypesQuery>response.data.listStyleTypes;
+  }
+  async GetCompanyWorkType(id: string): Promise<GetCompanyWorkTypeQuery> {
+    const statement = `query GetCompanyWorkType($id: ID!) {
+        getCompanyWorkType(id: $id) {
+          __typename
+          id
+          workType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCompanyWorkTypeQuery>response.data.getCompanyWorkType;
+  }
+  async ListCompanyWorkTypes(
+    id?: string,
+    filter?: ModelCompanyWorkTypeFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListCompanyWorkTypesQuery> {
+    const statement = `query ListCompanyWorkTypes($id: ID, $filter: ModelCompanyWorkTypeFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listCompanyWorkTypes(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            workType {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCompanyWorkTypesQuery>response.data.listCompanyWorkTypes;
+  }
+  async GetCompanyStyleType(id: string): Promise<GetCompanyStyleTypeQuery> {
+    const statement = `query GetCompanyStyleType($id: ID!) {
+        getCompanyStyleType(id: $id) {
+          __typename
+          id
+          styleType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCompanyStyleTypeQuery>response.data.getCompanyStyleType;
+  }
+  async ListCompanyStyleTypes(
+    id?: string,
+    filter?: ModelCompanyStyleTypeFilterInput,
+    limit?: number,
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
+  ): Promise<ListCompanyStyleTypesQuery> {
+    const statement = `query ListCompanyStyleTypes($id: ID, $filter: ModelCompanyStyleTypeFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listCompanyStyleTypes(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+          __typename
+          items {
+            __typename
+            id
+            styleType {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            company {
+              __typename
+              id
+              name
+              email
+              logo
+              backgroundImg
+              about
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCompanyStyleTypesQuery>response.data.listCompanyStyleTypes;
   }
   async GetCharacter(id: string): Promise<GetCharacterQuery> {
     const statement = `query GetCharacter($id: ID!) {
@@ -12100,6 +14690,26 @@ export class APIService {
             }
             nextToken
           }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -12171,6 +14781,26 @@ export class APIService {
             }
             nextToken
           }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -12237,6 +14867,26 @@ export class APIService {
               thumbnail
               content
               isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
               createdAt
               updatedAt
             }
@@ -12562,6 +15212,14 @@ export class APIService {
               __typename
               nextToken
             }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -12649,6 +15307,14 @@ export class APIService {
               __typename
               nextToken
             }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -12733,6 +15399,14 @@ export class APIService {
               updatedAt
             }
             articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
               __typename
               nextToken
             }
@@ -12995,6 +15669,558 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteCommentSubscription>;
+
+  OnCreateWorkTypeListener: Observable<
+    OnCreateWorkTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateWorkType {
+        onCreateWorkType {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateWorkTypeSubscription>;
+
+  OnUpdateWorkTypeListener: Observable<
+    OnUpdateWorkTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateWorkType {
+        onUpdateWorkType {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateWorkTypeSubscription>;
+
+  OnDeleteWorkTypeListener: Observable<
+    OnDeleteWorkTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteWorkType {
+        onDeleteWorkType {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteWorkTypeSubscription>;
+
+  OnCreateStyleTypeListener: Observable<
+    OnCreateStyleTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateStyleType {
+        onCreateStyleType {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateStyleTypeSubscription>;
+
+  OnUpdateStyleTypeListener: Observable<
+    OnUpdateStyleTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateStyleType {
+        onUpdateStyleType {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateStyleTypeSubscription>;
+
+  OnDeleteStyleTypeListener: Observable<
+    OnDeleteStyleTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteStyleType {
+        onDeleteStyleType {
+          __typename
+          id
+          content
+          companies {
+            __typename
+            items {
+              __typename
+              id
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteStyleTypeSubscription>;
+
+  OnCreateCompanyWorkTypeListener: Observable<
+    OnCreateCompanyWorkTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateCompanyWorkType {
+        onCreateCompanyWorkType {
+          __typename
+          id
+          workType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateCompanyWorkTypeSubscription>;
+
+  OnUpdateCompanyWorkTypeListener: Observable<
+    OnUpdateCompanyWorkTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateCompanyWorkType {
+        onUpdateCompanyWorkType {
+          __typename
+          id
+          workType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateCompanyWorkTypeSubscription>;
+
+  OnDeleteCompanyWorkTypeListener: Observable<
+    OnDeleteCompanyWorkTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteCompanyWorkType {
+        onDeleteCompanyWorkType {
+          __typename
+          id
+          workType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteCompanyWorkTypeSubscription>;
+
+  OnCreateCompanyStyleTypeListener: Observable<
+    OnCreateCompanyStyleTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateCompanyStyleType {
+        onCreateCompanyStyleType {
+          __typename
+          id
+          styleType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateCompanyStyleTypeSubscription>;
+
+  OnUpdateCompanyStyleTypeListener: Observable<
+    OnUpdateCompanyStyleTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateCompanyStyleType {
+        onUpdateCompanyStyleType {
+          __typename
+          id
+          styleType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateCompanyStyleTypeSubscription>;
+
+  OnDeleteCompanyStyleTypeListener: Observable<
+    OnDeleteCompanyStyleTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteCompanyStyleType {
+        onDeleteCompanyStyleType {
+          __typename
+          id
+          styleType {
+            __typename
+            id
+            content
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          company {
+            __typename
+            id
+            name
+            email
+            logo
+            backgroundImg
+            about
+            area {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            owner {
+              __typename
+              id
+              username
+              displayName
+              logo
+              user_role
+              createdAt
+              updatedAt
+            }
+            articles {
+              __typename
+              nextToken
+            }
+            workTypes {
+              __typename
+              nextToken
+            }
+            styleTypes {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteCompanyStyleTypeSubscription>;
 
   OnCreateCharacterListener: Observable<
     OnCreateCharacterSubscription

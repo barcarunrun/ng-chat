@@ -1,22 +1,22 @@
-import { Component, OnInit } from "@angular/core";
-import { AngularEditorConfig } from "@kolkov/angular-editor";
+import {Component, OnInit} from "@angular/core";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 import {
   UpdateCompanyInput,
   ArticleStatus,
   ModelCompanyFilterInput
 } from "../../API.service";
-import API, { graphqlOperation } from "@aws-amplify/api";
+import API, {graphqlOperation} from "@aws-amplify/api";
 
-import { Auth, Storage } from "aws-amplify";
+import {Auth, Storage} from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import { MyAPIService } from "../../API.my";
-import { ulid } from "ulid";
-import { unescapeIdentifier } from "@angular/compiler";
-import { stringify } from "querystring";
+import {MyAPIService} from "../../API.my";
+import {ulid} from "ulid";
+import {unescapeIdentifier} from "@angular/compiler";
+import {stringify} from "querystring";
 
 @Component({
   selector: "user-cmp",
@@ -31,8 +31,8 @@ export class CompanyComponent implements OnInit {
   fileNameProfile = "";
   fileUrlBackground: any;
   fileUrlProfile: any;
-  fileUrlBackgroundTmp = "";
-  fileUrlProfileTmp = "";
+  fileUrlBackgroundTmp: string | ArrayBuffer;
+  fileUrlProfileTmp: string | ArrayBuffer;
   selectedFileBackground: File;
   selectedFileProfile: File;
   companyName: any;
@@ -45,17 +45,19 @@ export class CompanyComponent implements OnInit {
   async ngOnInit() {
     const cognitUser = await Auth.currentAuthenticatedUser();
     const loginedUser = await this.api.GetUser(cognitUser.username);
+    // const companyData = await this.api.MyGetCompany("bbbb");
+    // console.log("MyGetCompany:", companyData);
     this.user = loginedUser;
     this.filename = this.user.id + ".png";
     this.fileNameBackground = "company/background/" + this.filename;
     this.fileNameProfile = "company/profile/" + this.filename;
-    Storage.get(this.fileNameBackground)
+    Storage.get(this.fileNameBackground, {level: "public"})
       .then(result => {
         console.log(result);
         this.fileUrlBackground = result;
       })
       .catch(err => console.log(err));
-    Storage.get(this.fileNameProfile)
+    Storage.get(this.fileNameProfile, {level: "public"})
       .then(result => {
         console.log(result);
         this.fileUrlProfile = result;
@@ -63,15 +65,27 @@ export class CompanyComponent implements OnInit {
       .catch(err => console.log(err));
     //idをキーに企業情報を取得
     //const company: ModelCompanyFilterInput = {};
-    await this.api.ListCompanys().then(data => {
-      console.log(data);
-    });
-    await this.api.GetCompany("bbbb").then(data => {
-      this.companyName = data.name;
-      this.companyId = data.id;
-      this.companyAbout = data.about;
-      this.companyEmail = data.email;
-    });
+    // await this.api.ListCompanys().then(data => {
+    //   console.log(data);
+    // });
+    let companyData = await this.api.MyGetCompany("bbbb");
+    if (companyData !== null) {
+      console.log(companyData);
+      this.companyName = companyData.name;
+      this.companyId = companyData.id;
+      this.companyAbout = companyData.about;
+      this.companyEmail = companyData.email;
+    } else {
+      companyData = await this.api.CreateCompany({
+        id: loginedUser.id,
+        companyOwnerId: loginedUser.id,
+        name: "企業名",
+        about: "企業説明",
+        email: "company@co.jp",
+        createdAt: 1,
+        updatedAt: 2
+      });
+    }
   }
 
   onFileChangedBackground(event) {

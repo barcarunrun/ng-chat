@@ -4,11 +4,12 @@ import {
   OnCreateRoomUserSubscription,
   GetRoomQuery,
   APIService,
-  GetApplicantQuery
+  GetApplicantQuery,
+  GetCompanyQuery
 } from "./API.service";
-import API, { graphqlOperation } from "@aws-amplify/api";
+import API, {graphqlOperation} from "@aws-amplify/api";
 import * as Observable from "zen-observable";
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: "root"
@@ -16,6 +17,110 @@ import { Injectable } from "@angular/core";
 export class MyAPIService extends APIService {
   constructor() {
     super();
+  }
+
+  async MyGetCompany(id: string): Promise<GetCompanyQuery> {
+    const statement = `query GetCompany($id: ID!) {
+        getCompany(id: $id) {
+          __typename
+          id
+          name
+          email
+          logo
+          backgroundImg
+          about
+          area {
+            __typename
+            id
+            content
+            articles {
+              __typename
+              nextToken
+            }
+            companies {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          owner {
+            __typename
+            id
+            username
+            displayName
+            logo
+            user_role
+            invitedRooms {
+              __typename
+              nextToken
+            }
+            joinedRooms {
+              __typename
+              nextToken
+            }
+            ownedRooms {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          articles {
+            __typename
+            items {
+              __typename
+              id
+              title
+              thumbnail
+              content
+              isOpen
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          workTypes {
+            __typename
+            items {
+              __typename
+              id
+              workType {
+                __typename
+                id
+                content
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          styleTypes {
+            __typename
+            items {
+              __typename
+              id
+              styleType {
+                __typename
+                id
+                content
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCompanyQuery>response.data.getCompany;
   }
 
   async MyGetApplicant(id: string): Promise<GetApplicantQuery> {
