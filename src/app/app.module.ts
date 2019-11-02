@@ -57,8 +57,7 @@ import {CreateApplicantUserComponent} from "./auth/components/applicant/create/c
 import {LoginApplicantUserComponent} from "./auth/components/applicant/login/login.component";
 import {CreateCompanyUserComponent} from "./auth/components/company/create/create.component";
 import {LoginCompanyUserComponent} from "./auth/components/company/login/login.component";
-import { ConfirmEmailComponent } from './auth/confirm-email/confirm-email.component';
-import { LogoutComponent } from './auth/logout/logout.component';
+import {ConfirmEmailComponent} from "./auth/confirm-email/confirm-email.component";
 
 @NgModule({
   declarations: [
@@ -92,8 +91,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
     LoginCompanyUserComponent,
     CreateApplicantUserComponent,
     LoginApplicantUserComponent,
-    ConfirmEmailComponent,
-    LogoutComponent
+    ConfirmEmailComponent
   ],
   imports: [
     BrowserModule,

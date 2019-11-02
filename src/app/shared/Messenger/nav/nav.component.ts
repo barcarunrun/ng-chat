@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../../../auth/auth.service";
-import { tap } from "rxjs/operators";
+import {Component, OnInit} from "@angular/core";
+import {AuthService} from "../../../auth/auth.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: "app-nav",
@@ -15,6 +15,7 @@ export class NavComponent implements OnInit {
     this.isActive = false;
     this.auth.isAuthenticated().pipe(
       tap(loggedIn => {
+        console.log("loggedIn:", loggedIn);
         if (!loggedIn) {
           this.isLogin = true;
         }
@@ -26,5 +27,9 @@ export class NavComponent implements OnInit {
 
   disableMenu(): void {
     this.isActive = !this.isActive;
+  }
+
+  logout() {
+    this.auth.signOut();
   }
 }

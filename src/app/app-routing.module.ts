@@ -28,7 +28,6 @@ import {LoginApplicantUserComponent} from "./auth/components/applicant/login/log
 import {CreateCompanyUserComponent} from "./auth/components/company/create/create.component";
 import {LoginCompanyUserComponent} from "./auth/components/company/login/login.component";
 import {ConfirmEmailComponent} from "./auth/confirm-email/confirm-email.component";
-import {LogoutComponent} from "./auth/logout/logout.component";
 
 const routes: Routes = [
   //  { path: "", redirectTo: "home", pathMatch: "full", canActivate: [AuthGuard] },
@@ -102,10 +101,6 @@ const routes: Routes = [
           {
             path: "",
             component: LoginApplicantUserComponent
-          },
-          {
-            path: "logout",
-            component: LogoutComponent
           },
           {
             path: "create",
