@@ -7,14 +7,15 @@
     <button class="button back-to-room-list-button" (click)="unShowRoomDetail()">戻る</button>
   </p>
   <!-- <div class="chat tabs-page is-show js-tabs-page js-tabs-page_design h2  title-comment is-5"> -->
-  <div class="chat is-show"> 
+  <div class="chat is-show">
     <i class="icon ion-ios-chatbubbles"></i>
     <div class="chat-box" id="chatbox">
       <article class="media" [class.my-media]="isMyMessage(message.owner)" *ngFor="let message of messages"
         [class.is-loading-chat]="isLoading">
         <figure class="media-left" [class.my-message]="isMyMessage(message.owner)">
           <p class="image is-32x32">
-            <img class="is-rounded" [src]="message.user.logo">
+            <!-- <img class="is-rounded" [src]="message.user.logo"> -->
+            <app-user-modal [src]="message.user.logo" [username]="message.owner"></app-user-modal>
           </p>
         </figure>
         <div class="media-content">
