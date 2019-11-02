@@ -1,6 +1,6 @@
-import { Component, OnInit, QueryList } from "@angular/core";
-import Amplify, { Auth, Hub, graphqlOperation, Storage } from "aws-amplify";
-import { MyAPIService } from "../../API.my";
+import {Component, OnInit, QueryList} from "@angular/core";
+import Amplify, {Auth, Hub, graphqlOperation, Storage} from "aws-amplify";
+import {MyAPIService} from "../../API.my";
 
 import {} from "../../API.service";
 

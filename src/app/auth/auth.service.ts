@@ -130,7 +130,7 @@ export class AuthService {
     fromPromise(Auth.signOut()).subscribe(
       result => {
         this.loggedIn.next(false);
-        this.router.navigate(["/login"]);
+        this.router.navigate(["/auth"]);
       },
       error => console.log(error)
     );

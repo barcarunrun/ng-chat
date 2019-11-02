@@ -102,7 +102,6 @@ const routes: Routes = [
             path: "",
             component: LoginApplicantUserComponent
           },
-
           {
             path: "create",
             component: CreateApplicantUserComponent
