@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
   lastName: any;
   firstName: any;
   applicantId: any;
-  applicantAbout: any;
+  applicantAbout = "";
   applicantEmail: any;
 
   constructor(private api: MyAPIService) {}
@@ -76,19 +76,45 @@ export class UserComponent implements OnInit {
         this.fileUrlProfile = result;
       })
       .catch(err => console.log("bbbbbbbbbb" + err));
-    await this.api.MyGetApplicant(loginedUser.id).then(data => {
-      console.log("MyGetApplicant:", data);
-      this.applicantName = data.lastName + " " + data.firstName;
-      this.applicantId = data.id;
-      this.applicantAbout = data.about;
-      this.applicantEmail = data.email;
-      this.lastName = data.lastName;
-      this.firstName = data.firstName;
-      this.charactorList = data.characters.items;
-      this.skillList = data.skills.items;
+
+    let applicantData = await this.api.MyGetApplicant(loginedUser.id);
+    console.log("applicantData:", applicantData);
+    if (applicantData !== null) {
+      this.applicantName =
+        applicantData.lastName + " " + applicantData.firstName;
+      this.applicantId = applicantData.id;
+      this.applicantAbout = applicantData.about;
+      this.applicantEmail = applicantData.email;
+      this.lastName = applicantData.lastName;
+      this.firstName = applicantData.firstName;
+      this.charactorList = applicantData.characters.items;
+      this.skillList = applicantData.skills.items;
       console.log(this.charactorList);
       console.log(this.skillList);
-    });
+    } else {
+      applicantData = await this.api.CreateApplicant({
+        id: loginedUser.id,
+        applicantUserId: loginedUser.id,
+        name: loginedUser.id,
+        email: "aaaa#me.com",
+        lastName: "苗字",
+        firstName: "名前",
+        about: "about",
+        createdAt: 1,
+        updatedAt: 2
+      });
+      this.applicantName =
+        applicantData.lastName + " " + applicantData.firstName;
+      this.applicantId = applicantData.id;
+      this.applicantAbout = applicantData.about;
+      this.applicantEmail = applicantData.email;
+      this.lastName = applicantData.lastName;
+      this.firstName = applicantData.firstName;
+      this.charactorList = applicantData.characters.items;
+      this.skillList = applicantData.skills.items;
+      console.log(this.charactorList);
+      console.log(this.skillList);
+    }
 
     //性格のロジック
     await this.api.ListCharacters().then(data => {

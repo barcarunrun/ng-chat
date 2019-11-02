@@ -72,6 +72,9 @@ export class AuthService {
                       createdAt: 1,
                       updatedAt: 2
                     });
+                    console.log("add new applicant to table");
+                  } else {
+                    console.log("user applicant exist: ", applicant);
                   }
                 });
             }
