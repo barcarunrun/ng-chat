@@ -31,8 +31,8 @@ export class CompanyComponent implements OnInit {
   fileNameProfile = "";
   fileUrlBackground: any;
   fileUrlProfile: any;
-  fileUrlBackgroundTmp = "";
-  fileUrlProfileTmp = "";
+  fileUrlBackgroundTmp: string | ArrayBuffer;
+  fileUrlProfileTmp: string | ArrayBuffer;
   selectedFileBackground: File;
   selectedFileProfile: File;
   companyName: any;
@@ -51,13 +51,13 @@ export class CompanyComponent implements OnInit {
     this.filename = this.user.id + ".png";
     this.fileNameBackground = "company/background/" + this.filename;
     this.fileNameProfile = "company/profile/" + this.filename;
-    Storage.get(this.fileNameBackground, { level: "public" })
+    Storage.get(this.fileNameBackground, {level: "public"})
       .then(result => {
         console.log(result);
         this.fileUrlBackground = result;
       })
       .catch(err => console.log(err));
-    Storage.get(this.fileNameProfile, { level: "public" })
+    Storage.get(this.fileNameProfile, {level: "public"})
       .then(result => {
         console.log(result);
         this.fileUrlProfile = result;
@@ -68,13 +68,24 @@ export class CompanyComponent implements OnInit {
     // await this.api.ListCompanys().then(data => {
     //   console.log(data);
     // });
-    await this.api.MyGetCompany("bbbb").then(data => {
-      console.log(data);
-      this.companyName = data.name;
-      this.companyId = data.id;
-      this.companyAbout = data.about;
-      this.companyEmail = data.email;
-    });
+    let companyData = await this.api.MyGetCompany("bbbb");
+    if (companyData !== null) {
+      console.log(companyData);
+      this.companyName = companyData.name;
+      this.companyId = companyData.id;
+      this.companyAbout = companyData.about;
+      this.companyEmail = companyData.email;
+    } else {
+      companyData = await this.api.CreateCompany({
+        id: loginedUser.id,
+        companyOwnerId: loginedUser.id,
+        name: "企業名",
+        about: "企業説明",
+        email: "company@co.jp",
+        createdAt: 1,
+        updatedAt: 2
+      });
+    }
   }
 
   onFileChangedBackground(event) {
