@@ -51,10 +51,6 @@
 					]
 				}
 			]
-		},
-		"s30b56a418": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
 		}
 	}
 }

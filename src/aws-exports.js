@@ -13,7 +13,7 @@ const awsmobile = {
   "aws_content_delivery_bucket": "ng-amplify-app-master",
   "aws_content_delivery_bucket_region": "ap-northeast-1",
   "aws_content_delivery_url": "https://d244atzvqtr2uv.cloudfront.net",
-  "aws_user_files_s3_bucket": "ng-chatdecf4be0115149d588afaa9be2fe4341-master",
+  "aws_user_files_s3_bucket": "ng-chatd6789a4c14844d64953bec60ce84fff6-master",
   "aws_user_files_s3_bucket_region": "ap-northeast-1"
 };
 
