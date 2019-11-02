@@ -1,22 +1,22 @@
-import { Component, OnInit } from "@angular/core";
-import { AngularEditorConfig } from "@kolkov/angular-editor";
+import {Component, OnInit} from "@angular/core";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 import {
   CreateArticleInput,
   ArticleStatus,
   DeleteApplicantCharacterInput
 } from "../../API.service";
-import API, { graphqlOperation } from "@aws-amplify/api";
+import API, {graphqlOperation} from "@aws-amplify/api";
 
-import { Auth, Storage } from "aws-amplify";
+import {Auth, Storage} from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import { MyAPIService } from "../../API.my";
-import { ulid } from "ulid";
-import { unescapeIdentifier } from "@angular/compiler";
-import { stringify } from "querystring";
+import {MyAPIService} from "../../API.my";
+import {ulid} from "ulid";
+import {unescapeIdentifier} from "@angular/compiler";
+import {stringify} from "querystring";
 
 @Component({
   selector: "user-cmp",
@@ -77,7 +77,7 @@ export class UserComponent implements OnInit {
       })
       .catch(err => console.log("bbbbbbbbbb" + err));
     await this.api.MyGetApplicant(loginedUser.id).then(data => {
-      console.log(data);
+      console.log("MyGetApplicant:", data);
       this.applicantName = data.lastName + " " + data.firstName;
       this.applicantId = data.id;
       this.applicantAbout = data.about;
