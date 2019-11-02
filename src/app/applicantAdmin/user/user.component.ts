@@ -41,8 +41,8 @@ export class UserComponent implements OnInit {
   fileNameProfile = "";
   fileUrlBackground: any;
   fileUrlProfile: any;
-  fileUrlBackgroundTmp = "";
-  fileUrlProfileTmp = "";
+  fileUrlBackgroundTmp: string | ArrayBuffer;
+  fileUrlProfileTmp: string | ArrayBuffer;
   selectedFileBackground: File;
   selectedFileProfile: File;
   applicantName: any;
