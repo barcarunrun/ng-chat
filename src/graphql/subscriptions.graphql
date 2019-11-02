@@ -227,6 +227,22 @@ subscription OnCreateCompany {
       }
       nextToken
     }
+    workTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    styleTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -281,6 +297,22 @@ subscription OnUpdateCompany {
       }
       nextToken
     }
+    workTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    styleTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -330,6 +362,22 @@ subscription OnDeleteCompany {
         thumbnail
         content
         isOpen
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    workTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    styleTypes {
+      items {
+        id
         createdAt
         updatedAt
       }
@@ -566,6 +614,12 @@ subscription OnCreateArticle {
       articles {
         nextToken
       }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -634,6 +688,12 @@ subscription OnUpdateArticle {
       articles {
         nextToken
       }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -700,6 +760,12 @@ subscription OnDeleteArticle {
         updatedAt
       }
       articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
         nextToken
       }
       createdAt
@@ -895,6 +961,402 @@ subscription OnDeleteComment {
         content
         createdAt
         updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateWorkType {
+  onCreateWorkType {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateWorkType {
+  onUpdateWorkType {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteWorkType {
+  onDeleteWorkType {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateStyleType {
+  onCreateStyleType {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateStyleType {
+  onUpdateStyleType {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteStyleType {
+  onDeleteStyleType {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCompanyWorkType {
+  onCreateCompanyWorkType {
+    id
+    workType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCompanyWorkType {
+  onUpdateCompanyWorkType {
+    id
+    workType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCompanyWorkType {
+  onDeleteCompanyWorkType {
+    id
+    workType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCompanyStyleType {
+  onCreateCompanyStyleType {
+    id
+    styleType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCompanyStyleType {
+  onUpdateCompanyStyleType {
+    id
+    styleType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCompanyStyleType {
+  onDeleteCompanyStyleType {
+    id
+    styleType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
       }
       createdAt
       updatedAt

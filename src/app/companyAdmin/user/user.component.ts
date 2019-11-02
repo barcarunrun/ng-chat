@@ -1,22 +1,22 @@
-import { Component, OnInit } from "@angular/core";
-import { AngularEditorConfig } from "@kolkov/angular-editor";
+import {Component, OnInit} from "@angular/core";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 import {
   UpdateCompanyInput,
   ArticleStatus,
   ModelCompanyFilterInput
 } from "../../API.service";
-import API, { graphqlOperation } from "@aws-amplify/api";
+import API, {graphqlOperation} from "@aws-amplify/api";
 
-import { Auth, Storage } from "aws-amplify";
+import {Auth, Storage} from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import { MyAPIService } from "../../API.my";
-import { ulid } from "ulid";
-import { unescapeIdentifier } from "@angular/compiler";
-import { stringify } from "querystring";
+import {MyAPIService} from "../../API.my";
+import {ulid} from "ulid";
+import {unescapeIdentifier} from "@angular/compiler";
+import {stringify} from "querystring";
 
 @Component({
   selector: "user-cmp",
@@ -45,6 +45,8 @@ export class CompanyComponent implements OnInit {
   async ngOnInit() {
     const cognitUser = await Auth.currentAuthenticatedUser();
     const loginedUser = await this.api.GetUser(cognitUser.username);
+    // const companyData = await this.api.MyGetCompany("bbbb");
+    // console.log("MyGetCompany:", companyData);
     this.user = loginedUser;
     this.filename = this.user.id + ".png";
     this.fileNameBackground = "company/background/" + this.filename;
@@ -63,10 +65,11 @@ export class CompanyComponent implements OnInit {
       .catch(err => console.log(err));
     //idをキーに企業情報を取得
     //const company: ModelCompanyFilterInput = {};
-    await this.api.ListCompanys().then(data => {
+    // await this.api.ListCompanys().then(data => {
+    //   console.log(data);
+    // });
+    await this.api.MyGetCompany("bbbb").then(data => {
       console.log(data);
-    });
-    await this.api.GetCompany("bbbb").then(data => {
       this.companyName = data.name;
       this.companyId = data.id;
       this.companyAbout = data.about;
