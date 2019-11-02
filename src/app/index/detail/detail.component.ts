@@ -11,7 +11,7 @@ declare interface TableData {
   dataRows: string[][];
 }
 import {MyAPIService} from "../../API.my";
-import { CreateInvitedRoomInput, invitedStatus } from "../../API.service";
+import {CreateInvitedRoomInput, invitedStatus} from "../../API.service";
 import {ulid} from "ulid";
 
 @Component({
@@ -20,7 +20,11 @@ import {ulid} from "ulid";
   templateUrl: "detail.component.html"
 })
 export class DetailComponent implements OnInit {
-  constructor(private router: Router, private api: MyAPIService, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private api: MyAPIService,
+    private route: ActivatedRoute
+  ) {}
   user: any;
   htmlContent = "";
   title = "";
@@ -29,6 +33,7 @@ export class DetailComponent implements OnInit {
   articleId = "";
   comment = "";
   comments: any;
+  company: any;
 
   async ngOnInit() {
     const cognitUser = await Auth.currentAuthenticatedUser();
@@ -39,6 +44,7 @@ export class DetailComponent implements OnInit {
     //Getのパラメータをkeyにarticleを取得
     await this.api.GetArticle(this.articleId).then(data => {
       console.log(data);
+      this.company = data.company;
       this.title = data.title;
       this.htmlContent = data.content;
       Storage.get("article/" + data.id + ".png")
@@ -93,8 +99,8 @@ export class DetailComponent implements OnInit {
     const input: CreateInvitedRoomInput = {
       id: ulid(),
       invitedRoomRoomId: newRoom.id,
-      invitedRoomToUserId: 'company_user',
-      toUsername: 'company_user',
+      invitedRoomToUserId: this.company.owner.username,
+      toUsername: this.company.owner.username,
       invitedRoomFromUserId: cognitUser.username,
       status: invitedStatus.hold,
       createdAt: now,
@@ -102,13 +108,15 @@ export class DetailComponent implements OnInit {
     };
     this.api.CreateInvitedRoom(input);
 
-    this.api.CreateRoomUser({
-      id: ulid(),
-      username: loginedUser.username,
-      roomUserRoomId: newRoom.id,
-      roomUserUserId: loginedUser.id,
-      createdAt: now,
-      updatedAt: now
-    }).then(() => this.router.navigate(["/messenger/rooms/" + newRoom.id ]))
+    this.api
+      .CreateRoomUser({
+        id: ulid(),
+        username: loginedUser.username,
+        roomUserRoomId: newRoom.id,
+        roomUserUserId: loginedUser.id,
+        createdAt: now,
+        updatedAt: now
+      })
+      .then(() => this.router.navigate(["/messenger/rooms/" + newRoom.id]));
   }
 }
