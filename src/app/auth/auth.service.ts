@@ -53,15 +53,28 @@ export class AuthService {
             } else {
               console.log("user table exist: ", loginedUser);
             }
-            // 参加中のチャットルームを取得
-            // this.api
-            //   .ListRoomUsers(null, {username: {eq: loginedUser.username}})
-            //   .then(roomsGql => {
-            //     console.log("参加中のチャットルーム:", roomsGql.items);
-            //     roomsGql.items.forEach(item =>
-            //       this.roomService.addRoom(item.room)
-            //     );
-            //   });
+
+            if (
+              data.payload.data.attributes["custom:user_role"] === "applicant"
+            ) {
+              this.api
+                .GetApplicant(data.payload.data.usernam)
+                .then(applicant => {
+                  if (applicant === null) {
+                    this.api.CreateApplicant({
+                      id: data.payload.data.username,
+                      applicantUserId: data.payload.data.username,
+                      name: data.payload.data.username,
+                      email: data.payload.data.email,
+                      lastName: "",
+                      firstName: "",
+                      about: "",
+                      createdAt: 1,
+                      updatedAt: 2
+                    });
+                  }
+                });
+            }
           });
           break;
         case "signIn_failure":
