@@ -22,15 +22,37 @@ export class IndexComponent implements OnInit {
     var request = new XMLHttpRequest();
 
     // URLを開く
-    request.open("GET", "https://mail-255905.appspot.com/1", true);
-
+    request.open("GET", "https://mail-255905.appspot.com/auth/123456789", true);
+    var acces_token;
     // レスポンスが返ってきた時の処理を記述
     request.onload = function() {
       var data = this.response;
+      acces_token = data;
       console.log(data);
-      console.log("aaaaaaaaa");
+      data.replace('"', "");
+      console.log(data);
+      var url = "https://mail-255905.appspot.com/get_mail"; // リクエスト先URL
+      var dataPost = "id=2&access_token=" + acces_token; // 送信データ ('param=value&...')
+      var requestPost = new XMLHttpRequest();
+      requestPost.open("POST", url, true);
+      requestPost.setRequestHeader(
+        "Content-Type",
+        "application/x-www-form-urlencoded"
+      );
+      requestPost.onreadystatechange = function() {
+        if (requestPost.readyState != 4) {
+          console.log("1");
+        } else if (requestPost.status != 200) {
+          console.log("2");
+        } else {
+          // 送信成功
+          console.log("3");
+          var result = requestPost.responseText;
+          console.log(result);
+        }
+      };
+      requestPost.send(dataPost);
     };
-
     // リクエストをURLに送信
     request.send();
 

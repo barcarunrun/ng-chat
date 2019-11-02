@@ -49,13 +49,13 @@ export class CompanyComponent implements OnInit {
     this.filename = this.user.id + ".png";
     this.fileNameBackground = "company/background/" + this.filename;
     this.fileNameProfile = "company/profile/" + this.filename;
-    Storage.get(this.fileNameBackground)
+    Storage.get(this.fileNameBackground, { level: "public" })
       .then(result => {
         console.log(result);
         this.fileUrlBackground = result;
       })
       .catch(err => console.log(err));
-    Storage.get(this.fileNameProfile)
+    Storage.get(this.fileNameProfile, { level: "public" })
       .then(result => {
         console.log(result);
         this.fileUrlProfile = result;
