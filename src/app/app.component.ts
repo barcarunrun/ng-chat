@@ -13,7 +13,7 @@ import Amplify, {Auth, Hub} from "aws-amplify";
 })
 export class AppComponent implements OnInit {
   static readonly Image_URL: string =
-    "https://ng-chatd6789a4c14844d64953bec60ce84fff6-master.s3-ap-northeast-1.amazonaws.com/public";
+    "https://ng-chatdecf4be0115149d588afaa9be2fe4341-master.s3-ap-northeast-1.amazonaws.com/public";
   title = "Lotre";
   isLogin: boolean = false;
   roomSubscription: any;
