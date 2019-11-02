@@ -37,6 +37,9 @@ type Company @model @key(fields: ["id"]) {
 
   articles: [Article]! @connection(name: "CompanyArticle")
 
+  workTypes: [CompanyWorkType]! @connection(name: "CompanyWorkTypes")
+  styleTypes: [CompanyStyleType]! @connection(name: "CompanyStyleTypes")
+
   createdAt: AWSTimestamp!
   updatedAt: AWSTimestamp!
 }
@@ -92,6 +95,51 @@ type Comment @model @key(fields: ["id"]) {
   updatedAt: AWSTimestamp!
 }
 
+# 企業用
+# work type company type
+type WorkType
+  @model
+  @key(fields: ["id"])
+  @key(name: "Bycontent", fields: ["content"]) {
+  id: ID!
+  content: String!
+  companies: [CompanyWorkType]! @connection(name: "WorkTypeCompanies")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type StyleType
+  @model
+  @key(fields: ["id"])
+  @key(name: "Bycontent", fields: ["content"]) {
+  id: ID!
+  content: String!
+  companies: [CompanyStyleType]! @connection(name: "StyleTypeCompanies")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type CompanyWorkType @model @key(fields: ["id"]) {
+  id: ID!
+  workType: WorkType! @connection(name: "WorkTypeCompanies")
+  company: Company! @connection(name: "CompanyWorkTypes")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+type CompanyStyleType @model @key(fields: ["id"]) {
+  id: ID!
+  styleType: StyleType! @connection(name: "StyleTypeCompanies")
+  company: Company! @connection(name: "CompanyStyleTypes")
+
+  createdAt: AWSTimestamp!
+  updatedAt: AWSTimestamp!
+}
+
+# Applicant用
 type Character
   @model
   @key(fields: ["id"])

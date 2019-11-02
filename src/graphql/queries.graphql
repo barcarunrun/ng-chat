@@ -49,6 +49,22 @@ query GetCompany($id: ID!) {
       }
       nextToken
     }
+    workTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    styleTypes {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -90,6 +106,12 @@ query ListCompanys(
         updatedAt
       }
       articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
         nextToken
       }
       createdAt
@@ -262,6 +284,12 @@ query GetArticle($id: ID!) {
       articles {
         nextToken
       }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -429,6 +457,266 @@ query ListComments(
         thumbnail
         content
         isOpen
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetWorkType($id: ID!) {
+  getWorkType(id: $id) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListWorkTypes(
+  $id: ID
+  $filter: ModelWorkTypeFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listWorkTypes(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetStyleType($id: ID!) {
+  getStyleType(id: $id) {
+    id
+    content
+    companies {
+      items {
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListStyleTypes(
+  $id: ID
+  $filter: ModelStyleTypeFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listStyleTypes(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCompanyWorkType($id: ID!) {
+  getCompanyWorkType(id: $id) {
+    id
+    workType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCompanyWorkTypes(
+  $id: ID
+  $filter: ModelCompanyWorkTypeFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listCompanyWorkTypes(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      workType {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCompanyStyleType($id: ID!) {
+  getCompanyStyleType(id: $id) {
+    id
+    styleType {
+      id
+      content
+      companies {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    company {
+      id
+      name
+      email
+      logo
+      backgroundImg
+      about
+      area {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        displayName
+        logo
+        user_role
+        createdAt
+        updatedAt
+      }
+      articles {
+        nextToken
+      }
+      workTypes {
+        nextToken
+      }
+      styleTypes {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCompanyStyleTypes(
+  $id: ID
+  $filter: ModelCompanyStyleTypeFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listCompanyStyleTypes(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      styleType {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      company {
+        id
+        name
+        email
+        logo
+        backgroundImg
+        about
         createdAt
         updatedAt
       }
