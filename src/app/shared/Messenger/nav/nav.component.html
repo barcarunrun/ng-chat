@@ -1,18 +1,58 @@
 <div class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" routerLink="/">
-      <img class="logo" src="assets/logo.jpg" alt="" width="112">
+      <img class="logo" src="assets/logo.jpg" alt="" width="112" />
     </a>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-      data-target="navbarBasicExample" (click)="disableMenu()" [class.is-active]="isActive">
+    <a
+      role="button"
+      class="navbar-burger burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+      (click)="disableMenu()"
+      [class.is-active]="isActive"
+    >
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isActive" (click)="disableMenu()">
+  <div
+    id="navbarBasicExample"
+    class="navbar-menu"
+    [class.is-active]="isActive"
+    (click)="disableMenu()"
+    *ngIf="isLogin == false"
+  >
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="/">
+        Home
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item greeting">
+        <div class="buttons">
+          <a class="navbar-item" routerLink="/auth">
+            ログイン
+          </a>
+          <a class="navbar-item" routerLink="/auth/create">
+            新規作成
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="navbarBasicExample"
+    class="navbar-menu"
+    [class.is-active]="isActive"
+    (click)="disableMenu()"
+    *ngIf="isLogin == true"
+  >
     <div class=" navbar-start">
       <a class="navbar-item" routerLink="/">
         Home
@@ -25,16 +65,8 @@
 
     <div class="navbar-end">
       <div class="navbar-item greeting">
-        <div class="buttons" [class.not-show]="!isLogin">
-          <a class="navbar-item" routerLink="/auth">
-            <strong>ログイン</strong>
-          </a>
-          <a class="navbar-item" routerLink="/auth/create">
-            新規作成
-          </a>
-        </div>
         <div class="navbar-item greeting">
-          <div class="buttons" [class.not-show]="isLogin">
+          <div class="buttons">
             <a class="navbar-item" routerLink="/applicantAdmin/profile">
               マイページ
             </a>
@@ -44,3 +76,4 @@
       </div>
     </div>
   </div>
+</div>

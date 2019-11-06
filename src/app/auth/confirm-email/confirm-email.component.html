@@ -1,9 +1,9 @@
-<p>Eメール認証</p>
+<h4>Eメール認証</h4>
 
 <div class="field">
   <label class="label">ユーザー名</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" [(ngModel)]="username">
+    <input class="input is-success" type="text" [(ngModel)]="username" />
     <span class="icon is-small is-left">
       <i class="nc-icon nc-single-02" style="font-size: 12px;"></i>
     </span>
@@ -11,13 +11,13 @@
       <i class="nc-icon nc-check-2" style="font-size: 12px;"></i>
     </span>
   </div>
-  <p class="help is-success">This username is available</p>
+  <!--<p class="help is-success">This username is available</p>-->
 </div>
 
 <div class="field">
   <label class="label">コード</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" [(ngModel)]="code">
+    <input class="input is-success" type="text" [(ngModel)]="code" />
     <span class="icon is-small is-left">
       <i class="nc-icon nc-single-02" style="font-size: 12px;"></i>
     </span>
@@ -25,6 +25,7 @@
       <i class="nc-icon nc-check-2" style="font-size: 12px;"></i>
     </span>
   </div>
+  <p class="help is-danger">{{ message }}</p>
 </div>
 
 <div class="field is-grouped">
@@ -32,6 +33,8 @@
     <button class="button is-info" (click)="confirm()">認証</button>
   </div>
   <div class="control">
-    <button class="button is-danger is-inverted" (click)="confirm()">メールに再送する</button>
+    <button class="button is-danger is-inverted" (click)="resend()">
+      メールに再送する
+    </button>
   </div>
 </div>

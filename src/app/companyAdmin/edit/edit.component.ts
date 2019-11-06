@@ -103,8 +103,8 @@ export class EditComponent implements OnInit {
       thumbnail: filename,
       content: this.htmlContent,
       isOpen: ArticleStatus.open,
-      articleCompanyId: "bbbb",
-      articleAreaId: "aaaa",
+      articleCompanyId: "test12345",
+      articleAreaId: "1",
       createdAt: now,
       updatedAt: now
     };

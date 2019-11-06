@@ -1,22 +1,22 @@
-import {Component, OnInit} from "@angular/core";
-import {AngularEditorConfig} from "@kolkov/angular-editor";
+import { Component, OnInit } from "@angular/core";
+import { AngularEditorConfig } from "@kolkov/angular-editor";
 
 import {
   CreateArticleInput,
   ArticleStatus,
   DeleteApplicantCharacterInput
 } from "../../API.service";
-import API, {graphqlOperation} from "@aws-amplify/api";
+import API, { graphqlOperation } from "@aws-amplify/api";
 
-import {Auth, Storage} from "aws-amplify";
+import { Auth, Storage } from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import {MyAPIService} from "../../API.my";
-import {ulid} from "ulid";
-import {unescapeIdentifier} from "@angular/compiler";
-import {stringify} from "querystring";
+import { MyAPIService } from "../../API.my";
+import { ulid } from "ulid";
+import { unescapeIdentifier } from "@angular/compiler";
+import { stringify } from "querystring";
 
 @Component({
   selector: "user-cmp",
@@ -56,6 +56,8 @@ export class UserComponent implements OnInit {
 
   async ngOnInit() {
     const cognitUser = await Auth.currentAuthenticatedUser();
+    console.log(cognitUser);
+    console.log(cognitUser.attributes.email);
     const loginedUser = await this.api.GetUser(cognitUser.username);
     console.log(loginedUser);
     console.log(loginedUser.id);
@@ -92,16 +94,18 @@ export class UserComponent implements OnInit {
       console.log(this.charactorList);
       console.log(this.skillList);
     } else {
+      const now = Math.floor(new Date().getTime());
+      console.log(cognitUser.attributes.email);
       applicantData = await this.api.CreateApplicant({
         id: loginedUser.id,
         applicantUserId: loginedUser.id,
         name: loginedUser.id,
-        email: "aaaa#me.com",
-        lastName: "苗字",
-        firstName: "名前",
-        about: "about",
-        createdAt: 1,
-        updatedAt: 2
+        email: cognitUser.attributes.email,
+        lastName: " ",
+        firstName: " ",
+        about: " ",
+        createdAt: now,
+        updatedAt: now
       });
       this.applicantName =
         applicantData.lastName + " " + applicantData.firstName;

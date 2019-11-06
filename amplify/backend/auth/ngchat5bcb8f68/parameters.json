@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "ngchatcbefc472_identitypool_cbefc472",
+    "identityPoolName": "ngchat5bcb8f68_identitypool_5bcb8f68",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "ngchatcbefc472",
-    "userPoolName": "ngchatcbefc472_userpool_cbefc472",
+    "resourceNameTruncated": "ngchat5bcb8f68",
+    "userPoolName": "ngchat5bcb8f68_userpool_5bcb8f68",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "ngchatcbefc472_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ngchat5bcb8f68_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "ngchatcbefc472",
+    "resourceName": "ngchat5bcb8f68",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

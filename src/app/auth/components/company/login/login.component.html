@@ -1,10 +1,17 @@
-<p>企業ユーザーログイン</p>
-<a [routerLink]="['/auth/company/create']" routerLinkActive="router-link-active">新規登録はこちら</a>
+<h4>企業ユーザーログイン</h4>
+<a [routerLink]="['/auth/company/create']" routerLinkActive="router-link-active"
+  >新規登録はこちら</a
+>
 
 <div class="field">
   <label class="label">ユーザー名</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" placeholder="Text input" [(ngModel)]="username">
+    <input
+      class="input is-success"
+      type="text"
+      placeholder=""
+      [(ngModel)]="username"
+    />
     <span class="icon is-small is-left">
       <i class="nc-icon nc-single-02" style="font-size: 12px;"></i>
     </span>
@@ -12,19 +19,26 @@
       <i class="nc-icon nc-check-2" style="font-size: 12px;"></i>
     </span>
   </div>
-  <p class="help is-success">This username is available</p>
+  <!--<p class="help is-success">This username is available</p>-->
 </div>
-
 
 <div class="field">
   <label class="label">パスワード</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" placeholder="Text input" [(ngModel)]="password">
+    <input
+      class="input is-success"
+      type="password"
+      placeholder=""
+      [(ngModel)]="password"
+    />
+    <span class="icon is-small is-left">
+      <i class="nc-icon nc-single-02" style="font-size: 12px;"></i>
+    </span>
     <span class="icon is-small is-right">
       <i class="nc-icon nc-check-2" style="font-size: 12px;"></i>
     </span>
   </div>
-  <!-- <p class="help is-success">ok</p> -->
+  <p class="help is-danger">{{ message }}</p>
 </div>
 
 <div class="field is-grouped">

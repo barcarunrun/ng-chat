@@ -1,18 +1,32 @@
 {
 	"auth": {
-		"ngchatcbefc472": {
+		"ngchat5bcb8f68": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
 		}
 	},
 	"api": {
-		"ngChatApi": {
+		"ngchat": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
-					"additionalAuthenticationProviders": [],
+					"additionalAuthenticationProviders": [
+						{
+							"authenticationType": "API_KEY",
+							"apiKeyConfig": {
+								"description": "techforward",
+								"apiKeyExpirationDays": "365"
+							}
+						},
+						{
+							"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+							"userPoolConfig": {
+								"userPoolId": "authngchat5bcb8f68"
+							}
+						}
+					],
 					"defaultAuthentication": {
 						"authenticationType": "AWS_IAM"
 					}
@@ -20,34 +34,16 @@
 			}
 		}
 	},
+	"storage": {
+		"s3c70369cc": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	},
 	"hosting": {
 		"S3AndCloudFront": {
 			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation"
-		}
-	},
-	"function": {
-		"S3Triggerfdb8059d": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
-		}
-	},
-	"storage": {
-		"s3cc3233e0": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "S3Triggerfdb8059d",
-					"attributes": [
-						"Name",
-						"Arn",
-						"LambdaExecutionRole"
-					]
-				}
-			]
 		}
 	}
 }

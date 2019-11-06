@@ -1,22 +1,22 @@
-import {Component, OnInit} from "@angular/core";
-import {AngularEditorConfig} from "@kolkov/angular-editor";
+import { Component, OnInit } from "@angular/core";
+import { AngularEditorConfig } from "@kolkov/angular-editor";
 
 import {
   UpdateCompanyInput,
   ArticleStatus,
   ModelCompanyFilterInput
 } from "../../API.service";
-import API, {graphqlOperation} from "@aws-amplify/api";
+import API, { graphqlOperation } from "@aws-amplify/api";
 
-import {Auth, Storage} from "aws-amplify";
+import { Auth, Storage } from "aws-amplify";
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
 }
-import {MyAPIService} from "../../API.my";
-import {ulid} from "ulid";
-import {unescapeIdentifier} from "@angular/compiler";
-import {stringify} from "querystring";
+import { MyAPIService } from "../../API.my";
+import { ulid } from "ulid";
+import { unescapeIdentifier } from "@angular/compiler";
+import { stringify } from "querystring";
 
 @Component({
   selector: "user-cmp",
@@ -44,20 +44,25 @@ export class CompanyComponent implements OnInit {
 
   async ngOnInit() {
     const cognitUser = await Auth.currentAuthenticatedUser();
+    console.log(cognitUser);
+    console.log(cognitUser.attributes.email);
+
     const loginedUser = await this.api.GetUser(cognitUser.username);
+    console.log(loginedUser.id);
+    console.log(loginedUser.username);
     // const companyData = await this.api.MyGetCompany("bbbb");
     // console.log("MyGetCompany:", companyData);
     this.user = loginedUser;
     this.filename = this.user.id + ".png";
     this.fileNameBackground = "company/background/" + this.filename;
     this.fileNameProfile = "company/profile/" + this.filename;
-    Storage.get(this.fileNameBackground, {level: "public"})
+    Storage.get(this.fileNameBackground, { level: "public" })
       .then(result => {
         console.log(result);
         this.fileUrlBackground = result;
       })
       .catch(err => console.log(err));
-    Storage.get(this.fileNameProfile, {level: "public"})
+    Storage.get(this.fileNameProfile, { level: "public" })
       .then(result => {
         console.log(result);
         this.fileUrlProfile = result;
@@ -68,7 +73,7 @@ export class CompanyComponent implements OnInit {
     // await this.api.ListCompanys().then(data => {
     //   console.log(data);
     // });
-    let companyData = await this.api.MyGetCompany("bbbb");
+    let companyData = await this.api.MyGetCompany(loginedUser.id);
     if (companyData !== null) {
       console.log(companyData);
       this.companyName = companyData.name;
@@ -76,14 +81,16 @@ export class CompanyComponent implements OnInit {
       this.companyAbout = companyData.about;
       this.companyEmail = companyData.email;
     } else {
+      console.log(cognitUser.attributes.email);
+      const now = Math.floor(new Date().getTime());
       companyData = await this.api.CreateCompany({
         id: loginedUser.id,
         companyOwnerId: loginedUser.id,
-        name: "企業名",
-        about: "企業説明",
-        email: "company@co.jp",
-        createdAt: 1,
-        updatedAt: 2
+        name: " ",
+        about: " ",
+        email: cognitUser.attributes.email,
+        createdAt: now,
+        updatedAt: now
       });
     }
   }
@@ -108,7 +115,7 @@ export class CompanyComponent implements OnInit {
     this.uploadBackgroundImg(this.filename);
     this.uploadProfileImg(this.filename);
     const company: UpdateCompanyInput = {
-      id: "bbbb",
+      id: this.user.id,
       name: this.companyName,
       email: this.companyEmail,
       about: this.companyAbout,
@@ -116,7 +123,7 @@ export class CompanyComponent implements OnInit {
     };
 
     this.api.UpdateCompany(company).then(data => {});
-    setTimeout("location.reload()", 1000);
+    //  setTimeout("location.reload()", 1000);
   }
   async uploadBackgroundImg(id) {
     const file = this.selectedFileBackground;

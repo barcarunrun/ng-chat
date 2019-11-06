@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {AuthService} from "../../../auth/auth.service";
-import {tap} from "rxjs/operators";
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../../../auth/auth.service";
+import { tap } from "rxjs/operators";
+import { Auth } from "aws-amplify";
 
 @Component({
   selector: "app-nav",
@@ -17,13 +18,23 @@ export class NavComponent implements OnInit {
       tap(loggedIn => {
         console.log("loggedIn:", loggedIn);
         if (!loggedIn) {
+          this.isLogin = false;
+        } else {
           this.isLogin = true;
         }
       })
     );
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    const cognitUser = await Auth.currentAuthenticatedUser();
+    if (cognitUser != null) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
+    console.log(this.isLogin);
+  }
 
   disableMenu(): void {
     this.isActive = !this.isActive;

@@ -1,7 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
-import {Auth} from "aws-amplify";
+import { Auth } from "aws-amplify";
 
 @Component({
   selector: "app-create",
@@ -13,23 +13,51 @@ export class CreateCompanyUserComponent implements OnInit {
   password: string;
   email: string;
   code: string;
+  message: string;
+  check: boolean;
 
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.check = false;
+    this.message = "";
+  }
 
   create() {
-    Auth.signUp({
-      username: this.username,
-      password: this.password,
-      attributes: {
-        email: this.email, // optional
-        // other custom attributes
-        "custom:user_role": "company"
-      },
-      validationData: [] //optional
-    })
-      .then(data => this.router.navigate(["/auth/confirm_email"]))
-      .catch(err => console.log(err));
+    this.message = "";
+    if (this.check == false) {
+      this.message = "利用規約に同意してください。";
+      this.router.navigate(["/auth/create"]);
+    } else {
+      Auth.signUp({
+        username: this.username,
+        password: this.password,
+        attributes: {
+          email: this.email, // optional
+          // other custom attributes
+          "custom:user_role": "company"
+        },
+        validationData: [] //optional
+      })
+        .then(data => {
+          this.router.navigate(["/auth/confirm_email/compnay"]);
+        })
+        .catch(err => {
+          console.log(err);
+          if (err.code == "UsernameExistsException") {
+            if (this.message !== undefined) {
+              this.message = this.message + "そのユーザ名は既に使われいます。";
+            } else {
+              this.message = "そのユーザ名は既に使われいます。";
+            }
+          } else {
+            if (this.message !== undefined) {
+              this.message = this.message + "そのユーザ名は既に使われいます。";
+            } else {
+              this.message = "そのユーザ名は既に使われいます。";
+            }
+          }
+        });
+    }
   }
 }

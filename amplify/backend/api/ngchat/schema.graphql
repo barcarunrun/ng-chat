@@ -18,10 +18,7 @@ enum invitedStatus {
   canceled
 }
 
-type Company
-  @model
-  @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+type Company @model @key(fields: ["id"]) @auth(rules: [{ allow: public }]) {
   id: ID!
   # stores: [Store]!  # ont to many
   #   @connection(
@@ -47,10 +44,7 @@ type Company
   updatedAt: AWSTimestamp!
 }
 
-type ArticleTag
-  @model
-  @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+type ArticleTag @model @key(fields: ["id"]) @auth(rules: [{ allow: public }]) {
   id: ID!
   article: Article! @connection(name: "ArticleTags")
   articleTagMaster: ArticleTagMaster! @connection(name: "TagArticles")
@@ -63,7 +57,7 @@ type ArticleTagMaster
   @model
   @key(fields: ["id"])
   @key(name: "Bycontent", fields: ["content"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   content: String!
   articles: [ArticleTag]! @connection(name: "TagArticles")
@@ -72,10 +66,7 @@ type ArticleTagMaster
   updatedAt: AWSTimestamp!
 }
 
-type Article
-  @model
-  @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+type Article @model @key(fields: ["id"]) @auth(rules: [{ allow: public }]) {
   id: ID!
   title: String!
   tags: [ArticleTag]! @connection(name: "ArticleTags")
@@ -95,10 +86,7 @@ enum ArticleStatus {
   close
 }
 
-type Comment
-  @model
-  @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+type Comment @model @key(fields: ["id"]) @auth(rules: [{ allow: public }]) {
   id: ID!
   content: String
   user: User! @connection
@@ -114,7 +102,7 @@ type WorkType
   @model
   @key(fields: ["id"])
   @key(name: "Bycontent", fields: ["content"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   content: String!
   companies: [CompanyWorkType]! @connection(name: "WorkTypeCompanies")
@@ -127,7 +115,7 @@ type StyleType
   @model
   @key(fields: ["id"])
   @key(name: "Bycontent", fields: ["content"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   content: String!
   companies: [CompanyStyleType]! @connection(name: "StyleTypeCompanies")
@@ -139,7 +127,7 @@ type StyleType
 type CompanyWorkType
   @model
   @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   workType: WorkType! @connection(name: "WorkTypeCompanies")
   company: Company! @connection(name: "CompanyWorkTypes")
@@ -151,7 +139,7 @@ type CompanyWorkType
 type CompanyStyleType
   @model
   @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   styleType: StyleType! @connection(name: "StyleTypeCompanies")
   company: Company! @connection(name: "CompanyStyleTypes")
@@ -165,7 +153,7 @@ type Character
   @model
   @key(fields: ["id"])
   @key(name: "Bycontent", fields: ["content"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   content: String!
   applicants: [ApplicantCharacter]! @connection(name: "CharacterApplicants")
@@ -178,7 +166,7 @@ type Skill
   @model
   @key(fields: ["id"])
   @key(name: "Bycontent", fields: ["content"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   content: String!
   applicants: [ApplicantSkill]! @connection(name: "SkillApplicants")
@@ -190,7 +178,7 @@ type Skill
 type ApplicantCharacter
   @model
   @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   character: Character! @connection(name: "CharacterApplicants")
   applicant: Applicant! @connection(name: "ApplicantCharacters")
@@ -202,7 +190,7 @@ type ApplicantCharacter
 type ApplicantSkill
   @model
   @key(fields: ["id"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   applicant: Applicant! @connection(name: "ApplicantSkills")
   skill: Skill! @connection(name: "SkillApplicants")
@@ -215,7 +203,7 @@ type Area
   @model
   @key(fields: ["id"])
   @key(name: "Bycontent", fields: ["content"])
-  @auth(rules: [{allow: public, provider: iam}]) {
+  @auth(rules: [{ allow: public }]) {
   id: ID!
   content: String!
   articles: [Article!]! @connection(name: "ArticleArea")
