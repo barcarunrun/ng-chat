@@ -1,31 +1,19 @@
-<div class="navbar" role="navigation" aria-label="main navigation">
+<div class="navbar" role="navigation" aria-label="main navigation" style="position:fixed;width:100%;">
   <div class="navbar-brand">
     <a class="navbar-item" routerLink="/">
       <img class="logo" src="assets/logo.jpg" alt="" width="112" />
     </a>
 
-    <a
-      role="button"
-      class="navbar-burger burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbarBasicExample"
-      (click)="disableMenu()"
-      [class.is-active]="isActive"
-    >
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample" (click)="disableMenu()" [class.is-active]="isActive">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
 
-  <div
-    id="navbarBasicExample"
-    class="navbar-menu"
-    [class.is-active]="isActive"
-    (click)="disableMenu()"
-    *ngIf="isLogin == false"
-  >
+  <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isActive" (click)="disableMenu()"
+    *ngIf="isLogin == false">
     <div class="navbar-start">
       <a class="navbar-item" routerLink="/">
         Home
@@ -46,13 +34,8 @@
     </div>
   </div>
 
-  <div
-    id="navbarBasicExample"
-    class="navbar-menu"
-    [class.is-active]="isActive"
-    (click)="disableMenu()"
-    *ngIf="isLogin == true"
-  >
+  <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isActive" (click)="disableMenu()"
+    *ngIf="isLogin == true">
     <div class=" navbar-start">
       <a class="navbar-item" routerLink="/">
         Home
