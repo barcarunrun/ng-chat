@@ -21,6 +21,7 @@ import { UserlistComponent } from "./companyAdmin/userlist/userlist.component";
 import { IndexComponent } from "./index/index/index.component";
 import { DetailComponent } from "./index/detail/detail.component";
 import { LandingPageComponent } from "./index/landingpage/landingpage.component";
+import { TermsComponent } from "./index/terms/terms.component"
 
 // Auth
 import { AuthLayoutComponent } from "./auth/components/layout/layout.component";
@@ -150,6 +151,10 @@ const routes: Routes = [
         component: DetailComponent
       },
       {
+        path: "terms",
+        component: TermsComponent
+      },
+      {
         path: "landingpage",
         component: LandingPageComponent
       }
@@ -161,4 +166,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
